@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stringer Genealogy – Crews Family Gathering Place</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    .lineage-chain { display: flex; flex-direction: column; gap: 0; margin: 2rem 0; }
+    .lineage-person {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 0;
+    }
+    .lineage-person::after {
+      content: '│';
+      display: block;
+      text-align: center;
+      font-size: 1.5rem;
+      color: #6b5c82;
+      line-height: 1.8;
+      margin-left: 1.5rem;
+    }
+    .lineage-person:last-child::after { display: none; }
+    .lineage-person.highlight { border-left: 4px solid #7c5cbf; }
+    .lineage-person.you-are-here {
+      border: 2px solid #7c5cbf;
+      background: linear-gradient(135deg, #f3eeff, #faf7ff);
+      box-shadow: 0 4px 16px rgba(124,92,191,0.15);
+    }
+    .person-name { font-size: 1.1rem; font-weight: 700; color: var(--primary); }
+    .person-years { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.4rem; }
+    .person-detail { font-size: 0.9rem; line-height: 1.6; }
+    .badge-row { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.5rem; }
+    .badge { font-size: 0.72rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 99px; }
+    .badge-link { background: #7c5cbf; color: white; text-decoration: none; }
+    .badge-link:hover { background: var(--primary); }
+    .badge-origin { background: #1a3a5c; color: #b8d4f0; }
+    .gen-num {
+      display: inline-block;
+      background: #7c5cbf;
+      color: white;
+      border-radius: 50%;
+      width: 24px; height: 24px;
+      text-align: center;
+      line-height: 24px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-right: 0.5rem;
+      flex-shrink: 0;
+    }
+    .person-header { display: flex; align-items: center; }
+    .gen-section-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      font-weight: 700;
+      margin-bottom: 0.15rem;
+    }
+    .origin-box {
+      background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+      color: #e8d5f0;
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+    .origin-box h3 { color: #c9a0e0; margin-top: 0; }
+    .origin-box p { line-height: 1.75; }
+    .origin-box blockquote {
+      border-left: 3px solid #c9a0e0;
+      margin: 1rem 0;
+      padding-left: 1rem;
+      font-style: italic;
+      opacity: 0.9;
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+    .info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+      box-shadow: var(--shadow);
+    }
+    .info-card h4 { margin: 0 0 0.5rem; color: var(--primary); font-size: 0.95rem; }
+    .info-card p, .info-card ul { font-size: 0.87rem; margin: 0; line-height: 1.6; }
+    .info-card ul { padding-left: 1.2rem; }
+    .minister-quote {
+      background: #f8f3ff;
+      border: 1px solid #d4b8f0;
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      margin: 1rem 0;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <main class="container" style="padding: 2rem 1rem;">
+
+    <!-- Page header -->
+    <div style="text-align:center; margin-bottom:2.5rem;">
+      <div style="font-size:3rem; margin-bottom:0.5rem;">🏹</div>
+      <h1 style="color:var(--primary); margin:0 0 0.5rem;">Stringer Family Genealogy</h1>
+      <p style="color:var(--text-muted); max-width:600px; margin:0 auto; font-size:1.05rem;">
+        From Norman England to the American South. The Stringer name traces back to the craftsmen who made bowstrings — a vital trade in medieval warfare — and their descendants who helped settle the New World.
+      </p>
+      <div style="margin-top:1rem;">
+        <a href="genealogy.html" style="font-size:0.9rem; color:#7c5cbf; text-decoration:none;">← Back to Genealogy</a>
+      </div>
+    </div>
+
+    <!-- Name Origin -->
+    <div class="origin-box">
+      <h3>🏰 The Stringer Name — A Norman Legacy</h3>
+      <p>
+        The Stringer name comes from the ancient Norman culture established in Britain after the Conquest of 1066. It was derived from the German word <em>streng</em>, meaning "strong or courageous" — but more specifically became an occupational name for <strong>"one who made strings for bows."</strong>
+      </p>
+      <blockquote>
+        "In war if a string break, the man is lost and is no man, and his weapon is gone... therefore, God send us good stringers both for war and peace."
+      </blockquote>
+      <p>
+        The surname was first found in <strong>Nottinghamshire</strong>, where they held a family seat from early times as Lords of the manor of Eaton, conjecturally descended from Fulk, who held the lands from Roger de Bully at the time of the Domesday Book in 1086. The name grew to become "a common Yorkshire name."
+      </p>
+      <p style="font-size:0.85rem; opacity:0.8;">
+        Early records: Walter Stringere (Wiltshire, 1194) · Roger le Strenger (Yorkshire, 1293) · Samuel Stringer (Virginia, 1622) · John Stringer (Virginia, 1651)
+      </p>
+    </div>
+
+    <!-- Main lineage -->
+    <h2 style="color:var(--primary);">The Direct Line — Alycia Stringer's Ancestry</h2>
+    <p style="color:var(--text-muted); margin-bottom:1.5rem;">From Nantwich, Cheshire, England to Alabama, generation by generation.</p>
+
+    <div class="lineage-chain">
+
+      <div class="lineage-person">
+        <div class="gen-section-label">Generation 1 — England</div>
+        <div class="person-header">
+          <span class="gen-num" style="background:#1a3a5c;">1</span>
+          <span class="person-name">John Stringer</span>
+        </div>
+        <div class="person-years">b. c. 1590 · Nantwich, Cheshire, England</div>
+        <div class="person-detail">
+          The earliest documented Stringer ancestor in this line. Born in Nantwich, Cheshire — a town famous for its salt production and medieval history in the north of England.
+        </div>
+        <div class="badge-row">
+          <a class="badge badge-link" href="https://www.familysearch.org/en/tree/person/details/KFYS-1V4" target="_blank">FamilySearch KFYS-1V4</a>
+        </div>
+      </div>
+
+      <div class="lineage-person highlight">
+        <div class="gen-section-label">Generation 2 — England</div>
+        <div class="person-header">
+          <span class="gen-num">2</span>
+          <span class="person-name">Gabriell Stringer</span>
+        </div>
+        <div class="person-years">b. c. 1619, Nantwich, Cheshire – d. May 4, 1669 (Gloucestershire)</div>
+        <div class="person-detail">
+          Also known as Gabriel, he was an innkeeper by trade. He married <strong>Isabell (Habbell)</strong> (b. 1628). His will was proved on May 4, 1669 — a rare surviving document that gives us a window into 17th-century English family life. He bequeathed his estate to his wife Habbell and his son Gabriell.
+        </div>
+        <div class="minister-quote">
+          "In the name of God Amen I Gabriell Stringer of Hampnett in the County of Gloucester being very sick and weak in body but of good memory (praised be the Lord) doe make my last will and testament..."
+        </div>
+        <div class="badge-row">
+          <a class="badge badge-link" href="https://www.familysearch.org/en/tree/person/details/KFPL-3W9" target="_blank">FamilySearch KFPL-3W9</a>
+        </div>
+      </div>
+
+      <div class="lineage-person highlight">
+        <div class="gen-section-label">Generation 3 — England</div>
+        <div class="person-header">
+          <span class="gen-num">3</span>
+          <span class="person-name">John Stringer, Sr.</span>
+        </div>
+        <div class="person-years">Christened October 8, 1648, Nantwich – d. March 2, 1690</div>
+        <div class="person-detail">
+          Married <strong>Mary Powell</strong> on August 22, 1674 in Nantwich, Cheshire.
+        </div>
+        <div class="badge-row">
+          <a class="badge badge-link" href="https://www.familysearch.org/en/tree/person/details/K41B-MVY" target="_blank">FamilySearch K41B-MVY</a>
+        </div>
+      </div>
+
+      <div class="lineage-person highlight">
+        <div class="gen-section-label">Generation 4 — England to America</div>
+        <div class="person-header">
+          <span class="gen-num">4</span>
+          <span class="person-name">John Stringer, Jr.</span>
+        </div>
+        <div class="person-years">Christened December 27, 1679, Cheshire – d. April 12, 1718 · Elizabeth City, Virginia</div>
+        <div class="person-detail">
+          Also known as "John Stringloe." He crossed the Atlantic and settled in <strong>Elizabeth City, Virginia</strong> — one of the earliest American Stringers. He was a weaver, carpenter, cooper, and barrel maker. He married <strong>Margaret Mary Molyneux</strong> on July 20, 1699 in Cheshire before emigrating. He died young at ~39 in the Virginia colony.
+        </div>
+        <div class="badge-row">
+          <span class="badge badge-origin">First American Stringer</span>
+          <a class="badge badge-link" href="https://www.familysearch.org/en/tree/person/details/LT3D-GTB" target="_blank">FamilySearch LT3D-GTB</a>
+        </div>
+      </div>
+
+      <div class="lineage-person highlight">
+        <div class="gen-section-label">Generation 5 — Colonial America</div>
+        <div class="person-header">
+          <span class="gen-num">5</span>
+          <span class="person-name">John Stringer III</span>
+        </div>
+        <div class="person-years">b. 1714, Elizabeth City, Virginia – d. 1771 · Edgecombe County, North Carolina</div>
+        <div class="person-detail">
+          Married <strong>Katherine Batchelder</strong> in 1739 in Edgecombe, North Carolina. The family moved south from Virginia into the Carolinas during the colonial period.
+        </div>
+        <div class="badge-row">
+          <a class="badge badge-link" href="https://www.familysearch.org/en/tree/person/details/GQ5W-ZHT" target="_blank">FamilySearch GQ5W-ZHT</a>
+        </div>
+      </div>
+
+      <div class="lineage-person highlight">
+        <div class="gen-section-label">Generation 6 — Revolutionary Era</div>
+        <div class="person-header">
+          <span class="gen-num">6</span>
+          <span class="person-name">Charles E. Stringer</span>
+        </div>
+        <div class="person-years">b. January 5, 1748, Edgecombe County, NC – d. 1823–1831 · Lawrence County, Mississippi</div>
+        <div class="person-detail">
+          Charles E. Stringer was an ordained <strong>Christian minister</strong> who "labored in some of the Southern States." Around 1809, he co-published a pamphlet with Elder Rainy in vindication of Christian doctrine. He won land in the <strong>1806 Georgia Land Lottery</strong> and was on the first grand jury of the first court in Laurens County, GA in 1807. By 1818 he had sold all his land there and moved his family to <strong>Lawrence County, Mississippi</strong>, where he is buried in the Stringer Cemetery.
+        </div>
+        <p>He married <strong>Sarah "Sally" Jones</strong> (1742–1799) in 1768 in Edgecombe County, NC. Together they had 15 children: Frances, Agnes, Cynthia, Josiah, Lawrence, John, Zachariah, Isaac, Leonard, Simon, Reddin, Gray, Arthur, Jacob, and Thomas.</p>
+        <div class="badge-row">
+          <a class="badge badge-link" href="https://www.familysearch.org/en/tree/person/details/KJ8D-GF4" target="_blank">FamilySearch KJ8D-GF4</a>
+        </div>
+      </div>
+
+      <div class="lineage-person highlight">
+        <div class="gen-section-label">Generation 7 — Deep South</div>
+        <div class="person-header">
+          <span class="gen-num">7</span>
+          <span class="person-name">John E. Stringer</span>
+        </div>
+        <div class="person-years">b. 1772, North Carolina – d. October 1, 1855 · Lowndes County, Alabama</div>
+        <div class="person-detail">
+          John E. married three times: first to <strong>Elizabeth Cawthon</strong> (b. 1776, d. 1850); then <strong>Sarah Brooks</strong> (b. 1791, d. 1868, m. February 5, 1851); and also <strong>Sarah Ann Jones</strong> (b. 1790, d. 1855). He settled in Lowndes County, Alabama, continuing the family's journey south and west.
+        </div>
+        <div class="badge-row">
+          <a class="badge badge-link" href="https://www.familysearch.org/en/tree/person/details/GLZV-KDG" target="_blank">FamilySearch GLZV-KDG</a>
+        </div>
+      </div>
+
+      <div class="lineage-person highlight">
+        <div class="gen-section-label">Generation 8 — Alabama</div>
+        <div class="person-header">
+          <span class="gen-num">8</span>
+          <span class="person-name">John Ashley Stringer</span>
+        </div>
+        <div class="person-years">b. December 31, 1818 – d. December 13, 1895 · Spring Creek, Butler County, Alabama</div>
+        <div class="person-detail">
+          Married <strong>Frances Susan Champion</strong> (b. 1810, d. 1851) on February 28, 1839 in Lowndes County, Alabama. In 1880, the family lived at Steiner's Store in Butler County. John Ashley helped establish the Stringer family's presence in the Alabama hill country.
+        </div>
+        <div class="badge-row">
+          <a class="badge badge-link" href="https://www.familysearch.org/en/tree/person/details/LCPZ-5G1" target="_blank">FamilySearch LCPZ-5G1</a>
+        </div>
+      </div>
+
+      <div class="lineage-person highlight">
+        <div class="gen-section-label">Generation 9 — Crenshaw County</div>
+        <div class="person-header">
+          <span class="gen-num">9</span>
+          <span class="person-name">Anson Taylor Stringer</span>
+        </div>
+        <div class="person-years">b. March 17, 1847, Crenshaw County, AL – d. March 6, 1920 · Honoraville, Crenshaw County, AL</div>
+        <div class="person-detail">
+          Married <strong>Susan Frances Daniel</strong> (b. 1846, d. 1921) on January 5, 1871. He was born and died in Crenshaw County — buried at Dry Cemetery, Crenshaw County, Alabama.
+        </div>
+        <div class="badge-row">
+          <a class="badge badge-link" href="https://www.familysearch.org/en/tree/person/about/KJH8-H2M" target="_blank">FamilySearch KJH8-H2M</a>
+        </div>
+      </div>
+
+      <div class="lineage-person highlight">
+        <div class="gen-section-label">Generation 10</div>
+        <div class="person-header">
+          <span class="gen-num">10</span>
+          <span class="person-name">Thomas Franklin Stringer</span>
+        </div>
+        <div class="person-years">b. April 6, 1875, Bradleyton, Crenshaw County – d. November 20, 1919 · Crenshaw County, AL</div>
+        <div class="person-detail">
+          Married <strong>Jermoie Mapes</strong> (b. 1881, d. 1918) on October 1, 1905. Both Thomas Franklin and his wife passed away young — he at 44, she at 37 — within a year of each other, likely during the devastating 1918 influenza pandemic.
+        </div>
+        <div class="badge-row">
+          <a class="badge badge-link" href="https://www.familysearch.org/en/tree/person/about/KCRX-LPS" target="_blank">FamilySearch KCRX-LPS</a>
+        </div>
+      </div>
+
+      <div class="lineage-person highlight">
+        <div class="gen-section-label">Generation 11</div>
+        <div class="person-header">
+          <span class="gen-num">11</span>
+          <span class="person-name">John Anson Stringer</span>
+        </div>
+        <div class="person-years">b. November 16, 1906, Crenshaw County – d. December 5, 1992 · Alabama</div>
+        <div class="person-detail">
+          Married <strong>Agnes Elaine DePriest</strong> (b. 1919, d. 1994). He was registered in the 1940 draft and is buried at <strong>Mount Zion United Methodist Cemetery</strong>, Old Lodge, Honoraville, Crenshaw County, Alabama.
+        </div>
+        <div class="badge-row">
+          <a class="badge badge-link" href="https://www.familysearch.org/en/tree/person/details/G74K-1NM" target="_blank">FamilySearch G74K-1NM</a>
+        </div>
+      </div>
+
+      <div class="lineage-person highlight">
+        <div class="gen-section-label">Generation 12</div>
+        <div class="person-header">
+          <span class="gen-num">12</span>
+          <span class="person-name">Johnny Ray Stringer</span>
+        </div>
+        <div class="person-years">Son of John Anson Stringer</div>
+        <div class="person-detail">Continuing the Stringer line.</div>
+        <div class="badge-row">
+          <a class="badge badge-link" href="https://www.familysearch.org/ark:/61903/1:1:6F7V-5B8T?lang=en" target="_blank">FamilySearch Record</a>
+        </div>
+      </div>
+
+      <div class="lineage-person highlight">
+        <div class="gen-section-label">Generation 13</div>
+        <div class="person-header">
+          <span class="gen-num">13</span>
+          <span class="person-name">Thomas "Tommy" Balfour Stringer</span>
+        </div>
+        <div class="person-years">b. June 22, 1939 – d. February 17, 2018</div>
+        <div class="person-detail">
+          Married <strong>Shelby Jean Kiser</strong> on May 29, 1959. Buried at Salem Church of Christ Cemetery, Danielsville, Crenshaw County, Alabama.
+        </div>
+        <div class="badge-row">
+          <a class="badge badge-link" href="https://www.familysearch.org/en/tree/person/details/GSJD-DR6" target="_blank">FamilySearch GSJD-DR6</a>
+        </div>
+      </div>
+
+      <!-- Alycia -->
+      <div class="lineage-person you-are-here">
+        <div class="gen-section-label">Present Day</div>
+        <div class="person-header">
+          <span class="gen-num" style="background:#7c5cbf;">★</span>
+          <span class="person-name">Alycia Stringer Crews 🏠</span>
+        </div>
+        <div class="person-years">Present</div>
+        <div class="person-detail">
+          Married <strong>Charles Larry Crews Jr.</strong> — bringing together the Stringer and Crews lines. From a bowstring maker in Norman England to Alabama in the 21st century: over 400 years of documented Stringer history.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Early Stringers in America -->
+    <h2 style="color:var(--primary); margin-top:2rem;">Other Early Stringers in America</h2>
+    <p style="color:var(--text-muted);">Other Stringer settlers in the New World during the 17th century:</p>
+    <div class="two-col">
+      <div class="info-card">
+        <h4>17th Century Virginia Settlers</h4>
+        <ul>
+          <li>Samuel Stringer — Virginia, 1622</li>
+          <li>Samvell Stringer (age 17) — Virginia, 1635</li>
+          <li>James Stringer — Virginia, 1647</li>
+          <li>John Stringer — Virginia, 1651</li>
+          <li>Lettice Stringer — Virginia, 1653</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h4>Early English Records</h4>
+        <ul>
+          <li>Walter Stringere — Wiltshire, 1194 (Curia Regis Rolls)</li>
+          <li>Roger le Strenger — Yorkshire, 1293</li>
+          <li>Willelmus Strynger — Yorkshire Poll Tax, 1379</li>
+          <li>Godwynn Strenger — Somerset, 1327</li>
+          <li>Laurence Stringhar — Aberdeen, 1486</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Further Research -->
+    <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; margin-top:2rem;">
+      <h3 style="margin-top:0; color:var(--primary);">Further Research</h3>
+      <ul style="line-height:2.2;">
+        <li><a href="https://www.houseofnames.com/stringer-family-crest" target="_blank" style="color:#7c5cbf;">Stringer Family Crest — House of Names</a></li>
+        <li><a href="https://www.familysearch.org/en/tree/person/details/KFYS-1V4" target="_blank" style="color:#7c5cbf;">John Stringer (1590) on FamilySearch</a></li>
+        <li><a href="https://www.familysearch.org/en/tree/person/details/KJ8D-GF4" target="_blank" style="color:#7c5cbf;">Charles E. Stringer (Minister, 1748) on FamilySearch</a></li>
+        <li><a href="https://www.familysearch.org/en/tree/person/details/G74K-1NM" target="_blank" style="color:#7c5cbf;">John Anson Stringer on FamilySearch</a></li>
+        <li><a href="https://www.familysearch.org/en/tree/person/details/GSJD-DR6" target="_blank" style="color:#7c5cbf;">Tommy Balfour Stringer on FamilySearch</a></li>
+      </ul>
+    </div>
+
+    <div style="text-align:center; margin:2.5rem 0 1rem;">
+      <a href="genealogy.html" style="display:inline-block; background:#7c5cbf; color:white; padding:0.6rem 1.8rem; border-radius:var(--radius); text-decoration:none; font-weight:700;">← Back to Genealogy Hub</a>
+    </div>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <script src="../js/main.js"></script>
+</body>
+</html>

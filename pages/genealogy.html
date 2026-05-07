@@ -6,263 +6,197 @@
   <title>Genealogy – Crews Family Gathering Place</title>
   <link rel="stylesheet" href="../css/styles.css" />
   <style>
-    .gen-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem; }
-    @media (max-width: 700px) { .gen-cols { grid-template-columns: 1fr; } }
+    .family-lines {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin: 2.5rem 0;
+    }
+    @media (max-width: 850px) { .family-lines { grid-template-columns: 1fr; } }
 
-    .ancestor-card {
+    .family-card {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      text-decoration: none;
+      display: block;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .family-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .family-card-header { padding: 2rem 1.5rem 1.5rem; text-align: center; }
+    .family-card-body {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem;
-      box-shadow: var(--shadow);
-      display: flex; gap: 1rem; align-items: flex-start;
+      border-top: none;
+      padding: 1.25rem 1.5rem 1.5rem;
     }
-    .ancestor-avatar { font-size: 2.5rem; flex-shrink: 0; }
-    .ancestor-name   { font-weight: 700; color: var(--primary); font-size: 1rem; }
-    .ancestor-years  { font-size: 0.82rem; color: var(--text-muted); }
-    .ancestor-notes  { font-size: 0.88rem; margin-top: 0.3rem; }
+    .family-icon { font-size: 3rem; margin-bottom: 0.5rem; }
+    .family-name { font-size: 1.4rem; font-weight: 800; margin: 0; }
+    .family-tagline { font-size: 0.88rem; margin: 0.3rem 0 0; opacity: 0.85; }
+    .family-detail { font-size: 0.9rem; line-height: 1.65; color: var(--text-muted); }
+    .family-stats { display: flex; gap: 0.6rem; margin-top: 1rem; flex-wrap: wrap; }
+    .family-stat { background: #f5f0e8; border-radius: 6px; padding: 0.3rem 0.6rem; font-size: 0.78rem; color: var(--primary); font-weight: 600; }
+    .family-cta { display: block; text-align: center; margin-top: 1rem; padding: 0.5rem; border-radius: 6px; font-weight: 700; font-size: 0.9rem; }
 
-    .tree-row-label {
-      text-align: center;
-      font-size: 0.78rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
-    }
-    .connector-row {
-      display: flex; justify-content: center;
-      height: 2rem;
-      align-items: flex-end;
-      padding-bottom: 0;
-    }
-    .connector-row::before {
-      content: '';
-      width: 2px; height: 100%;
-      background: var(--accent-light);
-    }
+    .card-crews .family-card-header { background: linear-gradient(135deg, #2d1a0e, #5a3520); color: #f5e6d0; }
+    .card-crews .family-cta { background: var(--accent); color: white; }
+
+    .card-stringer .family-card-header { background: linear-gradient(135deg, #1a0e2d, #3a2060); color: #ede0ff; }
+    .card-stringer .family-cta { background: #7c5cbf; color: white; }
+    .card-stringer .family-stat { background: #f0eaff; }
+
+    .card-herring .family-card-header { background: linear-gradient(135deg, #0a1a14, #1a3d2e); color: #d4f0e8; }
+    .card-herring .family-cta { background: #2a8c74; color: white; }
+    .card-herring .family-stat { background: #e8f5f0; }
+
+    .timeline-strip { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem 2rem; margin: 2rem 0; box-shadow: var(--shadow); }
+    .timeline-strip h3 { margin: 0 0 1rem; color: var(--primary); }
+    .timeline-items { display: flex; gap: 0; overflow-x: auto; padding-bottom: 0.5rem; }
+    .timeline-item { flex: 0 0 auto; text-align: center; padding: 0 1.25rem; border-right: 1px solid var(--border); min-width: 100px; }
+    .timeline-item:last-child { border-right: none; }
+    .timeline-year { font-size: 1rem; font-weight: 700; color: var(--accent); }
+    .timeline-desc { font-size: 0.76rem; color: var(--text-muted); margin-top: 0.2rem; line-height: 1.4; }
+
+    .featured-story { background: linear-gradient(135deg, #1a1205, #0d1a0d); border: 1px solid #c8a85b; border-radius: var(--radius); padding: 1.75rem 2rem; margin: 2rem 0; box-shadow: 0 4px 20px rgba(200,168,91,0.15); color: #f0e6c8; display: flex; gap: 1.5rem; align-items: flex-start; }
+    @media (max-width:600px) { .featured-story { flex-direction: column; } }
+    .featured-story-icon { font-size: 3rem; flex-shrink: 0; }
+    .featured-story h3 { color: #d4b84a; margin: 0 0 0.5rem; }
+    .featured-story p { margin: 0 0 0.75rem; font-size: 0.92rem; line-height: 1.7; }
+    .featured-story a { color: #d4b84a; font-weight: 700; }
   </style>
 </head>
 <body>
   <div id="header-placeholder"></div>
 
-  <section class="page-hero">
-    <span class="hero-icon">🌳</span>
-    <h1>Crews Family Genealogy</h1>
-    <p>Tracing our roots — from the earliest records to the present generation</p>
-  </section>
+  <main class="container" style="padding: 2rem 1rem;">
 
-  <main class="page-content">
+    <div style="text-align:center; margin-bottom:2rem;">
+      <div style="font-size:3rem; margin-bottom:0.5rem;">🌳</div>
+      <h1 style="color:var(--primary); margin:0 0 0.5rem;">Family Genealogy</h1>
+      <p style="color:var(--text-muted); max-width:640px; margin:0 auto; font-size:1.05rem;">
+        Exploring the roots of the Crews family — three distinct family lines stretching back centuries, across continents, through wars and migrations, to the family we are today.
+      </p>
+    </div>
 
-    <!-- ── Family Tree ── -->
-    <h2 class="section-title">🌳 Family Tree</h2>
-
-    <div class="family-tree">
-
-      <!-- Generation 1: Great-Great Grandparents -->
-      <div class="tree-row-label">Great-Great Grandparents</div>
-      <div class="tree-gen">
-        <div class="tree-person deceased">
-          <span class="tp-avatar">👴</span>
-          <div class="tp-name">Elias Crews</div>
-          <div class="tp-years">1871 – 1944</div>
-        </div>
-        <div class="tree-person deceased">
-          <span class="tp-avatar">👵</span>
-          <div class="tp-name">Lula Mae Crews</div>
-          <div class="tp-years">née Holder · 1875 – 1951</div>
-        </div>
-        <div class="tree-person deceased">
-          <span class="tp-avatar">👴</span>
-          <div class="tp-name">Otis Stafford</div>
-          <div class="tp-years">1869 – 1938</div>
-        </div>
-        <div class="tree-person deceased">
-          <span class="tp-avatar">👵</span>
-          <div class="tp-name">Bessie Stafford</div>
-          <div class="tp-years">née Crawford · 1873 – 1942</div>
-        </div>
+    <div class="timeline-strip">
+      <h3>📅 A Family Through Time</h3>
+      <div class="timeline-items">
+        <div class="timeline-item"><div class="timeline-year">1199</div><div class="timeline-desc">Herring clan in Scotland</div></div>
+        <div class="timeline-item"><div class="timeline-year">1066</div><div class="timeline-desc">Stringer name — Norman Conquest</div></div>
+        <div class="timeline-item"><div class="timeline-year">1590</div><div class="timeline-desc">John Stringer born, Nantwich England</div></div>
+        <div class="timeline-item"><div class="timeline-year">1635</div><div class="timeline-desc">John Herring arrives in Virginia</div></div>
+        <div class="timeline-item"><div class="timeline-year">1681</div><div class="timeline-desc">Stringers arrive in Virginia</div></div>
+        <div class="timeline-item"><div class="timeline-year">1736</div><div class="timeline-desc">John Crews born, Georgia</div></div>
+        <div class="timeline-item"><div class="timeline-year">1830</div><div class="timeline-desc">Crews settle in Alabama</div></div>
+        <div class="timeline-item"><div class="timeline-year">1862</div><div class="timeline-desc">Isham Crews dies as POW, Wisconsin</div></div>
+        <div class="timeline-item"><div class="timeline-year">1922</div><div class="timeline-desc">Bob &amp; Lora Mae Herring wed</div></div>
+        <div class="timeline-item"><div class="timeline-year">1969</div><div class="timeline-desc">Grandaddy Herring's Israel trip</div></div>
+        <div class="timeline-item"><div class="timeline-year">Today</div><div class="timeline-desc">The Crews Family Gathering Place</div></div>
       </div>
+    </div>
 
-      <div class="connector-row"></div>
-
-      <!-- Generation 2: Great Grandparents -->
-      <div class="tree-row-label">Great Grandparents</div>
-      <div class="tree-gen">
-        <div class="tree-person deceased">
-          <span class="tp-avatar">👴</span>
-          <div class="tp-name">Harold Crews</div>
-          <div class="tp-years">1899 – 1978</div>
-        </div>
-        <div class="tree-person deceased">
-          <span class="tp-avatar">👵</span>
-          <div class="tp-name">Edna Crews</div>
-          <div class="tp-years">née Stafford · 1903 – 1985</div>
-        </div>
+    <div class="featured-story">
+      <div class="featured-story-icon">✡️</div>
+      <div>
+        <h3>Featured Story: Grandaddy Herring's Journey to the Holy Land</h3>
+        <p>
+          In 1969, Robert "Bob" Herring — "Grandaddy Herring" — traveled to Israel on the journey of a lifetime. He kept a journal of everything he saw and experienced. Tragically, he suffered a heart attack at the Tel Aviv airport while boarding his flight home, and passed away there in Israel. His journal remains a cherished piece of family history.
+        </p>
+        <a href="genealogy-herring.html">Read the full story on the Herring Genealogy page →</a>
       </div>
+    </div>
 
-      <div class="connector-row"></div>
+    <h2 style="color:var(--primary);">Explore the Three Family Lines</h2>
 
-      <!-- Generation 3: Grandparents -->
-      <div class="tree-row-label">Grandparents</div>
-      <div class="tree-gen">
-        <div class="tree-person deceased">
-          <span class="tp-avatar">👴</span>
-          <div class="tp-name">Robert E. Crews</div>
-          <div class="tp-years">1928 – 2010</div>
-        </div>
-        <div class="tree-person deceased">
-          <span class="tp-avatar">👵</span>
-          <div class="tp-name">Margaret Crews</div>
-          <div class="tp-years">née Bishop · 1932 – 2018</div>
-        </div>
-      </div>
+    <div class="family-lines">
 
-      <div class="connector-row"></div>
+      <a class="family-card card-crews" href="genealogy-crews.html">
+        <div class="family-card-header">
+          <div class="family-icon">⚔️</div>
+          <p class="family-name">Crews</p>
+          <p class="family-tagline">Charles Larry Crews Jr.'s paternal line</p>
+        </div>
+        <div class="family-card-body">
+          <p class="family-detail">
+            From John Crews (1736, Georgia) through Confederate veterans and a prisoner-of-war, to the Florida Panhandle and beyond. Seven generations of documented ancestry tracing through Alabama.
+          </p>
+          <div class="family-stats">
+            <span class="family-stat">7 Generations</span>
+            <span class="family-stat">Since 1736</span>
+            <span class="family-stat">Georgia → Alabama → Florida</span>
+          </div>
+          <span class="family-cta">Explore the Crews Line →</span>
+        </div>
+      </a>
 
-      <!-- Generation 4: Parents -->
-      <div class="tree-row-label">Parents</div>
-      <div class="tree-gen">
-        <div class="tree-person">
-          <span class="tp-avatar">👨</span>
-          <div class="tp-name">James D. Crews</div>
-          <div class="tp-years">b. 1955</div>
+      <a class="family-card card-stringer" href="genealogy-stringer.html">
+        <div class="family-card-header">
+          <div class="family-icon">🏹</div>
+          <p class="family-name">Stringer</p>
+          <p class="family-tagline">Alycia Stringer Crews's family line</p>
         </div>
-        <div class="tree-person">
-          <span class="tp-avatar">👩</span>
-          <div class="tp-name">Patricia Crews</div>
-          <div class="tp-years">née Allen · b. 1958</div>
+        <div class="family-card-body">
+          <p class="family-detail">
+            From Norman bowstring-makers to Nottinghamshire estates to colonial Virginia — 400+ years of Stringer history culminating in the Alabama families of Crenshaw County.
+          </p>
+          <div class="family-stats">
+            <span class="family-stat">13+ Generations</span>
+            <span class="family-stat">Since 1590</span>
+            <span class="family-stat">England → Virginia → Alabama</span>
+          </div>
+          <span class="family-cta">Explore the Stringer Line →</span>
         </div>
-      </div>
+      </a>
 
-      <div class="connector-row"></div>
-
-      <!-- Generation 5: Current -->
-      <div class="tree-row-label">Current Generation</div>
-      <div class="tree-gen">
-        <div class="tree-person">
-          <span class="tp-avatar">🧑</span>
-          <div class="tp-name">Michael Crews</div>
-          <div class="tp-years">b. 1978</div>
+      <a class="family-card card-herring" href="genealogy-herring.html">
+        <div class="family-card-header">
+          <div class="family-icon">🌿</div>
+          <p class="family-name">Herring</p>
+          <p class="family-tagline">800 years from Scotland to Alabama</p>
         </div>
-        <div class="tree-person">
-          <span class="tp-avatar">👩</span>
-          <div class="tp-name">Susan Crews-Hart</div>
-          <div class="tp-years">b. 1980</div>
+        <div class="family-card-body">
+          <p class="family-detail">
+            From Scottish nobility to Dorset fishing villages to colonial Virginia tobacco farmers — and to Grandaddy Herring, whose 1969 Israel trip became a legendary family story.
+          </p>
+          <div class="family-stats">
+            <span class="family-stat">800+ Years</span>
+            <span class="family-stat">Since 1199</span>
+            <span class="family-stat">Scotland → England → America</span>
+          </div>
+          <span class="family-cta">Explore the Herring Line →</span>
         </div>
-        <div class="tree-person">
-          <span class="tp-avatar">🧑</span>
-          <div class="tp-name">David Crews</div>
-          <div class="tp-years">b. 1983</div>
-        </div>
-        <div class="tree-person">
-          <span class="tp-avatar">👩</span>
-          <div class="tp-name">Jennifer Crews-Moore</div>
-          <div class="tp-years">b. 1987</div>
-        </div>
-      </div>
+      </a>
 
     </div>
 
-    <!-- ── Notable Ancestors ── -->
-    <h2 class="section-title">⭐ Notable Ancestors</h2>
-    <div class="gen-cols mb-3">
-
-      <div class="ancestor-card">
-        <div class="ancestor-avatar">👴</div>
-        <div>
-          <div class="ancestor-name">Harold Elias Crews (1899–1978)</div>
-          <div class="ancestor-years">Born: Carroll County, Georgia</div>
-          <div class="ancestor-notes">
-            Harold was a farmer and carpenter who built the original Crews family homestead in 1924. He served in the U.S. Army during WWI and was known throughout the county for his woodworking skill. The old homestead still stands today.
-          </div>
-          <div class="mt-1"><span class="badge badge-amber">WWI Veteran</span> <span class="badge badge-green">Homesteader</span></div>
-        </div>
-      </div>
-
-      <div class="ancestor-card">
-        <div class="ancestor-avatar">👵</div>
-        <div>
-          <div class="ancestor-name">Edna Crews née Stafford (1903–1985)</div>
-          <div class="ancestor-years">Born: Coweta County, Georgia</div>
-          <div class="ancestor-notes">
-            Edna was a schoolteacher for over 30 years and the unofficial family historian. She kept meticulous journals from 1920 onward, which form the backbone of our family records today. Her journals are preserved in the family archive.
-          </div>
-          <div class="mt-1"><span class="badge badge-blue">Educator</span> <span class="badge badge-green">Family Historian</span></div>
-        </div>
-      </div>
-
-      <div class="ancestor-card">
-        <div class="ancestor-avatar">👴</div>
-        <div>
-          <div class="ancestor-name">Robert E. Crews (1928–2010)</div>
-          <div class="ancestor-years">Born: Newnan, Georgia</div>
-          <div class="ancestor-notes">
-            Robert served in the Korean War and later built a successful hardware business in town. He was the first in the family to attend college and instilled a deep love of education in his children. Grandfather Bob, as he was called, was the anchor of every family reunion.
-          </div>
-          <div class="mt-1"><span class="badge badge-amber">Korean War Veteran</span> <span class="badge badge-blue">Entrepreneur</span></div>
-        </div>
-      </div>
-
-      <div class="ancestor-card">
-        <div class="ancestor-avatar">👵</div>
-        <div>
-          <div class="ancestor-name">Margaret Crews née Bishop (1932–2018)</div>
-          <div class="ancestor-years">Born: LaGrange, Georgia</div>
-          <div class="ancestor-notes">
-            "Grandma Maggie" was the heart of the Crews family for decades. An accomplished baker and quilter, her recipes are catalogued in the family cookbook project. She hand-stitched a quilt for each grandchild and great-grandchild — 23 quilts in total.
-          </div>
-          <div class="mt-1"><span class="badge badge-green">Quilter & Baker</span></div>
-        </div>
-      </div>
-
+    <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; margin-top:1rem; box-shadow:var(--shadow);">
+      <h3 style="margin-top:0; color:var(--primary);">How the Lines Connect</h3>
+      <p style="font-size:0.92rem; line-height:1.7; color:var(--text-muted);">
+        <strong>Charles Larry Crews Jr.</strong> carries the Crews paternal line (Georgia → Alabama → Florida, since 1736). His wife, <strong>Alycia Stringer Crews</strong>, carries the Stringer line (Norman England → Cheshire → Virginia → Alabama, since the 1590s) as well as the Herring and Boutwell lines through her family's Alabama roots. When Charles and Alycia married, these three great family lines — Crews, Stringer, and Herring — came together into one.
+      </p>
     </div>
 
-    <!-- ── Family History Timeline ── -->
-    <h2 class="section-title">📜 Family History Timeline</h2>
-    <ul class="info-list">
-      <li><span class="li-icon">📍</span><div><strong>1871</strong> — Elias Crews born in Carroll County, Georgia. Family traces roots to English settlers in colonial South Carolina.</div></li>
-      <li><span class="li-icon">⚔️</span><div><strong>1918</strong> — Harold Crews enlists in U.S. Army. Serves in France during the final year of WWI.</div></li>
-      <li><span class="li-icon">💍</span><div><strong>1921</strong> — Harold Crews marries Edna Stafford in a ceremony at First Baptist Church, Newnan, GA.</div></li>
-      <li><span class="li-icon">🏠</span><div><strong>1924</strong> — Harold builds the family homestead on Heard County farmland. The property remains in the family.</div></li>
-      <li><span class="li-icon">👶</span><div><strong>1928</strong> — Robert E. Crews born, the eldest of four children.</div></li>
-      <li><span class="li-icon">⚔️</span><div><strong>1952</strong> — Robert Crews serves in the Korean War, 7th Infantry Division.</div></li>
-      <li><span class="li-icon">💍</span><div><strong>1955</strong> — Robert marries Margaret Bishop. James D. Crews born the same year.</div></li>
-      <li><span class="li-icon">🏪</span><div><strong>1962</strong> — Robert opens "Crews Hardware & Supply" on Main Street — a community fixture for 40 years.</div></li>
-      <li><span class="li-icon">🎓</span><div><strong>1977</strong> — James Crews graduates from University of Georgia with a degree in Business Administration.</div></li>
-      <li><span class="li-icon">💍</span><div><strong>1979</strong> — James Crews marries Patricia Allen. Michael Crews born the following year.</div></li>
-      <li><span class="li-icon">📖</span><div><strong>1985</strong> — Edna Crews passes away. Her 65-year journal collection is donated to the family archive.</div></li>
-      <li><span class="li-icon">🏅</span><div><strong>2002</strong> — "Crews Hardware & Supply" closes after 40 years; Robert retires with a community celebration in his honor.</div></li>
-      <li><span class="li-icon">🏡</span><div><strong>2015</strong> — The family begins the first Annual Crews Family Reunion, held every August at the homestead.</div></li>
-      <li><span class="li-icon">📚</span><div><strong>2024</strong> — Family Genealogy Database project launched to digitize all historical records and photos.</div></li>
-    </ul>
-
-    <!-- ── Geographic Origins ── -->
-    <h2 class="section-title">📍 Geographic Origins</h2>
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-img" style="background: linear-gradient(135deg,#4A7C59 0%,#8BC99A 100%);">🌿</div>
-        <div class="card-body">
-          <div class="card-title">Carroll County, Georgia</div>
-          <div class="card-meta">Paternal Line · Est. 1820s</div>
-          <div class="card-text">The Crews name appears in Carroll County land records as early as 1826. Elias Crews was born here in 1871.</div>
+    <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; margin-top:1.5rem; box-shadow:var(--shadow);">
+      <h3 style="margin-top:0; color:var(--primary);">Genealogy Resources</h3>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+        <div>
+          <p style="font-weight:700; font-size:0.9rem; margin:0 0 0.5rem; color:var(--primary);">Online Research</p>
+          <ul style="font-size:0.87rem; line-height:2; margin:0; padding-left:1.2rem;">
+            <li><a href="https://www.familysearch.org" target="_blank" style="color:var(--accent);">FamilySearch.org</a></li>
+            <li><a href="https://www.findagrave.com" target="_blank" style="color:var(--accent);">Find A Grave</a></li>
+            <li><a href="https://www.geni.com" target="_blank" style="color:var(--accent);">Geni.com</a></li>
+            <li><a href="https://www.ancestry.com" target="_blank" style="color:var(--accent);">Ancestry.com</a></li>
+          </ul>
         </div>
-      </div>
-      <div class="card">
-        <div class="card-img" style="background: linear-gradient(135deg,#6B4C3B 0%,#A07050 100%);">🌾</div>
-        <div class="card-body">
-          <div class="card-title">Coweta County, Georgia</div>
-          <div class="card-meta">Maternal Line · Est. 1840s</div>
-          <div class="card-text">The Stafford and Bishop families (maternal lines) were established in Coweta County, Georgia by the mid-1800s.</div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-img" style="background: linear-gradient(135deg,#2F6690 0%,#6BA0C0 100%);">🏛️</div>
-        <div class="card-body">
-          <div class="card-title">South Carolina Roots</div>
-          <div class="card-meta">Colonial Origins · 1700s</div>
-          <div class="card-text">Earliest traceable ancestors arrived in colonial South Carolina from England in the early 1700s before migrating west to Georgia.</div>
+        <div>
+          <p style="font-weight:700; font-size:0.9rem; margin:0 0 0.5rem; color:var(--primary);">Alabama &amp; Southern Records</p>
+          <ul style="font-size:0.87rem; line-height:2; margin:0; padding-left:1.2rem;">
+            <li><a href="http://genealogytrails.com/ala/geneva/" target="_blank" style="color:var(--accent);">Geneva County, Alabama</a></li>
+            <li><a href="http://www.trackingyourroots.com" target="_blank" style="color:var(--accent);">Tracking Your Roots</a></li>
+            <li><a href="https://www.houseofnames.com/stringer-family-crest" target="_blank" style="color:var(--accent);">Stringer Family Crest</a></li>
+            <li><a href="https://www.seekingmyroots.com/members/files/G002940.pdf" target="_blank" style="color:var(--accent);">The Herring Family Book</a></li>
+          </ul>
         </div>
       </div>
     </div>

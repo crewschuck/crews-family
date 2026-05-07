@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Herring Genealogy – Crews Family Gathering Place</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    .lineage-chain { display: flex; flex-direction: column; gap: 0; margin: 2rem 0; }
+    .lineage-person {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      box-shadow: var(--shadow);
+    }
+    .lineage-person::after {
+      content: '│';
+      display: block;
+      text-align: center;
+      font-size: 1.5rem;
+      color: #2a6e5e;
+      line-height: 1.8;
+      margin-left: 1.5rem;
+    }
+    .lineage-person:last-child::after { display: none; }
+    .lineage-person.highlight { border-left: 4px solid #2a8c74; }
+    .lineage-person.memorial {
+      border: 2px solid #c8a85b;
+      background: linear-gradient(135deg, #1a1200, #1e1800);
+      color: #f0e6c8;
+    }
+    .lineage-person.memorial .person-name { color: #d4b84a; }
+    .lineage-person.memorial .gen-section-label { color: #a08060; }
+    .lineage-person.memorial::after { color: #c8a85b; }
+    .person-name { font-size: 1.1rem; font-weight: 700; color: var(--primary); }
+    .person-years { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.4rem; }
+    .lineage-person.memorial .person-years { color: #c8a85b; }
+    .person-detail { font-size: 0.9rem; line-height: 1.6; }
+    .lineage-person.memorial .person-detail { color: #e8d8b0; }
+    .badge-row { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.5rem; }
+    .badge { font-size: 0.72rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 99px; }
+    .badge-link { background: #2a8c74; color: white; text-decoration: none; }
+    .badge-link:hover { background: var(--primary); }
+    .badge-scotland { background: #1a3066; color: #b0c4f0; }
+    .badge-england { background: #660020; color: #f0b0b8; }
+    .badge-america { background: #1a4a1a; color: #a8d8a8; }
+    .gen-num {
+      display: inline-block;
+      background: #2a8c74;
+      color: white;
+      border-radius: 50%;
+      width: 24px; height: 24px;
+      text-align: center;
+      line-height: 24px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-right: 0.5rem;
+      flex-shrink: 0;
+    }
+    .person-header { display: flex; align-items: center; }
+    .gen-section-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      font-weight: 700;
+      margin-bottom: 0.15rem;
+    }
+    /* Israel Trip Memorial */
+    .israel-memorial {
+      background: linear-gradient(180deg, #0a0a1a 0%, #1a1205 40%, #0d0d0d 100%);
+      border: 2px solid #c8a85b;
+      border-radius: var(--radius);
+      padding: 0;
+      margin: 2.5rem 0;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(200,168,91,0.2);
+    }
+    .israel-header {
+      background: linear-gradient(135deg, #1e1400, #2a1e00);
+      padding: 2rem 2rem 1.5rem;
+      border-bottom: 1px solid #c8a85b;
+      text-align: center;
+    }
+    .israel-header h2 { color: #d4b84a; margin: 0.5rem 0 0.25rem; font-size: 1.6rem; }
+    .israel-header p { color: #c8a85b; margin: 0; font-size: 0.95rem; }
+    .israel-flag { font-size: 3rem; }
+    .israel-body { padding: 2rem; color: #e8d8b0; }
+    .israel-body p { line-height: 1.8; margin-bottom: 1.25rem; }
+    .israel-body h3 { color: #d4b84a; margin-top: 2rem; }
+    .israel-pull-quote {
+      border-left: 3px solid #c8a85b;
+      padding: 0.75rem 1.25rem;
+      margin: 1.5rem 0;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: #f0e6c8;
+    }
+    .israel-facts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    @media (max-width: 600px) { .israel-facts { grid-template-columns: 1fr; } }
+    .israel-fact-box {
+      background: rgba(200,168,91,0.08);
+      border: 1px solid rgba(200,168,91,0.3);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+    }
+    .israel-fact-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: #c8a85b; font-weight: 700; }
+    .israel-fact-value { font-size: 0.95rem; color: #f0e6c8; margin-top: 0.2rem; }
+    .israel-journal-note {
+      background: rgba(200,168,91,0.06);
+      border: 1px solid rgba(200,168,91,0.2);
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: #d4c090;
+    }
+    .israel-journal-note strong { color: #d4b84a; }
+    /* Boutwell connection */
+    .connection-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      box-shadow: var(--shadow);
+    }
+    .connection-box h3 { margin-top: 0; color: var(--primary); }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0; }
+    @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+    .info-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1rem; box-shadow: var(--shadow);
+    }
+    .info-card h4 { margin: 0 0 0.5rem; color: var(--primary); font-size: 0.95rem; }
+    .info-card p { font-size: 0.87rem; margin: 0; line-height: 1.6; }
+    .region-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      margin-right: 0.3rem;
+    }
+    .will-excerpt {
+      background: #f8f5ef;
+      border: 1px solid #d4c090;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin: 1rem 0;
+      font-size: 0.85rem;
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <main class="container" style="padding: 2rem 1rem;">
+
+    <!-- Page header -->
+    <div style="text-align:center; margin-bottom:2.5rem;">
+      <div style="font-size:3rem; margin-bottom:0.5rem;">🌿</div>
+      <h1 style="color:var(--primary); margin:0 0 0.5rem;">Herring Family Genealogy</h1>
+      <p style="color:var(--text-muted); max-width:620px; margin:0 auto; font-size:1.05rem;">
+        From the lordships of medieval Scotland and the fishing villages of Dorset, England — across the Atlantic to the American South. The Herring line stretches back over 800 years. And it includes one of the most cherished family stories of all: <strong>Grandaddy Herring's journey to the Holy Land.</strong>
+      </p>
+      <div style="margin-top:1rem;">
+        <a href="genealogy.html" style="font-size:0.9rem; color:#2a8c74; text-decoration:none;">← Back to Genealogy</a>
+      </div>
+    </div>
+
+    <!-- Israel Trip Memorial — placed prominently at top -->
+    <div class="israel-memorial">
+      <div class="israel-header">
+        <div class="israel-flag">✡️ 🕊️ ✡️</div>
+        <h2>Robert "Bob" Herring<br><span style="font-size:1.1rem; font-weight:400;">The Israel Trip of 1969</span></h2>
+        <p>A Journey of Faith · A Life Well Lived · A Legacy That Endures</p>
+      </div>
+      <div class="israel-body">
+
+        <div class="israel-facts">
+          <div class="israel-fact-box">
+            <div class="israel-fact-label">Full Name</div>
+            <div class="israel-fact-value">Robert "Bob" Herring Sr.</div>
+          </div>
+          <div class="israel-fact-box">
+            <div class="israel-fact-label">Born</div>
+            <div class="israel-fact-value">c. 1899</div>
+          </div>
+          <div class="israel-fact-box">
+            <div class="israel-fact-label">Married</div>
+            <div class="israel-fact-value">Lora Mae Boutwell, April 15, 1922<br>De Funiak Springs, Florida</div>
+          </div>
+          <div class="israel-fact-box">
+            <div class="israel-fact-label">Passed Away</div>
+            <div class="israel-fact-value">1969 · Tel Aviv, Israel<br><em>Heart attack at the airport</em></div>
+          </div>
+        </div>
+
+        <p>
+          In 1969, Robert "Bob" Herring — "Grandaddy Herring" — embarked on what was surely the adventure of a lifetime: a journey to the Holy Land of Israel. He kept a journal of his travels, recording his experiences in a land of ancient stones, sacred sites, and living history. This journal, <em>Herring Israel Trip 1969</em>, is a treasured piece of family history — his own words, written as he walked where history was made.
+        </p>
+
+        <div class="israel-pull-quote">
+          "He traveled to see the Holy Land — and he wrote down everything he witnessed, so that his family would always know where he had been and what he had felt."
+        </div>
+
+        <p>
+          Bob and Lora Mae had built a large family together — at least <strong>six sons and five daughters</strong> — over more than four decades of marriage. He had lived a full, faithful life in Greenville, Butler County, Alabama. At the age of approximately 70, he made the journey across the world to walk the streets of Jerusalem, see the Sea of Galilee, and visit the places he had read about his entire life.
+        </p>
+
+        <h3>His Final Moments</h3>
+
+        <p>
+          The trip ended in tragedy. As Bob Herring made his way to the airport to board his flight home — ready to return to his family, to Greenville, to Lora Mae — he suffered a <strong>heart attack</strong>. He passed away there in Israel, in Tel Aviv, never making it home.
+        </p>
+
+        <p>
+          It is a story that carries both sorrow and a certain grace. He had seen the Holy Land. He had done what he set out to do. He had walked in places of deep meaning to him, and he had written about it so others could follow in his footsteps. His journal remains — a gift from Grandaddy to every generation that comes after.
+        </p>
+
+        <div class="israel-pull-quote">
+          Grandaddy Herring made it to the promised land — and he left his words behind so we could go there with him, page by page.
+        </div>
+
+        <div class="israel-journal-note">
+          <strong>📖 The Journal:</strong> Robert "Bob" Herring's handwritten (or typed) journal of his 1969 Israel trip is preserved in the family archives as <em>Herring_Israel_Trip_1969.pdf</em>. This document is an irreplaceable piece of family history — his firsthand account of what he saw, felt, and experienced in the Holy Land. Future generations can read Grandaddy's own words and travel with him.
+        </div>
+
+        <h3>Lora Mae Boutwell Herring</h3>
+
+        <p>
+          Bob's wife, <strong>Lora Mae Boutwell</strong> (October 27, 1907 – October 29, 2004), outlived him by 35 years, reaching the remarkable age of 97. She was born in Georgiana, Alabama and married Bob on April 15, 1922 in De Funiak Springs, Florida. She was known for telling stories of washing clothes in the creek by hand. She died in Greenville, Alabama and is buried at <strong>Sunrise Memorial Park, Greenville, Butler County, Alabama</strong>.
+        </p>
+
+        <p>
+          Their children include: <strong>Vernon Stabler Herring</strong> (January 6, 1933 – December 3, 2014), who married Dorothy Mae Adams in 1955. Vernon is buried at Sunrise Cemetery in Greenville, alongside his mother.
+        </p>
+
+      </div>
+    </div>
+
+    <!-- Full Herring Lineage -->
+    <h2 style="color:var(--primary);">The Herring Line — Back to England (and Scotland)</h2>
+    <p style="color:var(--text-muted); margin-bottom:1.5rem;">
+      The Herring family traces back over 800 years — from noble Scottish lords to Dorset fisherfolk to Virginia tobacco farmers to Alabama families.
+    </p>
+
+    <div class="lineage-chain">
+
+      <div class="lineage-person">
+        <div class="gen-section-label">c. 1199–1259 — Scotland</div>
+        <div class="person-header">
+          <span class="gen-num" style="background:#1a3066; font-size:0.6rem;">🏰</span>
+          <span class="person-name">The Herring Clan — Scotland</span>
+        </div>
+        <div class="person-detail">
+          The Herring family has documented roots in Scotland from as early as 1199. They held lands and lordships in the Edinburgh and Midlothian regions.
+        </div>
+        <div class="badge-row"><span class="badge badge-scotland">Scotland</span></div>
+      </div>
+
+      <div class="lineage-person highlight">
+        <div class="gen-section-label">c. 1240 — Scotland</div>
+        <div class="person-header">
+          <span class="gen-num" style="background:#1a3066;">⚜</span>
+          <span class="person-name">Sir John Herring of Edmonston</span>
+        </div>
+        <div class="person-years">b. c. 1240 · Gilmerton, Edinburghshire · Buried: Abbey of Holyrood, Edinburgh</div>
+        <div class="person-detail">
+          Lord of Gilmerton, Drum, and Goodtrees — a nobleman of considerable standing in medieval Scotland. Genealogists have identified him as a possible ancestor of President Benjamin Harrison, HRH King Charles, and Prime Minister Churchill (through different descendant lines). His daughter, Giles "Jill" Herring (b. 1265), married Sir Walter Somerville, connecting the Herrings to one of Scotland's great families.
+        </div>
+        <div class="badge-row"><span class="badge badge-scotland">Scottish Lord</span></div>
+      </div>
+
+      <div class="lineage-person highlight">
+        <div class="gen-section-label">c. 1270–1365 — England (Dorset)</div>
+        <div class="person-header">
+          <span class="gen-num" style="background:#660020;">🌊</span>
+          <span class="person-name">The Dorset Herrings — Langton Herring &amp; Chaldon Herring</span>
+        </div>
+        <div class="person-detail">
+          The English branch settled in Dorset, where several villages — <strong>Langton Herring</strong>, <strong>Chaldon Herring</strong>, and <strong>Winterbourne Herringstone</strong> — bear the family name to this day. The main line in Dorset includes:
+        </div>
+        <div style="margin-top:0.6rem; font-size:0.87rem; line-height:1.9;">
+          <strong>Terricus Harang Herring</strong> (b. 1270, Dorset) →
+          <strong>Philip Heryng Herring</strong> (1293–1365, Chaldon Herring → Langton Herring) →
+          <strong>Phillip Herring</strong> (1325–1400, Langton Herring → Winterbourne) →
+          <strong>Walter Herring</strong> (1325–1372) m. Alice de Winterbourne →
+          <strong>Sir John Herring</strong> (1372–1455, Cleston Dorset) m. Alice Perret →
+          <strong>Sir Walter Herring I</strong> (1400–1435) →
+          <strong>Sir Walter II Heryng de Herring of Fornought</strong> (1435–1469)
+        </div>
+        <div class="badge-row"><span class="badge badge-england">Dorset, England</span></div>
+      </div>
+
+      <div class="lineage-person highlight">
+        <div class="gen-section-label">c. 1460–1582 — Warwickshire &amp; Wales</div>
+        <div class="person-header">
+          <span class="gen-num" style="background:#660020;">🏴󠁧󠁢󠁷󠁬󠁳󠁿</span>
+          <span class="person-name">William Herring → Richard Herring → John Herring → Rev. Julienes Herring</span>
+        </div>
+        <div class="person-detail">
+          <strong>William Herring</strong> (b. c. 1460, Allesley, Warwickshire) married Alice Pickering (~1489) →
+          <strong>Richard Herring</strong> (1490–1544, Coventry) married Elenor Forneals; had children William and John →
+          <strong>John Herring</strong> (b. 1552, Montgomeryshire, Wales) married Joanne Palmer (1581) →
+          <strong>Rev. Julienes Herring</strong> (b. 1582, Wales – d. March 28, 1644) — a clergyman — married Christian Gillebrand (1603, Shrewsbury). He fathered the John Herring who first came to America.
+        </div>
+        <div class="badge-row"><span class="badge badge-england">England &amp; Wales</span></div>
+      </div>
+
+      <div class="lineage-person highlight">
+        <div class="gen-section-label">c. 1607 — Bristol, England → Virginia, America</div>
+        <div class="person-header">
+          <span class="gen-num" style="background:#1a4a1a;">⛵</span>
+          <span class="person-name">John Herring — First American Ancestor</span>
+        </div>
+        <div class="person-years">b. c. 1607, Bristol, England – d. c. 1672 · Isle of Wight County, Virginia</div>
+        <div class="person-detail">
+          John Herring sailed from Bristol, England to Virginia — the Herring Book dates his arrival to around 1642; another source places it May 2, 1635 on the ship <em>Alexander</em>. He settled near the <strong>Blackwater River</strong> in the vicinity of Horse Swamp, northwest of present-day Windsor, Isle of Wight County. He was a <strong>tobacco farmer</strong> who also made tar. He married Marjorie (possibly Whitfield). His will was proved June 10, 1672.
+        </div>
+        <div class="will-excerpt">
+          "In the name of GOD Amen I being in good &amp; perfect memory first I commit my body to the Earth &amp; into the hands of Almighty GOD &amp; Savior Jesus Christ. Give unto my Son Anthony Herring two steers of four years old... I give my son Anthony three barrels of tar... I give &amp; bequeath all the rest of my whole Estate... unto my beloved wife Margorie Herring."
+          <br><span style="font-size:0.8rem;">— John Herring, will proved June 10, 1672</span>
+        </div>
+        <div class="badge-row">
+          <span class="badge badge-america">First American Herring</span>
+          <a class="badge badge-link" href="https://www.wikitree.com/wiki/Herring-506" target="_blank">WikiTree Profile</a>
+        </div>
+      </div>
+
+      <div class="lineage-person highlight">
+        <div class="gen-section-label">c. 1648–1777 — Virginia to North Carolina</div>
+        <div class="person-header">
+          <span class="gen-num">→</span>
+          <span class="person-name">The Virginia &amp; Carolina Herrings</span>
+        </div>
+        <div class="person-detail">
+          <strong>Anthony Herring</strong> (b. 1648, Isle of Wight Co., VA – d. 1715) married Rebecca West ~1677 → the line continues through North Carolina, where <strong>John Herring</strong> (b. c. 1777, Sampson County, NC – d. after 1860, Barbour County, AL) married Nancy Ann Strickland Peacock and had at least nine children, including Elijah.
+        </div>
+        <div class="badge-row"><span class="badge badge-america">Virginia → North Carolina</span></div>
+      </div>
+
+      <div class="lineage-person highlight">
+        <div class="gen-section-label">1826–1892 — Alabama</div>
+        <div class="person-header">
+          <span class="gen-num">🌳</span>
+          <span class="person-name">Elijah "Eli" Herring</span>
+        </div>
+        <div class="person-years">b. 1826, New Hanover County, North Carolina – d. 1892 · Butler County, Alabama</div>
+        <div class="person-detail">
+          Also known as "Eli" or "Elijah L. Herring" or "Eli Shorter Herring." Married <strong>Eliza Ann Kent</strong> (1843–1925). Buried at <strong>Pleasant Home Cemetery, Butler County, Alabama</strong>. Son of John Herring and Nancy Ann Strickland Peacock.
+        </div>
+        <div class="badge-row">
+          <span class="badge badge-america">Butler County, Alabama</span>
+          <a class="badge badge-link" href="https://www.geni.com/people/Elijah-Herring/6000000135030243938" target="_blank">Geni Profile</a>
+        </div>
+      </div>
+
+      <div class="lineage-person highlight">
+        <div class="gen-section-label">1861–1946 — Butler County, Alabama</div>
+        <div class="person-header">
+          <span class="gen-num">🌳</span>
+          <span class="person-name">John David Herring</span>
+        </div>
+        <div class="person-years">1861 – 1946</div>
+        <div class="person-detail">
+          Married <strong>Mary Julia Cole</strong> (1862–1932) on August 11, 1881. Their sons included Jesse Paul Herring (1882–1908) and <strong>Robert "Bob" Herring</strong> (1899–1969) — Grandaddy Herring.
+        </div>
+        <div class="badge-row">
+          <a class="badge badge-link" href="https://www.familysearch.org/tree/person/details/LCRV-YP4" target="_blank">FamilySearch LCRV-YP4</a>
+        </div>
+      </div>
+
+      <!-- Bob Herring - memorial entry -->
+      <div class="lineage-person memorial">
+        <div class="gen-section-label">1899–1969 · Tel Aviv, Israel</div>
+        <div class="person-header">
+          <span class="gen-num" style="background:#c8a85b; color:#1a1200;">✡</span>
+          <span class="person-name">Robert "Bob" Herring — Grandaddy Herring</span>
+        </div>
+        <div class="person-years">b. c. 1899 · d. 1969, Tel Aviv, Israel</div>
+        <div class="person-detail">
+          "Grandaddy Herring." Married Lora Mae Boutwell on April 15, 1922. Father of at least 11 children. Kept a journal of his 1969 trip to the Holy Land of Israel. Passed away of a heart attack at the Tel Aviv airport while boarding his flight home. His story and his journal live on in this family forever.
+        </div>
+        <div style="margin-top:0.5rem;">
+          <a href="#israel-memorial" style="color:#d4b84a; font-size:0.9rem; font-weight:700;">↓ Read the full Israel Trip story above</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- The Boutwell Connection -->
+    <h2 style="color:var(--primary); margin-top:2rem;">The Boutwell Connection</h2>
+    <p style="color:var(--text-muted);">
+      Lora Mae Boutwell (Bob's wife) brought another remarkable lineage to the family — the Boutwells, who trace back to Scotland and the colonial Carolinas.
+    </p>
+    <div class="connection-box">
+      <h3>Boutwell Lineage (Lora Mae's Side)</h3>
+      <p style="font-size:0.9rem; line-height:1.8;">
+        The Boutwell line begins with the Hepburn/Bothwell family of Scotland — traced from <strong>Sir Patrick Hepburn</strong> (b. 1322, Prestonkirk, Scotland) through successive generations into Edinburgh — then emigrating to Virginia in the 1630s as <strong>William Bothwell</strong> (christened 1630, Canongate, Edinburgh → Elizabeth City, VA). The family name gradually became "Boutwell" in America.
+      </p>
+      <div style="font-size:0.87rem; line-height:2; color:var(--text-muted);">
+        William Bothwell (1630, Scotland → Virginia) →
+        Adam Boutwell (1660, Edinburgh → Elizabeth City VA) →
+        Samuel Boutwell Sr. (1682, Carolina → Georgetown SC) →
+        Burtenhead Boutwell (1710 Virginia → South Carolina, Plantation Owner) →
+        Lionel Delaney Boutwell (1733, Onslow NC → Barnwell SC) →
+        William Delaney Boutwell (1760, Darlington SC → Pike County AL) →
+        Deloney Burton "Lona" Boutwell Sr. (1795, Darlington SC → Lowndes AL) →
+        Henry Burton Boutwell (1834 → Wilcox AL) <em>[Served: Company M, 6th Alabama Inf., Confederate]</em> →
+        Herbert F. Boutwell (1866, Steep Creek, Lowndes AL → Fairhope, Baldwin AL) →
+        <strong>Lora Mae Boutwell</strong> (1907, Georgiana AL → wife of Bob Herring)
+      </div>
+    </div>
+
+    <!-- Rosa Bell branch -->
+    <div class="two-col">
+      <div class="info-card">
+        <h4>Rosa Bell Boutwell Herring (1888–1970)</h4>
+        <p>
+          Sister of Lora Mae. Born November 8, 1888 in Garland, Alabama. Her first husband, <strong>Jesse Paul Herring</strong> (1882–1908), tragically died falling from railroad tracks while working on the L&amp;N Railroad. She later married <strong>George Washington Herring</strong> on April 6, 1913 in Greenville. Together they had at least 8 children. She lived to 81.
+        </p>
+      </div>
+      <div class="info-card">
+        <h4>Vernon Stabler Herring (1933–2014)</h4>
+        <p>
+          Son of Robert "Bob" Herring and Lora Mae Boutwell. Born January 6, 1933 in Greenville, Butler County, Alabama. Married Dorothy Mae Adams on September 9, 1955 in Etowah County, Alabama. Died December 3, 2014, at age 81. Buried at Sunrise Cemetery, Greenville.
+        </p>
+        <div class="badge-row" style="margin-top:0.5rem;">
+          <a class="badge badge-link" href="https://ancestors.familysearch.org/en/G9V7-BTS/vernon-stabler-herring-1933-2014" target="_blank">FamilySearch</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Research links -->
+    <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; margin-top:2rem;">
+      <h3 style="margin-top:0; color:var(--primary);">Further Research</h3>
+      <ul style="line-height:2.2;">
+        <li><a href="https://www.wikitree.com/wiki/Herring-506" target="_blank" style="color:#2a8c74;">John Herring (first American, c. 1607) on WikiTree</a></li>
+        <li><a href="https://www.familysearch.org/tree/person/details/LCRV-YP4" target="_blank" style="color:#2a8c74;">John David Herring on FamilySearch (LCRV-YP4)</a></li>
+        <li><a href="https://ancestors.familysearch.org/en/G9VW-3NG/lora-mae-boutwell-1907-2004" target="_blank" style="color:#2a8c74;">Lora Mae Boutwell Herring on FamilySearch</a></li>
+        <li><a href="https://ancestors.familysearch.org/en/G9V7-BTS/vernon-stabler-herring-1933-2014" target="_blank" style="color:#2a8c74;">Vernon Stabler Herring on FamilySearch</a></li>
+        <li><a href="https://ancestors.familysearch.org/en/L2XZ-6JF/rosa-bell-boutwell-1888-1970" target="_blank" style="color:#2a8c74;">Rosa Bell Boutwell on FamilySearch</a></li>
+        <li><a href="https://www.familysearch.org/tree/person/details/94RF-1V5" target="_blank" style="color:#2a8c74;">Philip Heryng Herring (Dorset, 1293) on FamilySearch</a></li>
+        <li><a href="https://www.seekingmyroots.com/members/files/G002940.pdf" target="_blank" style="color:#2a8c74;">The Herring Family Book (PDF)</a></li>
+      </ul>
+    </div>
+
+    <div style="text-align:center; margin:2.5rem 0 1rem;">
+      <a href="genealogy.html" style="display:inline-block; background:#2a8c74; color:white; padding:0.6rem 1.8rem; border-radius:var(--radius); text-decoration:none; font-weight:700;">← Back to Genealogy Hub</a>
+    </div>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <script src="../js/main.js"></script>
+</body>
+</html>
