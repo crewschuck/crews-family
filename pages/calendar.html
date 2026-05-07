@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calendar – Crews Family Gathering Place</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    .cal-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    .cal-nav h2 { font-family: var(--font-serif); font-size: 1.4rem; color: var(--primary); }
+    .cal-nav button {
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.4rem 0.9rem;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all var(--transition);
+    }
+    .cal-nav button:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+    .event-list-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 0.9rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 0.75rem;
+    }
+    .event-date-box {
+      min-width: 52px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: var(--radius);
+      text-align: center;
+      padding: 0.4rem 0.3rem;
+      flex-shrink: 0;
+    }
+    .event-date-box .edm  { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; opacity: 0.8; }
+    .event-date-box .edd  { font-size: 1.4rem; font-weight: 800; line-height: 1; }
+    .event-date-box.accent { background: var(--accent); }
+    .event-info { flex: 1; }
+    .event-name { font-weight: 700; font-size: 1rem; color: var(--primary); margin-bottom: 0.1rem; }
+    .event-detail { font-size: 0.85rem; color: var(--text-muted); }
+    .event-desc   { font-size: 0.9rem; margin-top: 0.3rem; }
+    .event-icon { font-size: 1.5rem; flex-shrink: 0; }
+
+    .legend { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
+    .legend-item { display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; }
+    .legend-dot  { width: 12px; height: 12px; border-radius: 50%; }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <section class="page-hero">
+    <span class="hero-icon">📅</span>
+    <h1>Family Calendar</h1>
+    <p>Upcoming events, birthdays, anniversaries, and gatherings — all in one place</p>
+  </section>
+
+  <main class="page-content">
+
+    <!-- ── Calendar Grid (May 2026) ── -->
+    <div class="cal-nav">
+      <button>← April</button>
+      <h2>May 2026</h2>
+      <button>June →</button>
+    </div>
+
+    <div class="legend">
+      <span class="legend-item"><span class="legend-dot" style="background:#C8F0CF;"></span> Family Event</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#C8DEF0;"></span> Birthday / Anniversary</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#F0E8C8;"></span> Reunion / Gathering</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#F0C8C8;"></span> Holiday</span>
+    </div>
+
+    <div class="cal-grid">
+      <!-- Day headers -->
+      <div class="cal-day-name">Sun</div>
+      <div class="cal-day-name">Mon</div>
+      <div class="cal-day-name">Tue</div>
+      <div class="cal-day-name">Wed</div>
+      <div class="cal-day-name">Thu</div>
+      <div class="cal-day-name">Fri</div>
+      <div class="cal-day-name">Sat</div>
+
+      <!-- May 2026 starts on Friday (day 5) -->
+      <div class="cal-day empty"></div>
+      <div class="cal-day empty"></div>
+      <div class="cal-day empty"></div>
+      <div class="cal-day empty"></div>
+      <div class="cal-day empty"></div>
+      <div class="cal-day"><div class="cal-num">1</div></div>
+      <div class="cal-day"><div class="cal-num">2</div></div>
+
+      <div class="cal-day"><div class="cal-num">3</div></div>
+      <div class="cal-day"><div class="cal-num">4</div></div>
+      <div class="cal-day"><div class="cal-num">5</div></div>
+      <div class="cal-day"><div class="cal-num">6</div></div>
+      <div class="cal-day today"><div class="cal-num">7</div></div>
+      <div class="cal-day"><div class="cal-num">8</div></div>
+      <div class="cal-day"><div class="cal-num">9</div>
+        <div class="cal-event cal-event-blue">🎂 David B'day</div>
+      </div>
+
+      <div class="cal-day"><div class="cal-num">10</div>
+        <div class="cal-event cal-event-red">🌸 Mother's Day</div>
+      </div>
+      <div class="cal-day"><div class="cal-num">11</div></div>
+      <div class="cal-day"><div class="cal-num">12</div></div>
+      <div class="cal-day"><div class="cal-num">13</div></div>
+      <div class="cal-day"><div class="cal-num">14</div></div>
+      <div class="cal-day"><div class="cal-num">15</div></div>
+      <div class="cal-day"><div class="cal-num">16</div></div>
+
+      <div class="cal-day"><div class="cal-num">17</div></div>
+      <div class="cal-day"><div class="cal-num">18</div></div>
+      <div class="cal-day"><div class="cal-num">19</div></div>
+      <div class="cal-day"><div class="cal-num">20</div>
+        <div class="cal-event cal-event-blue">💍 James & Pat Anniv.</div>
+      </div>
+      <div class="cal-day"><div class="cal-num">21</div></div>
+      <div class="cal-day"><div class="cal-num">22</div></div>
+      <div class="cal-day"><div class="cal-num">23</div>
+        <div class="cal-event cal-event-green">📚 Book Club</div>
+      </div>
+
+      <div class="cal-day"><div class="cal-num">24</div></div>
+      <div class="cal-day"><div class="cal-num">25</div>
+        <div class="cal-event cal-event-red">🇺🇸 Memorial Day</div>
+        <div class="cal-event cal-event-green">🍖 BBQ @ James's</div>
+      </div>
+      <div class="cal-day"><div class="cal-num">26</div></div>
+      <div class="cal-day"><div class="cal-num">27</div></div>
+      <div class="cal-day"><div class="cal-num">28</div></div>
+      <div class="cal-day"><div class="cal-num">29</div></div>
+      <div class="cal-day"><div class="cal-num">30</div></div>
+
+      <div class="cal-day"><div class="cal-num">31</div></div>
+      <div class="cal-day empty"></div>
+      <div class="cal-day empty"></div>
+      <div class="cal-day empty"></div>
+      <div class="cal-day empty"></div>
+      <div class="cal-day empty"></div>
+      <div class="cal-day empty"></div>
+    </div>
+
+    <!-- ── Upcoming Events ── -->
+    <h2 class="section-title">📋 Upcoming Events</h2>
+
+    <div class="event-list-item">
+      <div class="event-date-box accent"><div class="edm">May</div><div class="edd">9</div></div>
+      <div class="event-icon">🎂</div>
+      <div class="event-info">
+        <div class="event-name">David Crews's Birthday</div>
+        <div class="event-detail">📍 Dinner at The Smith House Restaurant, Dahlonega, GA · 7:00 PM</div>
+        <div class="event-desc">David turns 43! Family dinner planned — 12 confirmed attending. He asked for the banana pudding cake again.</div>
+      </div>
+    </div>
+
+    <div class="event-list-item">
+      <div class="event-date-box"><div class="edm">May</div><div class="edd">10</div></div>
+      <div class="event-icon">🌸</div>
+      <div class="event-info">
+        <div class="event-name">Mother's Day — Family Brunch</div>
+        <div class="event-detail">📍 James & Patricia's Home, Newnan, GA · 11:00 AM</div>
+        <div class="event-desc">Annual Mother's Day brunch at Mom & Dad's. All kids and grandkids invited. Bring a dish to share. Patricia's famous French toast will be there — obviously.</div>
+      </div>
+    </div>
+
+    <div class="event-list-item">
+      <div class="event-date-box"><div class="edm">May</div><div class="edd">20</div></div>
+      <div class="event-icon">💍</div>
+      <div class="event-info">
+        <div class="event-name">James & Patricia's Anniversary</div>
+        <div class="event-detail">47 Years! · Private celebration</div>
+        <div class="event-desc">Mom and Dad's 47th wedding anniversary. Cards and calls are very much appreciated. They're renewing their vows at their 50th in 2029 — planning has already begun!</div>
+      </div>
+    </div>
+
+    <div class="event-list-item">
+      <div class="event-date-box"><div class="edm">May</div><div class="edd">23</div></div>
+      <div class="event-icon">📚</div>
+      <div class="event-info">
+        <div class="event-name">Family Book Club — Monthly Meeting</div>
+        <div class="event-detail">📍 Virtual (Zoom) · 7:30 PM EST</div>
+        <div class="event-desc">Discussing "Killers of the Flower Moon" by David Grann. Zoom link will be sent out May 20th. Come ready to share your thoughts!</div>
+      </div>
+    </div>
+
+    <div class="event-list-item">
+      <div class="event-date-box accent"><div class="edm">May</div><div class="edd">25</div></div>
+      <div class="event-icon">🍖</div>
+      <div class="event-info">
+        <div class="event-name">Memorial Day BBQ</div>
+        <div class="event-detail">📍 James & Patricia's Backyard, Newnan, GA · 1:00 PM – Dusk</div>
+        <div class="event-desc">Annual Memorial Day cookout! Pool open. Bring sides and desserts. James is smoking brisket and ribs. David is on grill duty. Expect 30+ people — the whole extended family is invited.</div>
+      </div>
+    </div>
+
+    <div class="event-list-item">
+      <div class="event-date-box"><div class="edm">Jun</div><div class="edd">15</div></div>
+      <div class="event-icon">🎉</div>
+      <div class="event-info">
+        <div class="event-name">Reunion 2026 Planning Meeting</div>
+        <div class="event-detail">📍 Virtual (Zoom) · 6:00 PM EST</div>
+        <div class="event-desc">All family members welcome to join the planning committee for the 2026 Annual Reunion (August 21–23). Input on activities, food, and lodging needed.</div>
+      </div>
+    </div>
+
+    <div class="event-list-item">
+      <div class="event-date-box"><div class="edm">Jul</div><div class="edd">4</div></div>
+      <div class="event-icon">🎆</div>
+      <div class="event-info">
+        <div class="event-name">Independence Day Celebration</div>
+        <div class="event-detail">📍 Lake Lanier Cottage · All Day</div>
+        <div class="event-desc">July 4th at the lake cottage! Fireworks visible from the dock. Plan to arrive July 3rd evening. Contact Susan to reserve your rooms — cottage fills up fast.</div>
+      </div>
+    </div>
+
+    <div class="event-list-item">
+      <div class="event-date-box accent"><div class="edm">Aug</div><div class="edd">21</div></div>
+      <div class="event-icon">🏡</div>
+      <div class="event-info">
+        <div class="event-name">12th Annual Crews Family Reunion</div>
+        <div class="event-detail">📍 Heard County Homestead · August 21–23, 2026 (3 Days)</div>
+        <div class="event-desc">Theme: "Roots &amp; Branches — Celebrating Our History." 60+ family members expected. RSVP required by July 31st. New this year: documentary screening, family trivia championship, heritage cookbook reveal!</div>
+        <span class="badge badge-amber mt-1">RSVP Required</span>
+      </div>
+    </div>
+
+    <!-- ── Birthdays & Anniversaries ── -->
+    <h2 class="section-title mt-3">🎂 Birthdays & Anniversaries — 2026</h2>
+    <table class="data-table">
+      <thead><tr><th>Date</th><th>Who</th><th>Event</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Jan 12</td><td>Jennifer Crews-Moore</td><td>🎂 Birthday (39)</td><td>Surprise party being planned — shh!</td></tr>
+        <tr><td>Feb 8</td><td>Michael & Laura Crews</td><td>💍 Anniversary (18 yrs)</td><td></td></tr>
+        <tr><td>Mar 22</td><td>Patricia Crews</td><td>🎂 Birthday (68)</td><td>Family trip to Savannah planned</td></tr>
+        <tr><td>May 9</td><td>David Crews</td><td>🎂 Birthday (43)</td><td>Dinner at The Smith House</td></tr>
+        <tr><td>May 20</td><td>James & Patricia Crews</td><td>💍 Anniversary (47 yrs)</td><td>Planning for 50th in 2029 begins!</td></tr>
+        <tr><td>Jun 30</td><td>James Crews</td><td>🎂 Birthday (71)</td><td>Big year! Family surprise gathering planned.</td></tr>
+        <tr><td>Aug 15</td><td>Susan & Tom Hart</td><td>💍 Anniversary (22 yrs)</td><td></td></tr>
+        <tr><td>Sep 3</td><td>Michael Crews</td><td>🎂 Birthday (48)</td><td></td></tr>
+        <tr><td>Oct 19</td><td>Susan Crews-Hart</td><td>🎂 Birthday (46)</td><td></td></tr>
+        <tr><td>Dec 14</td><td>Margaret Grace (granddaughter)</td><td>🎂 Birthday (5)</td><td>Named after Grandma Maggie 💕</td></tr>
+      </tbody>
+    </table>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <script src="../js/main.js"></script>
+</body>
+</html>

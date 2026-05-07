@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TV Shows – Crews Family Gathering Place</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    .show-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex; flex-direction: column;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .show-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .show-banner {
+      height: 120px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem;
+      position: relative;
+    }
+    .show-status {
+      position: absolute; bottom: 0.5rem; left: 0.5rem;
+    }
+    .show-network {
+      position: absolute; top: 0.5rem; right: 0.5rem;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      font-size: 0.72rem; font-weight: 700;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+    .show-body  { padding: 1rem; flex: 1; }
+    .show-title { font-weight: 700; font-size: 1rem; color: var(--primary); margin-bottom: 0.15rem; }
+    .show-meta  { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.4rem; }
+    .show-desc  { font-size: 0.85rem; line-height: 1.55; margin-bottom: 0.5rem; }
+    .show-quote { font-size: 0.8rem; color: var(--accent); font-style: italic; }
+    .show-footer {
+      padding: 0.6rem 1rem;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <section class="page-hero">
+    <span class="hero-icon">📺</span>
+    <h1>Family TV Shows</h1>
+    <p>What we're watching — recommendations, current obsessions, and all-time favorites</p>
+  </section>
+
+  <main class="page-content">
+
+    <!-- ── Currently Watching ── -->
+    <h2 class="section-title">▶️ Currently Watching</h2>
+    <div class="card-grid card-grid-3 mb-3">
+
+      <div class="show-card">
+        <div class="show-banner" style="background: linear-gradient(135deg,#3A1A0A,#8B4A1A);">
+          🤠
+          <span class="show-status"><span class="badge badge-blue">Watching Now</span></span>
+          <span class="show-network">Paramount+</span>
+        </div>
+        <div class="show-body">
+          <div class="show-title">Yellowstone</div>
+          <div class="show-meta">Drama · 2018–2024 · 5 Seasons</div>
+          <div class="stars mb-2">★★★★★</div>
+          <div class="show-desc">The Dutton family saga in the American West. David and James bonded over all 5 seasons. Big themes of land, legacy, and family loyalty hit close to home.</div>
+          <div class="show-quote">💬 "James said this is the closest thing to our family story except we have less cattle." — Michael</div>
+        </div>
+        <div class="show-footer"><span>📍 Season 5 in progress</span><span class="badge badge-amber">Mature</span></div>
+      </div>
+
+      <div class="show-card">
+        <div class="show-banner" style="background: linear-gradient(135deg,#1A2A4A,#2F4A7A);">
+          🕵️
+          <span class="show-status"><span class="badge badge-blue">Watching Now</span></span>
+          <span class="show-network">Apple TV+</span>
+        </div>
+        <div class="show-body">
+          <div class="show-title">Slow Horses</div>
+          <div class="show-meta">Thriller / Spy · 2022– · 4 Seasons</div>
+          <div class="stars mb-2">★★★★★</div>
+          <div class="show-desc">Gripping British spy thriller. Jennifer and Susan are watching this together on their Tuesday night video calls. Consistently brilliant writing and Gary Oldman is extraordinary.</div>
+          <div class="show-quote">💬 "Jennifer: 'Best thing on TV right now. Not even close.'"</div>
+        </div>
+        <div class="show-footer"><span>📍 Season 4 in progress</span><span class="badge badge-amber">Mature</span></div>
+      </div>
+
+      <div class="show-card">
+        <div class="show-banner" style="background: linear-gradient(135deg,#1A4A1A,#3A7A3A);">
+          🍃
+          <span class="show-status"><span class="badge badge-blue">Watching Now</span></span>
+          <span class="show-network">Max</span>
+        </div>
+        <div class="show-body">
+          <div class="show-title">The Last of Us</div>
+          <div class="show-meta">Drama / Sci-Fi · 2023– · 2 Seasons</div>
+          <div class="stars mb-2">★★★★★</div>
+          <div class="show-desc">A post-apocalyptic story that is fundamentally about parental love and sacrifice. Surprisingly emotional — the father-daughter dynamic resonates deeply with the family.</div>
+          <div class="show-quote">💬 "Patricia: 'I ugly cried at Episode 3. Multiple times.'"</div>
+        </div>
+        <div class="show-footer"><span>📍 Season 2 watching</span><span class="badge badge-red">Adults Only</span></div>
+      </div>
+
+    </div>
+
+    <!-- ── Family Favorites ── -->
+    <h2 class="section-title">🏆 All-Time Family Favorites</h2>
+    <div class="card-grid card-grid-3 mb-3">
+
+      <div class="show-card">
+        <div class="show-banner" style="background: linear-gradient(135deg,#4A1A5A,#8A3A9A);">
+          👑
+          <span class="show-network">Netflix</span>
+        </div>
+        <div class="show-body">
+          <div class="show-title">The Crown</div>
+          <div class="show-meta">Historical Drama · 2016–2023 · 6 Seasons</div>
+          <div class="stars mb-2">★★★★½</div>
+          <div class="show-desc">The reign of Queen Elizabeth II. Patricia's absolute favorite. The whole family watched all 6 seasons. Great for conversations about history, family duty, and legacy.</div>
+        </div>
+        <div class="show-footer"><span>✅ Completed</span><span class="badge badge-amber">Teens+</span></div>
+      </div>
+
+      <div class="show-card">
+        <div class="show-banner" style="background: linear-gradient(135deg,#3A1A1A,#7A3A1A);">
+          ❤️
+          <span class="show-network">NBC/Peacock</span>
+        </div>
+        <div class="show-body">
+          <div class="show-title">This Is Us</div>
+          <div class="show-meta">Drama / Family · 2016–2022 · 6 Seasons</div>
+          <div class="stars mb-2">★★★★★</div>
+          <div class="show-desc">A multigenerational family drama that hit impossibly close to home. Susan says the Pearson family reminds her of the Crews family. Keep tissues handy — always.</div>
+          <div class="show-quote">💬 "We had to pause regularly to compose ourselves." — Susan</div>
+        </div>
+        <div class="show-footer"><span>✅ Completed · Rewatching</span><span class="badge badge-green">All Ages</span></div>
+      </div>
+
+      <div class="show-card">
+        <div class="show-banner" style="background: linear-gradient(135deg,#1A3A1A,#3A7A5A);">
+          😂
+          <span class="show-network">Netflix</span>
+        </div>
+        <div class="show-body">
+          <div class="show-title">Schitt's Creek</div>
+          <div class="show-meta">Comedy · 2015–2020 · 6 Seasons</div>
+          <div class="stars mb-2">★★★★★</div>
+          <div class="show-desc">The unlikely journey of a wealthy family forced to rebuild from nothing. Perfectly cast, brilliantly written, and genuinely heartwarming. Perfect cabin binge-watch.</div>
+          <div class="show-quote">💬 "David is forbidden from doing the Moira Rose impression at reunions." — Jennifer</div>
+        </div>
+        <div class="show-footer"><span>✅ Completed · Beloved</span><span class="badge badge-amber">Teens+</span></div>
+      </div>
+
+      <div class="show-card">
+        <div class="show-banner" style="background: linear-gradient(135deg,#1A2A3A,#3A5A7A);">
+          💸
+          <span class="show-network">Netflix</span>
+        </div>
+        <div class="show-body">
+          <div class="show-title">Ozark</div>
+          <div class="show-meta">Crime / Drama · 2017–2022 · 4 Seasons</div>
+          <div class="stars mb-2">★★★★½</div>
+          <div class="show-desc">A financial planner moves his family to the Ozarks for suspicious reasons. Incredibly tense — the family watched the whole series in one long weekend at the lake cottage.</div>
+        </div>
+        <div class="show-footer"><span>✅ Completed</span><span class="badge badge-red">Adults Only</span></div>
+      </div>
+
+      <div class="show-card">
+        <div class="show-banner" style="background: linear-gradient(135deg,#2A3A1A,#5A7A3A);">
+          🌿
+          <span class="show-network">PBS</span>
+        </div>
+        <div class="show-body">
+          <div class="show-title">Downton Abbey</div>
+          <div class="show-meta">Historical Drama · 2010–2015 · 6 Seasons</div>
+          <div class="stars mb-2">★★★★½</div>
+          <div class="show-desc">A sweeping period drama about an English aristocratic family. Grandma Maggie watched every episode and called it "the best show since Masterpiece Theatre."</div>
+          <div class="show-quote">💬 "Grandma Maggie's absolute favorite. We watch it in her memory." — Patricia</div>
+        </div>
+        <div class="show-footer"><span>✅ Completed · Memorial Watch</span><span class="badge badge-green">All Ages</span></div>
+      </div>
+
+      <div class="show-card">
+        <div class="show-banner" style="background: linear-gradient(135deg,#1A1A2A,#3A3A6A);">
+          🚀
+          <span class="show-network">Apple TV+</span>
+        </div>
+        <div class="show-body">
+          <div class="show-title">For All Mankind</div>
+          <div class="show-meta">Sci-Fi / Drama · 2019– · 4 Seasons</div>
+          <div class="stars mb-2">★★★★½</div>
+          <div class="show-desc">An alternate history where the space race never ended. David and Michael have been watching together since Season 1 and have strong, conflicting opinions about every character decision.</div>
+        </div>
+        <div class="show-footer"><span>✅ Caught up</span><span class="badge badge-amber">Teens+</span></div>
+      </div>
+
+    </div>
+
+    <!-- ── For the Kids ── -->
+    <h2 class="section-title">👶 For the Little Ones</h2>
+    <table class="data-table">
+      <thead><tr><th>Show</th><th>Platform</th><th>Ages</th><th>Rating</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Avatar: The Last Airbender</strong></td><td>Netflix/Nickelodeon</td><td>7+</td><td><span class="stars">★★★★★</span></td><td>The greatest kids' show ever made. Adults love it too.</td></tr>
+        <tr><td><strong>Abbott Elementary</strong></td><td>ABC/Hulu</td><td>12+</td><td><span class="stars">★★★★★</span></td><td>Best comedy on TV. Great for families with teachers.</td></tr>
+        <tr><td><strong>Bluey</strong></td><td>Disney+</td><td>2–8</td><td><span class="stars">★★★★★</span></td><td>Secretly the best parenting show ever. Adults cry more than kids.</td></tr>
+        <tr><td><strong>The Mandalorian</strong></td><td>Disney+</td><td>8+</td><td><span class="stars">★★★★</span></td><td>Grogu + Mando = perfect family bonding content.</td></tr>
+      </tbody>
+    </table>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <script src="../js/main.js"></script>
+</body>
+</html>

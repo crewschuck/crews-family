@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Newsletter – Crews Family Gathering Place</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    .nl-featured {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: #fff;
+      border-radius: var(--radius-lg);
+      padding: 2rem 2.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    .nl-featured::after {
+      content: '📰';
+      position: absolute; right: 2rem; top: 50%;
+      transform: translateY(-50%);
+      font-size: 6rem; opacity: 0.15;
+    }
+    .nl-featured .edition { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.75; margin-bottom: 0.3rem; }
+    .nl-featured h2 { font-family: var(--font-serif); font-size: 1.9rem; margin-bottom: 0.5rem; }
+    .nl-featured p  { opacity: 0.88; max-width: 500px; font-size: 0.95rem; margin-bottom: 1.25rem; }
+    .nl-featured .btn { background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.5); color: #fff; }
+    .nl-featured .btn:hover { background: rgba(255,255,255,0.35); }
+
+    .nl-toc { list-style: none; margin: 0.75rem 0 1rem; }
+    .nl-toc li { padding: 0.3rem 0; border-bottom: 1px solid var(--border); font-size: 0.92rem; display: flex; gap: 0.5rem; }
+    .nl-toc li:last-child { border-bottom: none; }
+
+    .nl-story {
+      margin-bottom: 1.75rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .nl-story:last-child { border-bottom: none; }
+    .nl-story h3 { font-family: var(--font-serif); font-size: 1.2rem; color: var(--primary); margin-bottom: 0.25rem; }
+    .nl-story .story-meta { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.65rem; }
+    .nl-story p { font-size: 0.95rem; line-height: 1.7; margin-bottom: 0.6rem; }
+    .nl-story p:last-child { margin-bottom: 0; }
+
+    .archive-item {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 0.9rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 0.75rem;
+      transition: box-shadow var(--transition);
+    }
+    .archive-item:hover { box-shadow: var(--shadow); }
+    .archive-icon { font-size: 1.75rem; flex-shrink: 0; }
+    .archive-info { flex: 1; }
+    .archive-title { font-weight: 700; color: var(--primary); font-size: 0.95rem; }
+    .archive-date  { font-size: 0.8rem; color: var(--text-muted); }
+    .archive-blurb { font-size: 0.88rem; margin-top: 0.2rem; }
+
+    .submit-box {
+      background: linear-gradient(135deg, #FDF8F0 0%, #F5E8D0 100%);
+      border: 2px solid var(--accent-light);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      text-align: center;
+      margin-top: 2.5rem;
+    }
+    .submit-box h3 { font-family: var(--font-serif); color: var(--primary); font-size: 1.4rem; margin-bottom: 0.5rem; }
+    .submit-box p  { color: var(--text-muted); margin-bottom: 1.25rem; }
+    .submit-box form { display: flex; flex-direction: column; gap: 0.75rem; max-width: 400px; margin: 0 auto; }
+    .submit-box input, .submit-box textarea {
+      padding: 0.7rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.93rem;
+      font-family: var(--font-sans);
+      background: var(--bg-card);
+    }
+    .submit-box textarea { resize: vertical; min-height: 90px; }
+    .submit-box input:focus, .submit-box textarea:focus { outline: 2px solid var(--accent); border-color: transparent; }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <section class="page-hero">
+    <span class="hero-icon">📰</span>
+    <h1>Crews Family Newsletter</h1>
+    <p>Quarterly updates, stories, news, and announcements from across the family</p>
+  </section>
+
+  <main class="page-content">
+
+    <!-- ── Featured: Latest Edition ── -->
+    <div class="nl-featured">
+      <div class="edition">Latest Edition · Spring 2026</div>
+      <h2>The Crews Chronicle — Spring 2026</h2>
+      <p>Reunion planning is underway, the cookbook is nearly done, and there's a new baby Crews on the way! Lots of exciting news in this edition.</p>
+      <a class="btn" href="#spring-2026" style="text-decoration:none;">Read Full Edition ↓</a>
+    </div>
+
+    <!-- ── Spring 2026 Edition ── -->
+    <section id="spring-2026">
+      <div class="newsletter-card">
+        <h3>📰 The Crews Chronicle — Spring 2026</h3>
+        <div class="nl-meta">Published: April 15, 2026 · Editor: Jennifer Crews-Moore · Issue #23</div>
+
+        <p><strong>Hello Crews Family!</strong> Spring has arrived and it's bringing plenty of good news with it. Welcome to Issue #23 of The Crews Chronicle. In this edition:</p>
+
+        <ul class="nl-toc">
+          <li>🍼 <strong>Big News:</strong> New addition to the family coming this Fall!</li>
+          <li>🍳 <strong>Cookbook Update:</strong> Grandma Maggie's recipe collection nears completion</li>
+          <li>🏠 <strong>Homestead Progress:</strong> The cabin is looking better than ever</li>
+          <li>🎉 <strong>Reunion 2026:</strong> Save the date and theme announcement</li>
+          <li>🌟 <strong>Family Spotlight:</strong> Susan's art show in Atlanta</li>
+          <li>📚 <strong>Book Club:</strong> Our spring reading list</li>
+          <li>🎓 <strong>Milestones:</strong> Graduations and achievements</li>
+        </ul>
+      </div>
+
+      <div class="nl-story">
+        <h3>🍼 A New Crew is on the Way!</h3>
+        <div class="story-meta">Submitted by: David & Rachel Crews</div>
+        <p>
+          We are overjoyed to share that David and Rachel Crews are expecting their first child this October! Baby Crews is due October 14th, and they've chosen to keep the gender a surprise until birth.
+        </p>
+        <p>
+          "We can't wait to introduce the newest member of the family," David shared. "We already know Grandpa James is going to spoil them absolutely rotten, and honestly we're okay with that." A family shower is being planned for late August — watch for the invite!
+        </p>
+        <div class="mt-1"><span class="badge badge-green">🍼 Exciting News!</span></div>
+      </div>
+
+      <div class="nl-story">
+        <h3>🍳 Cookbook Nearly Complete!</h3>
+        <div class="story-meta">Submitted by: Susan Crews-Hart</div>
+        <p>
+          After two years of testing, photographing, and writing, the <em>Grandma Maggie's Kitchen: The Crews Family Cookbook</em> is 80% complete! Susan and her team have documented 187 of 220 recipes — from Maggie's famous Sunday pot roast to her legendary pralines.
+        </p>
+        <p>
+          The cookbook will be professionally printed in 100 copies and distributed at the 2026 Annual Reunion. Additional copies can be ordered after the reunion. Estimated retail price: $35. Family price: $20.
+        </p>
+        <p>
+          <strong>Still needed:</strong> If you have one of Grandma Maggie's recipes that isn't in the collection yet, please submit it to Susan before June 1st! Email: susan.hart@example.com
+        </p>
+      </div>
+
+      <div class="nl-story">
+        <h3>🏠 Homestead Restoration Update</h3>
+        <div class="story-meta">Submitted by: James Crews</div>
+        <p>
+          The restoration of Harold Crews's 1924 farmhouse is progressing beautifully. The new roof is complete, all electrical has been updated, and the original pine floors are being refinished to their original luster.
+        </p>
+        <p>
+          "Every time we uncover something original in that house, I feel a connection to Harold and Edna," James said. "We found handwritten measurements on a door frame in Harold's handwriting — we're keeping that one visible."
+        </p>
+        <p>The homestead is on track to be ready for the 2026 reunion, which will serve as a kind of re-dedication ceremony for the property.</p>
+      </div>
+
+      <div class="nl-story">
+        <h3>🎉 Reunion 2026 — Save the Date!</h3>
+        <div class="story-meta">Submitted by: Reunion Committee</div>
+        <p>
+          <strong>12th Annual Crews Family Reunion: August 21–23, 2026</strong> at the Heard County Homestead. Theme: <em>"Roots &amp; Branches — Celebrating Our History."</em>
+        </p>
+        <p>
+          New this year: documentary film screening (a short film about our family history produced by Michael), the first-ever Family Trivia Championship, and the official cookbook reveal. RSVP link will be sent in June. Mark your calendars!
+        </p>
+        <div class="mt-1"><span class="badge badge-amber">⏰ RSVP Due: July 31</span></div>
+      </div>
+
+      <div class="nl-story">
+        <h3>🌟 Family Spotlight: Susan's Art Show</h3>
+        <div class="story-meta">Submitted by: Jennifer Crews-Moore</div>
+        <p>
+          Our very own Susan Crews-Hart had her first solo gallery show at the Westside Gallery in Atlanta last February! Her collection, <em>"Georgia in the Blood,"</em> featured 24 original paintings inspired by the family's Georgia landscapes and history.
+        </p>
+        <p>
+          "I never expected the response," Susan said. "Several pieces referenced the homestead, and family members who came to the opening were moved in ways I didn't anticipate." Four prints are available for family purchase — contact Susan!
+        </p>
+      </div>
+
+      <div class="nl-story">
+        <h3>🎓 Milestones & Achievements</h3>
+        <div class="story-meta"></div>
+        <ul style="padding-left:1.25rem; font-size:0.95rem;">
+          <li><strong>Tyler Hart</strong> (Susan's son) — Graduated with honors from Georgia Tech with a B.S. in Computer Science! Starting at Google in June. 🎉</li>
+          <li><strong>Emma Moore</strong> (Jennifer's daughter) — Named to the Academic All-State team in volleyball. Committed to play at University of Georgia! 🏐</li>
+          <li><strong>James Crews</strong> — Received the Newnan Community Service Award for 40 years of service on the local school board. Well deserved, Dad! ❤️</li>
+          <li><strong>Margaret Grace Hart</strong> — Got her first library card and has already read 22 books this year (she's 4). Taking after Great-Great-Grandma Edna! 📚</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── Archive ── -->
+    <h2 class="section-title mt-3">📁 Newsletter Archive</h2>
+
+    <div class="archive-item">
+      <div class="archive-icon">📰</div>
+      <div class="archive-info">
+        <div class="archive-title">Winter 2025 — Issue #22</div>
+        <div class="archive-date">Published: January 10, 2026</div>
+        <div class="archive-blurb">Holiday recap, Christmas at Mom & Dad's, new year resolutions from the family, and a tribute to the first decade of the Annual Reunion.</div>
+      </div>
+      <a class="btn btn-outline" href="#">Read →</a>
+    </div>
+
+    <div class="archive-item">
+      <div class="archive-icon">📰</div>
+      <div class="archive-info">
+        <div class="archive-title">Fall 2025 — Issue #21</div>
+        <div class="archive-date">Published: October 8, 2025</div>
+        <div class="archive-blurb">Reunion 2025 recap, homestead restoration begins, cookbook announcement, and Michael's documentary project teaser.</div>
+      </div>
+      <a class="btn btn-outline" href="#">Read →</a>
+    </div>
+
+    <div class="archive-item">
+      <div class="archive-icon">📰</div>
+      <div class="archive-info">
+        <div class="archive-title">Summer 2025 — Issue #20</div>
+        <div class="archive-date">Published: July 5, 2025</div>
+        <div class="archive-blurb">July 4th at the lake, David's Mustang restoration final reveal, Susan's art debut, Tyler's college graduation.</div>
+      </div>
+      <a class="btn btn-outline" href="#">Read →</a>
+    </div>
+
+    <div class="archive-item">
+      <div class="archive-icon">📰</div>
+      <div class="archive-info">
+        <div class="archive-title">Spring 2025 — Issue #19</div>
+        <div class="archive-date">Published: April 12, 2025</div>
+        <div class="archive-blurb">Photo archive project complete, first book club meeting of the year, and a special tribute to Grandma Maggie on the 7th anniversary of her passing.</div>
+      </div>
+      <a class="btn btn-outline" href="#">Read →</a>
+    </div>
+
+    <!-- ── Submit a Story ── -->
+    <div class="submit-box">
+      <h3>✍️ Submit Your Story</h3>
+      <p>Have a family update, milestone, photo, or story for the next edition? We want to hear from you! The Summer 2026 deadline is <strong>July 1, 2026</strong>.</p>
+      <form onsubmit="return false;">
+        <input type="text" placeholder="Your Name" />
+        <input type="email" placeholder="Your Email" />
+        <input type="text" placeholder="Story Headline" />
+        <textarea placeholder="Tell us your story, news, or announcement..."></textarea>
+        <button class="btn btn-primary" type="submit">Submit Story →</button>
+      </form>
+    </div>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <script src="../js/main.js"></script>
+</body>
+</html>

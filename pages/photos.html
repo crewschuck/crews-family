@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photos – Crews Family Gathering Place</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    .album-tabs {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .album-tab {
+      padding: 0.5rem 1.1rem;
+      border-radius: 50px;
+      border: 2px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: all var(--transition);
+    }
+    .album-tab.active, .album-tab:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    /* Photo placeholders using emoji + gradients */
+    .ph-1  { background: linear-gradient(135deg, #FFD6A5, #FFA07A); }
+    .ph-2  { background: linear-gradient(135deg, #B5EAD7, #6BAE9F); }
+    .ph-3  { background: linear-gradient(135deg, #C7CEEA, #7886C7); }
+    .ph-4  { background: linear-gradient(135deg, #FFDAC1, #E2A96E); }
+    .ph-5  { background: linear-gradient(135deg, #E2F0CB, #8AB87A); }
+    .ph-6  { background: linear-gradient(135deg, #B5D5EA, #5A92B8); }
+    .ph-7  { background: linear-gradient(135deg, #F9C6C9, #D47A80); }
+    .ph-8  { background: linear-gradient(135deg, #FFF1A8, #D4B53C); }
+    .ph-9  { background: linear-gradient(135deg, #D5C8EA, #9372B8); }
+    .ph-10 { background: linear-gradient(135deg, #C8EAD5, #54A872); }
+    .ph-11 { background: linear-gradient(135deg, #EAC8C8, #B85454); }
+    .ph-12 { background: linear-gradient(135deg, #C8E0EA, #5488B8); }
+
+    .album-section { display: none; }
+    .album-section.active { display: block; }
+
+    .photo-caption { text-align: center; font-size: 0.82rem; color: var(--text-muted); margin-top: 0.3rem; }
+
+    .featured-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .featured-big {
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem;
+      aspect-ratio: 4/3;
+      cursor: pointer;
+      transition: transform var(--transition);
+    }
+    .featured-big:hover { transform: scale(1.02); }
+
+    @media (max-width: 600px) {
+      .featured-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <section class="page-hero">
+    <span class="hero-icon">📷</span>
+    <h1>Family Photos</h1>
+    <p>Memories captured — browse our family albums</p>
+  </section>
+
+  <main class="page-content">
+
+    <div class="flex-between mb-2">
+      <h2 class="section-title" style="margin-bottom:0; border:none;">📁 Photo Albums</h2>
+      <span class="text-muted">Click any photo to view full size</span>
+    </div>
+
+    <!-- Album Tabs -->
+    <div class="album-tabs">
+      <button class="album-tab active" onclick="showAlbum('reunion')">🏡 Reunion 2024</button>
+      <button class="album-tab" onclick="showAlbum('christmas')">🎄 Christmas 2023</button>
+      <button class="album-tab" onclick="showAlbum('summer')">☀️ Summer 2024</button>
+      <button class="album-tab" onclick="showAlbum('vintage')">📜 Old Family Photos</button>
+    </div>
+
+    <!-- Album: Reunion 2024 -->
+    <div class="album-section active" id="album-reunion">
+      <h3 class="section-title">🏡 Annual Crews Family Reunion — August 2024</h3>
+      <p class="text-muted mb-2">Held at the family homestead in Heard County, GA · 47 family members attended</p>
+
+      <div class="featured-row">
+        <div class="featured-big ph-1">👨‍👩‍👧‍👦<div class="photo-caption">The whole Crews crew — group photo on the front porch</div></div>
+        <div style="display:flex; flex-direction:column; gap:0.75rem;">
+          <div class="featured-big ph-2" style="aspect-ratio:1;">🍖</div>
+          <div class="featured-big ph-3" style="aspect-ratio:1;">🎵</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0.75rem;">
+          <div class="featured-big ph-4" style="aspect-ratio:1;">🎈</div>
+          <div class="featured-big ph-5" style="aspect-ratio:1;">🏆</div>
+        </div>
+      </div>
+
+      <div class="photo-grid">
+        <div class="photo-thumb ph-1">🍳<div class="caption">Breakfast on the porch</div></div>
+        <div class="photo-thumb ph-2">👶<div class="caption">The little ones playing</div></div>
+        <div class="photo-thumb ph-3">🎸<div class="caption">Uncle David's jam session</div></div>
+        <div class="photo-thumb ph-4">🏊<div class="caption">Swimming hole fun</div></div>
+        <div class="photo-thumb ph-5">🌽<div class="caption">Corn shucking contest</div></div>
+        <div class="photo-thumb ph-6">🌅<div class="caption">Sunday morning sunrise</div></div>
+        <div class="photo-thumb ph-7">🎂<div class="caption">Grandpa Bob's 90th tribute cake</div></div>
+        <div class="photo-thumb ph-8">🏡<div class="caption">The old homestead</div></div>
+        <div class="photo-thumb ph-9">🐾<div class="caption">Family dogs at play</div></div>
+        <div class="photo-thumb ph-10">🌿<div class="caption">Evening walk on the farm</div></div>
+        <div class="photo-thumb ph-11">🤸<div class="caption">Kids' relay races</div></div>
+        <div class="photo-thumb ph-12">🔥<div class="caption">Saturday night bonfire</div></div>
+      </div>
+    </div>
+
+    <!-- Album: Christmas 2023 -->
+    <div class="album-section" id="album-christmas">
+      <h3 class="section-title">🎄 Christmas at James & Patricia's — December 2023</h3>
+      <p class="text-muted mb-2">25 family members gathered at the Crews home in Newnan, GA for Christmas dinner</p>
+
+      <div class="photo-grid">
+        <div class="photo-thumb ph-7">🎄<div class="caption">Christmas tree — 9 ft Fraser fir</div></div>
+        <div class="photo-thumb ph-8">🎁<div class="caption">Present opening mayhem</div></div>
+        <div class="photo-thumb ph-1">🍗<div class="caption">Christmas dinner spread</div></div>
+        <div class="photo-thumb ph-2">👶<div class="caption">Grandkids in matching pajamas</div></div>
+        <div class="photo-thumb ph-9">🕯️<div class="caption">Candlelight carol singing</div></div>
+        <div class="photo-thumb ph-3">⛄<div class="caption">Snowman on the front lawn (rare!)</div></div>
+        <div class="photo-thumb ph-4">📷<div class="caption">Family portrait by the fireplace</div></div>
+        <div class="photo-thumb ph-5">🍪<div class="caption">Grandma Maggie's cookie recipe lives on</div></div>
+        <div class="photo-thumb ph-6">🎅<div class="caption">Secret Santa reveal</div></div>
+      </div>
+    </div>
+
+    <!-- Album: Summer 2024 -->
+    <div class="album-section" id="album-summer">
+      <h3 class="section-title">☀️ Summer Vacation — Destin, FL — June 2024</h3>
+      <p class="text-muted mb-2">The Michael Crews family beach week — 18 family members, 7 days in the sun</p>
+
+      <div class="photo-grid">
+        <div class="photo-thumb ph-6">🏖️<div class="caption">First morning at the beach</div></div>
+        <div class="photo-thumb ph-1">🦀<div class="caption">Crab hunting at low tide</div></div>
+        <div class="photo-thumb ph-2">🚣<div class="caption">Kayaking in the bay</div></div>
+        <div class="photo-thumb ph-5">🐬<div class="caption">Dolphin sighting on sunset cruise</div></div>
+        <div class="photo-thumb ph-3">🌊<div class="caption">Wave jumping with the kids</div></div>
+        <div class="photo-thumb ph-10">🍦<div class="caption">Ice cream sunset tradition</div></div>
+        <div class="photo-thumb ph-8">🎣<div class="caption">Deep sea fishing charter</div></div>
+        <div class="photo-thumb ph-4">🌅<div class="caption">Gorgeous Destin sunset</div></div>
+      </div>
+    </div>
+
+    <!-- Album: Vintage -->
+    <div class="album-section" id="album-vintage">
+      <h3 class="section-title">📜 Old Family Photos — Digitized Archive</h3>
+      <p class="text-muted mb-2">Scanned from original prints and slides — 1920s through 1980s</p>
+
+      <div class="photo-grid">
+        <div class="photo-thumb ph-11" style="filter: sepia(0.6);">💒<div class="caption">Harold & Edna's wedding, 1921</div></div>
+        <div class="photo-thumb ph-8" style="filter: sepia(0.6);">🌾<div class="caption">Crews farm, circa 1930</div></div>
+        <div class="photo-thumb ph-5" style="filter: sepia(0.6);">👶<div class="caption">Baby Robert, 1929</div></div>
+        <div class="photo-thumb ph-3" style="filter: sepia(0.5);">⚔️<div class="caption">Robert in Korea, 1952</div></div>
+        <div class="photo-thumb ph-9" style="filter: sepia(0.4);">🏪<div class="caption">Crews Hardware opening day, 1962</div></div>
+        <div class="photo-thumb ph-1" style="filter: sepia(0.3);">🎓<div class="caption">James graduates UGA, 1977</div></div>
+        <div class="photo-thumb ph-7" style="filter: sepia(0.3);">💍<div class="caption">James & Patricia's wedding, 1979</div></div>
+        <div class="photo-thumb ph-2" style="filter: sepia(0.2);">👦<div class="caption">Young Michael at the farm, 1985</div></div>
+        <div class="photo-thumb ph-4" style="filter: sepia(0.1);">👨‍👩‍👧‍👦<div class="caption">The Crews family, Christmas 1992</div></div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <h2 class="section-title mt-3">📊 Photo Archive Stats</h2>
+    <div class="card-grid card-grid-3">
+      <div class="card">
+        <div class="card-body text-center">
+          <div style="font-size:2rem;">📷</div>
+          <div style="font-size:2rem; font-weight:700; color:var(--primary);">1,240+</div>
+          <div class="card-meta">Photos digitized</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body text-center">
+          <div style="font-size:2rem;">📁</div>
+          <div style="font-size:2rem; font-weight:700; color:var(--primary);">18</div>
+          <div class="card-meta">Albums</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body text-center">
+          <div style="font-size:2rem;">📅</div>
+          <div style="font-size:2rem; font-weight:700; color:var(--primary);">100+</div>
+          <div class="card-meta">Years covered</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="../js/main.js"></script>
+  <script>
+    function showAlbum(id) {
+      document.querySelectorAll('.album-section').forEach(function(s){ s.classList.remove('active'); });
+      document.querySelectorAll('.album-tab').forEach(function(t){ t.classList.remove('active'); });
+      document.getElementById('album-' + id).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>

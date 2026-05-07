@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rental Properties – Crews Family Gathering Place</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    .property-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 2.5rem;
+    }
+    .property-img {
+      width: 100%; height: 240px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem;
+      position: relative;
+    }
+    .property-badge {
+      position: absolute; top: 1rem; right: 1rem;
+    }
+    .property-body { padding: 1.75rem; }
+    .property-name {
+      font-family: var(--font-serif);
+      font-size: 1.65rem;
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+    .property-location { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 1rem; }
+    .property-desc { font-size: 0.95rem; margin-bottom: 1.25rem; line-height: 1.7; }
+    .amenities-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0.5rem; margin-bottom: 1.25rem;
+    }
+    .amenity {
+      display: flex; align-items: center; gap: 0.4rem;
+      font-size: 0.88rem; color: var(--text);
+    }
+    .rates-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin-bottom: 1.25rem; }
+    .rates-table th { background: var(--bg); padding: 0.5rem 0.75rem; text-align: left; font-weight: 600; border-bottom: 2px solid var(--border); }
+    .rates-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border); }
+    .avail-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .avail-chip {
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .avail-open { background: #D4EDDA; color: #1A5C2A; }
+    .avail-booked { background: #FAD7D7; color: #7A2020; }
+    .avail-hold  { background: #FFF3CD; color: #856404; }
+
+    .contact-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;
+    }
+    .contact-box .contact-info { flex: 1; min-width: 200px; }
+    .contact-box .contact-info strong { display: block; font-size: 0.95rem; color: var(--primary); }
+    .contact-box .contact-info span { font-size: 0.88rem; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <section class="page-hero">
+    <span class="hero-icon">🏘️</span>
+    <h1>Rental Properties</h1>
+    <p>Family-owned vacation rentals — available to family first, then the public</p>
+  </section>
+
+  <main class="page-content">
+
+    <p class="text-muted mb-3">
+      📌 <strong>Family Policy:</strong> Crews family members receive a 25% discount on all properties. Contact the property manager to check availability and book your stay.
+    </p>
+
+    <!-- ── Property 1: The Crews Cabin ── -->
+    <div class="property-card">
+      <div class="property-img" style="background: linear-gradient(135deg, #4A7C59 0%, #2C4A35 100%);">
+        🏕️
+        <div class="property-badge"><span class="badge badge-green">Available</span></div>
+      </div>
+      <div class="property-body">
+        <div class="property-name">The Crews Mountain Cabin</div>
+        <div class="property-location">📍 Blue Ridge, Georgia · 4 BR / 3 BA · Sleeps 10</div>
+        <div class="property-desc">
+          Nestled in the Blue Ridge Mountains, this cozy log cabin is the perfect retreat from city life. Enjoy stunning mountain views from the wraparound deck, a stone fireplace in the great room, and easy access to hiking trails, the Toccoa River, and downtown Blue Ridge. Built in 2008 and fully renovated in 2022, it blends rustic charm with modern comforts.
+        </div>
+
+        <div class="amenities-grid">
+          <div class="amenity">🔥 Stone Fireplace</div>
+          <div class="amenity">🛁 Hot Tub</div>
+          <div class="amenity">🎮 Game Room</div>
+          <div class="amenity">🌐 High-Speed WiFi</div>
+          <div class="amenity">🍳 Full Kitchen</div>
+          <div class="amenity">🚗 2-Car Parking</div>
+          <div class="amenity">🐕 Pet Friendly</div>
+          <div class="amenity">📺 Smart TVs</div>
+          <div class="amenity">🏞️ Mountain Views</div>
+          <div class="amenity">🎣 River Access</div>
+        </div>
+
+        <table class="rates-table">
+          <thead><tr><th>Season</th><th>Nightly Rate</th><th>Weekly Rate</th><th>Min. Stay</th></tr></thead>
+          <tbody>
+            <tr><td>Peak (Jun–Aug, Dec)</td><td>$285/night</td><td>$1,750/wk</td><td>3 nights</td></tr>
+            <tr><td>Standard (Apr–May, Sep–Nov)</td><td>$225/night</td><td>$1,350/wk</td><td>2 nights</td></tr>
+            <tr><td>Off-Peak (Jan–Mar)</td><td>$175/night</td><td>$1,050/wk</td><td>2 nights</td></tr>
+          </tbody>
+        </table>
+
+        <div class="mb-2"><strong>May 2026 Availability:</strong></div>
+        <div class="avail-row">
+          <span class="avail-chip avail-open">May 1–9 ✓</span>
+          <span class="avail-chip avail-booked">May 10–17 ✗ Booked</span>
+          <span class="avail-chip avail-hold">May 18–20 ⏳ Hold</span>
+          <span class="avail-chip avail-open">May 21–31 ✓</span>
+        </div>
+
+        <div class="contact-box">
+          <div class="contact-info"><strong>Property Manager: Michael Crews</strong><span>📞 (706) 555-0142 · 📧 michael.crews@example.com</span></div>
+          <a class="btn btn-primary" href="#">📅 Request Booking</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Property 2: Lakeside Cottage ── -->
+    <div class="property-card">
+      <div class="property-img" style="background: linear-gradient(135deg, #2F6690 0%, #1A3A55 100%);">
+        🏚️
+        <div class="property-badge"><span class="badge badge-amber">Limited</span></div>
+      </div>
+      <div class="property-body">
+        <div class="property-name">Lakeside Cottage — Lake Lanier</div>
+        <div class="property-location">📍 Gainesville, Georgia · 3 BR / 2 BA · Sleeps 8</div>
+        <div class="property-desc">
+          Wake up to the sound of gentle waves at this charming lakefront cottage on Lake Lanier. The private dock makes this ideal for boating, fishing, and swimming. The screened porch is perfect for morning coffee as the sun rises over the water. Just 45 minutes from Atlanta, it's the perfect quick getaway — or extended vacation retreat.
+        </div>
+
+        <div class="amenities-grid">
+          <div class="amenity">⛵ Private Dock</div>
+          <div class="amenity">🎣 Fishing Gear</div>
+          <div class="amenity">🛶 Kayaks (2)</div>
+          <div class="amenity">🌐 High-Speed WiFi</div>
+          <div class="amenity">🍳 Full Kitchen</div>
+          <div class="amenity">🪵 Fire Pit</div>
+          <div class="amenity">🏊 Swimming Access</div>
+          <div class="amenity">📺 Smart TVs</div>
+          <div class="amenity">🌅 Lake Views</div>
+          <div class="amenity">🐕 Pet Friendly</div>
+        </div>
+
+        <table class="rates-table">
+          <thead><tr><th>Season</th><th>Nightly Rate</th><th>Weekly Rate</th><th>Min. Stay</th></tr></thead>
+          <tbody>
+            <tr><td>Peak (May–Sep)</td><td>$265/night</td><td>$1,600/wk</td><td>3 nights</td></tr>
+            <tr><td>Standard (Oct–Nov, Apr)</td><td>$195/night</td><td>$1,200/wk</td><td>2 nights</td></tr>
+            <tr><td>Off-Peak (Dec–Mar)</td><td>$155/night</td><td>$950/wk</td><td>2 nights</td></tr>
+          </tbody>
+        </table>
+
+        <div class="mb-2"><strong>May 2026 Availability:</strong></div>
+        <div class="avail-row">
+          <span class="avail-chip avail-booked">May 1–14 ✗ Booked</span>
+          <span class="avail-chip avail-open">May 15–22 ✓</span>
+          <span class="avail-chip avail-booked">May 23–27 ✗ Booked</span>
+          <span class="avail-chip avail-open">May 28–31 ✓</span>
+        </div>
+
+        <div class="contact-box">
+          <div class="contact-info"><strong>Property Manager: Susan Hart</strong><span>📞 (678) 555-0217 · 📧 susan.hart@example.com</span></div>
+          <a class="btn btn-primary" href="#">📅 Request Booking</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Property 3: Beach Cottage ── -->
+    <div class="property-card">
+      <div class="property-img" style="background: linear-gradient(135deg, #C0832E 0%, #8B5C15 100%);">
+        🏖️
+        <div class="property-badge"><span class="badge badge-green">Available</span></div>
+      </div>
+      <div class="property-body">
+        <div class="property-name">The Crews Beach House</div>
+        <div class="property-location">📍 Destin, Florida · 5 BR / 4 BA · Sleeps 14</div>
+        <div class="property-desc">
+          Steps from the famous sugar-white sands and emerald waters of Destin, this spacious beach house is the Crews family's crown jewel rental. With a large heated pool, two covered decks, and a gourmet kitchen stocked for serious cooking, it's perfect for large family gatherings. Book early — this one fills up fast!
+        </div>
+
+        <div class="amenities-grid">
+          <div class="amenity">🏊 Heated Pool</div>
+          <div class="amenity">🌊 Beach Access</div>
+          <div class="amenity">🍳 Gourmet Kitchen</div>
+          <div class="amenity">🌐 High-Speed WiFi</div>
+          <div class="amenity">🎯 Game Room</div>
+          <div class="amenity">🚿 Outdoor Shower</div>
+          <div class="amenity">🎵 Outdoor Speaker</div>
+          <div class="amenity">📺 Smart TVs (6)</div>
+          <div class="amenity">🌅 Gulf Views</div>
+          <div class="amenity">🚗 4-Car Parking</div>
+        </div>
+
+        <table class="rates-table">
+          <thead><tr><th>Season</th><th>Nightly Rate</th><th>Weekly Rate</th><th>Min. Stay</th></tr></thead>
+          <tbody>
+            <tr><td>Peak (Jun–Aug)</td><td>$695/night</td><td>$4,200/wk</td><td>5 nights</td></tr>
+            <tr><td>Standard (Apr–May, Sep–Oct)</td><td>$495/night</td><td>$2,950/wk</td><td>3 nights</td></tr>
+            <tr><td>Off-Peak (Nov–Mar)</td><td>$355/night</td><td>$2,100/wk</td><td>2 nights</td></tr>
+          </tbody>
+        </table>
+
+        <div class="mb-2"><strong>May 2026 Availability:</strong></div>
+        <div class="avail-row">
+          <span class="avail-chip avail-open">May 1–12 ✓</span>
+          <span class="avail-chip avail-hold">May 13–16 ⏳ Hold</span>
+          <span class="avail-chip avail-open">May 17–31 ✓</span>
+        </div>
+
+        <div class="contact-box">
+          <div class="contact-info"><strong>Property Manager: David Crews</strong><span>📞 (850) 555-0389 · 📧 david.crews@example.com</span></div>
+          <a class="btn btn-primary" href="#">📅 Request Booking</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <script src="../js/main.js"></script>
+</body>
+</html>

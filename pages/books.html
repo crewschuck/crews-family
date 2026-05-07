@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Books – Crews Family Gathering Place</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    .book-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      box-shadow: var(--shadow);
+      display: flex; gap: 1rem; align-items: flex-start;
+      transition: transform var(--transition);
+    }
+    .book-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+    .book-spine {
+      width: 52px; min-width: 52px; height: 75px;
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.75rem;
+      flex-shrink: 0;
+    }
+    .book-info { flex: 1; min-width: 0; }
+    .book-title { font-weight: 700; color: var(--primary); font-size: 1rem; margin-bottom: 0.1rem; }
+    .book-author { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.3rem; }
+    .book-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.4rem; align-items: center; }
+    .book-desc { font-size: 0.88rem; color: var(--text); line-height: 1.55; }
+    .book-rec { font-size: 0.82rem; color: var(--accent); margin-top: 0.3rem; font-style: italic; }
+
+    .filter-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .filter-tab {
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      border: 2px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all var(--transition);
+    }
+    .filter-tab.active, .filter-tab:hover { background: var(--primary); border-color: var(--primary); color: #fff; }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <section class="page-hero">
+    <span class="hero-icon">📚</span>
+    <h1>Family Book List</h1>
+    <p>Recommended reads, book club picks, and family favorites — for all ages</p>
+  </section>
+
+  <main class="page-content">
+
+    <div class="filter-tabs">
+      <button class="filter-tab active">📚 All Books</button>
+      <button class="filter-tab">🎭 Fiction</button>
+      <button class="filter-tab">📰 Non-Fiction</button>
+      <button class="filter-tab">📜 History</button>
+      <button class="filter-tab">👶 Children's</button>
+      <button class="filter-tab">🌟 Family Classics</button>
+    </div>
+
+    <!-- ── Currently Reading ── -->
+    <h2 class="section-title">📖 Book Club — Currently Reading</h2>
+    <div class="card-grid card-grid-2 mb-3">
+
+      <div class="book-card">
+        <div class="book-spine" style="background: linear-gradient(160deg,#4A7C59,#2C4A35);">📗</div>
+        <div class="book-info">
+          <div class="book-title">Killers of the Flower Moon</div>
+          <div class="book-author">David Grann · 2017 · Non-Fiction / History</div>
+          <div class="book-meta">
+            <span class="stars">★★★★★</span>
+            <span class="badge badge-green">Book Club Pick</span>
+            <span class="badge badge-blue">Reading Now</span>
+          </div>
+          <div class="book-desc">The chilling true story of the Osage murders in 1920s Oklahoma and the birth of the FBI. A remarkable piece of American history that reads like a thriller.</div>
+          <div class="book-rec">💬 "Patricia: 'I could not put this down. Essential American history.'"</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── Family Classics ── -->
+    <h2 class="section-title">🌟 Crews Family Classics</h2>
+    <div style="display:flex; flex-direction:column; gap:1rem; margin-bottom:2.5rem;">
+
+      <div class="book-card">
+        <div class="book-spine" style="background: linear-gradient(160deg,#C0832E,#8B5C15);">📙</div>
+        <div class="book-info">
+          <div class="book-title">To Kill a Mockingbird</div>
+          <div class="book-author">Harper Lee · 1960 · Fiction / Coming-of-Age</div>
+          <div class="book-meta"><span class="stars">★★★★★</span><span class="badge badge-amber">Family Classic</span></div>
+          <div class="book-desc">A masterpiece of American literature set in the Deep South. Robert Crews said this book "captures the Georgia I grew up in." A rite of passage read for every Crews teenager.</div>
+          <div class="book-rec">💬 "Robert Crews called this 'the most important book I ever read.'"</div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-spine" style="background: linear-gradient(160deg,#2F6690,#1A3A55);">📘</div>
+        <div class="book-info">
+          <div class="book-title">Gone with the Wind</div>
+          <div class="book-author">Margaret Mitchell · 1936 · Historical Fiction</div>
+          <div class="book-meta"><span class="stars">★★★★★</span><span class="badge badge-amber">Family Classic</span></div>
+          <div class="book-desc">A sprawling epic of the Civil War-era South. Edna Crews owned a first edition copy, now preserved in the family archive. A beloved read across all generations of the family.</div>
+          <div class="book-rec">💬 "Edna's first edition copy is kept in the family archive — handle with care!"</div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-spine" style="background: linear-gradient(160deg,#6B3A8B,#3D1A5C);">📕</div>
+        <div class="book-info">
+          <div class="book-title">The Grapes of Wrath</div>
+          <div class="book-author">John Steinbeck · 1939 · Fiction / Drama</div>
+          <div class="book-meta"><span class="stars">★★★★★</span><span class="badge badge-amber">Family Classic</span></div>
+          <div class="book-desc">Harold Crews reportedly read this aloud to his children during the Great Depression, saying the Joad family reminded him of neighbors. A powerful story of resilience that resonates with our family's history.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── Recent Reads ── -->
+    <h2 class="section-title">✅ Recently Read — Family Recommendations</h2>
+    <div style="display:flex; flex-direction:column; gap:1rem; margin-bottom:2.5rem;">
+
+      <div class="book-card">
+        <div class="book-spine" style="background: linear-gradient(160deg,#A33B3B,#6B1A1A);">📕</div>
+        <div class="book-info">
+          <div class="book-title">The Lincoln Highway</div>
+          <div class="book-author">Amor Towles · 2021 · Fiction / Adventure</div>
+          <div class="book-meta"><span class="stars">★★★★½</span><span class="badge badge-green">Highly Rec'd</span></div>
+          <div class="book-desc">An adventure story following an 18-year-old and his younger brother on an unexpected journey across America. A page-turner with humor and heart.</div>
+          <div class="book-rec">💬 "Michael: 'Read it on the beach — perfect summer book.'"</div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-spine" style="background: linear-gradient(160deg,#3A7A8B,#1A4A55);">📘</div>
+        <div class="book-info">
+          <div class="book-title">Hillbilly Elegy</div>
+          <div class="book-author">J.D. Vance · 2016 · Memoir / Non-Fiction</div>
+          <div class="book-meta"><span class="stars">★★★★</span></div>
+          <div class="book-desc">A memoir about growing up in Appalachian Ohio that sparked lively family discussions about rural American culture and our own family roots in the Georgia countryside.</div>
+          <div class="book-rec">💬 "David: 'Really made us think about where we came from.'"</div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-spine" style="background: linear-gradient(160deg,#4A7C59,#2C4A35);">📗</div>
+        <div class="book-info">
+          <div class="book-title">Hidden Valley Road</div>
+          <div class="book-author">Robert Kolker · 2020 · Non-Fiction / Family</div>
+          <div class="book-meta"><span class="stars">★★★★½</span></div>
+          <div class="book-desc">The extraordinary story of a mid-century American family with twelve children, six of whom were diagnosed with schizophrenia. A deeply moving look at family bonds and medical history.</div>
+          <div class="book-rec">💬 "Jennifer: 'One of the most powerful family stories I've ever read.'"</div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-spine" style="background: linear-gradient(160deg,#C0832E,#8B5C15);">📙</div>
+        <div class="book-info">
+          <div class="book-title">The Warmth of Other Suns</div>
+          <div class="book-author">Isabel Wilkerson · 2010 · History / Non-Fiction</div>
+          <div class="book-meta"><span class="stars">★★★★★</span><span class="badge badge-green">Must-Read</span></div>
+          <div class="book-desc">The epic story of the Great Migration through three individuals' journeys. Provides essential context for understanding the American South and the era our family history spans.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── Children's Section ── -->
+    <h2 class="section-title">👶 For the Young Readers</h2>
+    <div class="card-grid card-grid-3">
+      <div class="card">
+        <div class="card-img" style="background: linear-gradient(135deg,#FFD6A5,#FFA07A); font-size:3rem;">📚</div>
+        <div class="card-body">
+          <div class="card-title">Charlotte's Web</div>
+          <div class="card-meta">E.B. White · Ages 7–12</div>
+          <div class="card-text">Grandma Maggie read this to every grandchild. A timeless story of friendship and loss.</div>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img" style="background: linear-gradient(135deg,#B5EAD7,#6BAE9F); font-size:3rem;">🐛</div>
+        <div class="card-body">
+          <div class="card-title">Where the Red Fern Grows</div>
+          <div class="card-meta">Wilson Rawls · Ages 10–14</div>
+          <div class="card-text">A beloved coming-of-age story set in the Ozarks — perfect for kids who love nature and adventure.</div>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img" style="background: linear-gradient(135deg,#C7CEEA,#7886C7); font-size:3rem;">🧙</div>
+        <div class="card-body">
+          <div class="card-title">The Chronicles of Narnia</div>
+          <div class="card-meta">C.S. Lewis · Ages 8–14</div>
+          <div class="card-text">The complete series — a family favorite for generations. James read these to all four of his children.</div>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <script src="../js/main.js"></script>
+</body>
+</html>

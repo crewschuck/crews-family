@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects – Crews Family Gathering Place</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      display: flex; flex-direction: column; gap: 0.75rem;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .project-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+    .project-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem; }
+    .project-icon { font-size: 2rem; flex-shrink: 0; }
+    .project-name { font-family: var(--font-serif); font-size: 1.15rem; color: var(--primary); font-weight: 700; }
+    .project-lead { font-size: 0.82rem; color: var(--text-muted); }
+    .project-desc { font-size: 0.92rem; line-height: 1.65; color: var(--text); }
+    .project-progress-label { display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.25rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .project-update {
+      background: var(--bg);
+      border-left: 3px solid var(--accent);
+      padding: 0.5rem 0.75rem;
+      font-size: 0.85rem;
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    .project-update strong { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <section class="page-hero">
+    <span class="hero-icon">🔨</span>
+    <h1>Family Projects</h1>
+    <p>Things we're building, restoring, writing, and creating — together</p>
+  </section>
+
+  <main class="page-content">
+
+    <!-- In Progress -->
+    <h2 class="section-title">🔄 In Progress</h2>
+    <div class="card-grid card-grid-2 mb-3">
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-icon">📖</span>
+          <span class="badge badge-blue">In Progress</span>
+        </div>
+        <div class="project-name">Crews Family Genealogy Database</div>
+        <div class="project-lead">👤 Lead: Jennifer Crews-Moore · Est. Completion: Dec 2026</div>
+        <div class="project-desc">
+          A fully searchable online database of the Crews family tree, incorporating Edna's journals, scanned documents, census records, and oral histories. Working to trace all lines back to at least 1800.
+        </div>
+        <div class="project-progress-label"><span>Progress</span><span>65%</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:65%;"></div></div>
+        <div class="project-tags">
+          <span class="badge badge-gray">Research</span>
+          <span class="badge badge-gray">Digital</span>
+          <span class="badge badge-gray">History</span>
+        </div>
+        <div class="project-update"><strong>Latest:</strong> Census records for 1880–1930 have been fully entered. Birth certificates for 3 more ancestors located at Carroll County archives.</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-icon">📚</span>
+          <span class="badge badge-blue">In Progress</span>
+        </div>
+        <div class="project-name">The Crews Family History Book</div>
+        <div class="project-lead">👤 Lead: Patricia Crews · Est. Completion: Summer 2027</div>
+        <div class="project-desc">
+          A professionally printed book covering the history of the Crews family from its colonial origins to the present day, featuring photographs, stories, genealogy charts, and recipes. Copies will be distributed at the 2027 reunion.
+        </div>
+        <div class="project-progress-label"><span>Progress</span><span>40%</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:40%;"></div></div>
+        <div class="project-tags">
+          <span class="badge badge-gray">Writing</span>
+          <span class="badge badge-gray">Publishing</span>
+          <span class="badge badge-gray">History</span>
+        </div>
+        <div class="project-update"><strong>Latest:</strong> Chapters 1–3 drafted (colonial origins through WWII era). Collecting stories from family members — submit yours to Patricia!</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-icon">🍳</span>
+          <span class="badge badge-blue">In Progress</span>
+        </div>
+        <div class="project-name">Grandma Maggie's Recipe Collection</div>
+        <div class="project-lead">👤 Lead: Susan Crews-Hart · Est. Completion: Spring 2026</div>
+        <div class="project-desc">
+          Compiling and testing all of Margaret "Maggie" Crews's handwritten recipes into a beautifully designed family cookbook. Over 200 recipes spanning 60 years of Southern cooking, from everyday dinners to holiday spreads.
+        </div>
+        <div class="project-progress-label"><span>Progress</span><span>80%</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:80%;"></div></div>
+        <div class="project-tags">
+          <span class="badge badge-gray">Cooking</span>
+          <span class="badge badge-gray">Publishing</span>
+          <span class="badge badge-gray">Heritage</span>
+        </div>
+        <div class="project-update"><strong>Latest:</strong> 187 of 220 recipes tested and documented. Desserts section complete. Layout design in final review.</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-icon">🏠</span>
+          <span class="badge badge-blue">In Progress</span>
+        </div>
+        <div class="project-name">Homestead Restoration — Heard County</div>
+        <div class="project-lead">👤 Lead: James Crews & Michael Crews · Est. Completion: Fall 2026</div>
+        <div class="project-desc">
+          Restoring Harold Crews's original 1924 farmhouse to its historical appearance while updating plumbing, electrical, and HVAC to modern standards. The goal is to preserve it as a family gathering landmark for another 100 years.
+        </div>
+        <div class="project-progress-label"><span>Progress</span><span>55%</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:55%;"></div></div>
+        <div class="project-tags">
+          <span class="badge badge-gray">Construction</span>
+          <span class="badge badge-gray">Heritage</span>
+          <span class="badge badge-gray">Property</span>
+        </div>
+        <div class="project-update"><strong>Latest:</strong> New roof installed. Electrical rewire complete. Starting interior woodwork restoration — original pine floors being refinished.</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-icon">🎉</span>
+          <span class="badge badge-blue">In Progress</span>
+        </div>
+        <div class="project-name">Annual Reunion 2026 Planning</div>
+        <div class="project-lead">👤 Lead: Jennifer Moore & David Crews · Event: Aug 21–23, 2026</div>
+        <div class="project-desc">
+          Planning the 12th Annual Crews Family Reunion at the homestead. This year's theme is "Roots &amp; Branches — Celebrating Our History." Expecting 60+ attendees. New this year: a documentary screening of the family history video.
+        </div>
+        <div class="project-progress-label"><span>Progress</span><span>35%</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:35%;"></div></div>
+        <div class="project-tags">
+          <span class="badge badge-gray">Event</span>
+          <span class="badge badge-gray">Family</span>
+        </div>
+        <div class="project-update"><strong>Latest:</strong> Venue confirmed, catering booked. Working on activity schedule and registration. RSVP link coming soon!</div>
+      </div>
+
+    </div>
+
+    <!-- Planning -->
+    <h2 class="section-title">📋 In Planning</h2>
+    <div class="card-grid card-grid-2 mb-3">
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-icon">🎥</span>
+          <span class="badge badge-amber">Planning</span>
+        </div>
+        <div class="project-name">Crews Family Documentary Film</div>
+        <div class="project-lead">👤 Lead: Michael Crews · Est. Start: Jan 2027</div>
+        <div class="project-desc">
+          A short documentary film (30–45 min) weaving together archival footage, photographs, and on-camera interviews with family members. Will cover the family's history from the Georgia farmlands to today.
+        </div>
+        <div class="project-progress-label"><span>Progress</span><span>10%</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:10%;"></div></div>
+        <div class="project-tags"><span class="badge badge-gray">Film</span><span class="badge badge-gray">History</span></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-icon">🌱</span>
+          <span class="badge badge-amber">Planning</span>
+        </div>
+        <div class="project-name">Family Heritage Garden</div>
+        <div class="project-lead">👤 Lead: Patricia Crews · Est. Start: Spring 2027</div>
+        <div class="project-desc">
+          Planting a heritage garden at the homestead featuring heirloom vegetables and plants that were grown by ancestors. Each plant will have a labeled marker with its history in the family.
+        </div>
+        <div class="project-progress-label"><span>Progress</span><span>5%</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:5%;"></div></div>
+        <div class="project-tags"><span class="badge badge-gray">Gardening</span><span class="badge badge-gray">Heritage</span></div>
+      </div>
+
+    </div>
+
+    <!-- Completed -->
+    <h2 class="section-title">✅ Completed</h2>
+    <div class="card-grid card-grid-2">
+
+      <div class="project-card" style="opacity:0.85;">
+        <div class="project-header">
+          <span class="project-icon">🚗</span>
+          <span class="badge badge-green">Completed 2023</span>
+        </div>
+        <div class="project-name">1965 Ford Mustang Restoration</div>
+        <div class="project-lead">👤 Lead: David Crews · Completed: July 2023</div>
+        <div class="project-desc">
+          Fully restored Robert Crews's 1965 Ford Mustang fastback — originally purchased new from a Newnan dealer in 1965. Brought back to showroom condition with original Wimbledon White paint and Pony interior. Now on display at the homestead.
+        </div>
+        <div class="progress-bar"><div class="progress-fill" style="width:100%; background: var(--green);"></div></div>
+        <div class="project-tags"><span class="badge badge-green">Automotive</span><span class="badge badge-green">Heritage</span></div>
+      </div>
+
+      <div class="project-card" style="opacity:0.85;">
+        <div class="project-header">
+          <span class="project-icon">🌐</span>
+          <span class="badge badge-green">Completed 2025</span>
+        </div>
+        <div class="project-name">Photo Archive Digitization</div>
+        <div class="project-lead">👤 Lead: Jennifer Moore · Completed: March 2025</div>
+        <div class="project-desc">
+          Scanned and catalogued over 1,200 physical photographs, 35mm slides, and 8mm film reels spanning 1920–2000. All media backed up to cloud storage and organized by year and family branch.
+        </div>
+        <div class="progress-bar"><div class="progress-fill" style="width:100%; background: var(--green);"></div></div>
+        <div class="project-tags"><span class="badge badge-green">Digital</span><span class="badge badge-green">Archive</span></div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <script src="../js/main.js"></script>
+</body>
+</html>

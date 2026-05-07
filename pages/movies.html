@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movies – Crews Family Gathering Place</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    .movie-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex; flex-direction: column;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .movie-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .movie-poster {
+      height: 160px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem;
+      position: relative;
+    }
+    .movie-year {
+      position: absolute; top: 0.5rem; left: 0.5rem;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      font-size: 0.75rem; font-weight: 700;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+    .movie-rating-badge {
+      position: absolute; top: 0.5rem; right: 0.5rem;
+    }
+    .movie-body { padding: 1rem; flex: 1; }
+    .movie-title { font-weight: 700; font-size: 1rem; color: var(--primary); margin-bottom: 0.15rem; }
+    .movie-genre { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.4rem; }
+    .movie-desc  { font-size: 0.85rem; color: var(--text); line-height: 1.55; margin-bottom: 0.5rem; }
+    .movie-quote { font-size: 0.8rem; color: var(--accent); font-style: italic; }
+    .movie-footer {
+      padding: 0.6rem 1rem;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.82rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <section class="page-hero">
+    <span class="hero-icon">🎬</span>
+    <h1>Family Movies</h1>
+    <p>Our watchlist, favorites, and perfect picks for family movie night</p>
+  </section>
+
+  <main class="page-content">
+
+    <!-- ── Family Night Favorites ── -->
+    <h2 class="section-title">🍿 Family Movie Night Classics</h2>
+    <div class="card-grid card-grid-3 mb-3">
+
+      <div class="movie-card">
+        <div class="movie-poster" style="background: linear-gradient(135deg,#1A3A55,#2F6690);">
+          🎵
+          <span class="movie-year">1965</span>
+          <span class="movie-rating-badge"><span class="badge badge-green">G</span></span>
+        </div>
+        <div class="movie-body">
+          <div class="movie-title">The Sound of Music</div>
+          <div class="movie-genre">Musical / Drama · 2h 54m</div>
+          <div class="stars mb-2">★★★★★</div>
+          <div class="movie-desc">The beloved classic about the von Trapp family. Margaret Crews played this on repeat every Christmas season. A mandatory annual watch.</div>
+          <div class="movie-quote">💬 "Grandma Maggie knew every song by heart." — Patricia</div>
+        </div>
+        <div class="movie-footer"><span>🎄 Holiday Tradition</span><span class="badge badge-green">All Ages</span></div>
+      </div>
+
+      <div class="movie-card">
+        <div class="movie-poster" style="background: linear-gradient(135deg,#1A1A3A,#3A3A6B);">
+          🕊️
+          <span class="movie-year">1946</span>
+          <span class="movie-rating-badge"><span class="badge badge-green">G</span></span>
+        </div>
+        <div class="movie-body">
+          <div class="movie-title">It's a Wonderful Life</div>
+          <div class="movie-genre">Drama / Fantasy · 2h 10m</div>
+          <div class="stars mb-2">★★★★★</div>
+          <div class="movie-desc">Frank Capra's timeless Christmas masterpiece. The Crews family has watched this together every Christmas Eve since 1978. A reminder of what truly matters in life.</div>
+          <div class="movie-quote">💬 "No Christmas Eve without George Bailey." — James</div>
+        </div>
+        <div class="movie-footer"><span>🎄 Christmas Eve Must-Watch</span><span class="badge badge-green">All Ages</span></div>
+      </div>
+
+      <div class="movie-card">
+        <div class="movie-poster" style="background: linear-gradient(135deg,#3A5C1A,#6B9C3A);">
+          🏃
+          <span class="movie-year">1994</span>
+          <span class="movie-rating-badge"><span class="badge badge-amber">PG-13</span></span>
+        </div>
+        <div class="movie-body">
+          <div class="movie-title">Forrest Gump</div>
+          <div class="movie-genre">Drama / Comedy · 2h 22m</div>
+          <div class="stars mb-2">★★★★★</div>
+          <div class="movie-desc">Tom Hanks in a role that spans American history. Set partially in the South, it always sparks great family conversations about history, family, and destiny.</div>
+          <div class="movie-quote">💬 "Life is like a box of chocolates." — Forrest (and also apparently Robert Crews)</div>
+        </div>
+        <div class="movie-footer"><span>🌟 Fan Favorite</span><span class="badge badge-amber">Teens+</span></div>
+      </div>
+
+      <div class="movie-card">
+        <div class="movie-poster" style="background: linear-gradient(135deg,#7A3A5C,#3A1A2C);">
+          🌸
+          <span class="movie-year">1989</span>
+          <span class="movie-rating-badge"><span class="badge badge-amber">PG</span></span>
+        </div>
+        <div class="movie-body">
+          <div class="movie-title">Steel Magnolias</div>
+          <div class="movie-genre">Drama / Comedy · 1h 57m</div>
+          <div class="stars mb-2">★★★★★</div>
+          <div class="movie-desc">A celebration of Southern womanhood, friendship, and resilience. Patricia and the girls watch this every Mother's Day. "Laughter through tears" sums up the Crews family perfectly.</div>
+          <div class="movie-quote">💬 "The women of this family love this movie more than oxygen." — David</div>
+        </div>
+        <div class="movie-footer"><span>💐 Mother's Day Tradition</span><span class="badge badge-amber">Teens+</span></div>
+      </div>
+
+      <div class="movie-card">
+        <div class="movie-poster" style="background: linear-gradient(135deg,#3A5C5C,#1A3A3A);">
+          🦁
+          <span class="movie-year">1994</span>
+          <span class="movie-rating-badge"><span class="badge badge-green">G</span></span>
+        </div>
+        <div class="movie-body">
+          <div class="movie-title">The Lion King</div>
+          <div class="movie-genre">Animation / Drama · 1h 29m</div>
+          <div class="stars mb-2">★★★★★</div>
+          <div class="movie-desc">Disney's greatest. Themes of family, legacy, and responsibility make it especially meaningful for the Crews family. "Remember who you are" has been said at every reunion.</div>
+        </div>
+        <div class="movie-footer"><span>🎉 Reunion Tradition</span><span class="badge badge-green">All Ages</span></div>
+      </div>
+
+      <div class="movie-card">
+        <div class="movie-poster" style="background: linear-gradient(135deg,#5C3A1A,#3A1A0A);">
+          🎸
+          <span class="movie-year">1985</span>
+          <span class="movie-rating-badge"><span class="badge badge-amber">PG</span></span>
+        </div>
+        <div class="movie-body">
+          <div class="movie-title">Back to the Future</div>
+          <div class="movie-genre">Comedy / Sci-Fi · 1h 56m</div>
+          <div class="stars mb-2">★★★★★</div>
+          <div class="movie-desc">A timeless adventure about family history and the choices that shape us. The whole trilogy has been watched in one marathon sitting multiple times at the cabin.</div>
+        </div>
+        <div class="movie-footer"><span>🏕️ Cabin Marathon Pick</span><span class="badge badge-green">All Ages</span></div>
+      </div>
+
+    </div>
+
+    <!-- ── Recently Watched ── -->
+    <h2 class="section-title">🎥 Recently Watched — Family Reviews</h2>
+    <table class="data-table">
+      <thead>
+        <tr><th>Movie</th><th>Year</th><th>Rating</th><th>Family Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Oppenheimer</strong></td><td>2023</td><td>R</td><td><span class="stars">★★★★★</span></td><td>History lovers in the family were blown away. Watch it twice.</td></tr>
+        <tr><td><strong>Dune: Part Two</strong></td><td>2024</td><td>PG-13</td><td><span class="stars">★★★★½</span></td><td>Visually stunning. Michael's favorite movie of 2024.</td></tr>
+        <tr><td><strong>The Holdovers</strong></td><td>2023</td><td>R</td><td><span class="stars">★★★★★</span></td><td>Funny and heartwarming. Surprise hit with the whole family.</td></tr>
+        <tr><td><strong>Past Lives</strong></td><td>2023</td><td>PG-13</td><td><span class="stars">★★★★★</span></td><td>Beautiful and quietly devastating. Jennifer's top pick.</td></tr>
+        <tr><td><strong>Wonka</strong></td><td>2023</td><td>PG</td><td><span class="stars">★★★½</span></td><td>Kids loved it. Great for the little ones over the holidays.</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ── Watchlist ── -->
+    <h2 class="section-title">📋 Family Watchlist</h2>
+    <ul class="info-list">
+      <li><span class="li-icon">🎬</span><div><strong>Conclave (2024)</strong> — Thriller. Multiple family members have requested this one.</div></li>
+      <li><span class="li-icon">🎬</span><div><strong>A Complete Unknown (2024)</strong> — Bob Dylan biopic. David has dibs on this for cabin weekend.</div></li>
+      <li><span class="li-icon">🎬</span><div><strong>Wicked (2024)</strong> — Musical. Jennifer and Susan want to watch together.</div></li>
+      <li><span class="li-icon">🎬</span><div><strong>Gladiator II (2024)</strong> — Action/Epic. James and the grandkids are waiting on this one.</div></li>
+    </ul>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <script src="../js/main.js"></script>
+</body>
+</html>

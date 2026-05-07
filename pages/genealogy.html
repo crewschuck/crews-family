@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Genealogy – Crews Family Gathering Place</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    .gen-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem; }
+    @media (max-width: 700px) { .gen-cols { grid-template-columns: 1fr; } }
+
+    .ancestor-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      box-shadow: var(--shadow);
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .ancestor-avatar { font-size: 2.5rem; flex-shrink: 0; }
+    .ancestor-name   { font-weight: 700; color: var(--primary); font-size: 1rem; }
+    .ancestor-years  { font-size: 0.82rem; color: var(--text-muted); }
+    .ancestor-notes  { font-size: 0.88rem; margin-top: 0.3rem; }
+
+    .tree-row-label {
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .connector-row {
+      display: flex; justify-content: center;
+      height: 2rem;
+      align-items: flex-end;
+      padding-bottom: 0;
+    }
+    .connector-row::before {
+      content: '';
+      width: 2px; height: 100%;
+      background: var(--accent-light);
+    }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <section class="page-hero">
+    <span class="hero-icon">🌳</span>
+    <h1>Crews Family Genealogy</h1>
+    <p>Tracing our roots — from the earliest records to the present generation</p>
+  </section>
+
+  <main class="page-content">
+
+    <!-- ── Family Tree ── -->
+    <h2 class="section-title">🌳 Family Tree</h2>
+
+    <div class="family-tree">
+
+      <!-- Generation 1: Great-Great Grandparents -->
+      <div class="tree-row-label">Great-Great Grandparents</div>
+      <div class="tree-gen">
+        <div class="tree-person deceased">
+          <span class="tp-avatar">👴</span>
+          <div class="tp-name">Elias Crews</div>
+          <div class="tp-years">1871 – 1944</div>
+        </div>
+        <div class="tree-person deceased">
+          <span class="tp-avatar">👵</span>
+          <div class="tp-name">Lula Mae Crews</div>
+          <div class="tp-years">née Holder · 1875 – 1951</div>
+        </div>
+        <div class="tree-person deceased">
+          <span class="tp-avatar">👴</span>
+          <div class="tp-name">Otis Stafford</div>
+          <div class="tp-years">1869 – 1938</div>
+        </div>
+        <div class="tree-person deceased">
+          <span class="tp-avatar">👵</span>
+          <div class="tp-name">Bessie Stafford</div>
+          <div class="tp-years">née Crawford · 1873 – 1942</div>
+        </div>
+      </div>
+
+      <div class="connector-row"></div>
+
+      <!-- Generation 2: Great Grandparents -->
+      <div class="tree-row-label">Great Grandparents</div>
+      <div class="tree-gen">
+        <div class="tree-person deceased">
+          <span class="tp-avatar">👴</span>
+          <div class="tp-name">Harold Crews</div>
+          <div class="tp-years">1899 – 1978</div>
+        </div>
+        <div class="tree-person deceased">
+          <span class="tp-avatar">👵</span>
+          <div class="tp-name">Edna Crews</div>
+          <div class="tp-years">née Stafford · 1903 – 1985</div>
+        </div>
+      </div>
+
+      <div class="connector-row"></div>
+
+      <!-- Generation 3: Grandparents -->
+      <div class="tree-row-label">Grandparents</div>
+      <div class="tree-gen">
+        <div class="tree-person deceased">
+          <span class="tp-avatar">👴</span>
+          <div class="tp-name">Robert E. Crews</div>
+          <div class="tp-years">1928 – 2010</div>
+        </div>
+        <div class="tree-person deceased">
+          <span class="tp-avatar">👵</span>
+          <div class="tp-name">Margaret Crews</div>
+          <div class="tp-years">née Bishop · 1932 – 2018</div>
+        </div>
+      </div>
+
+      <div class="connector-row"></div>
+
+      <!-- Generation 4: Parents -->
+      <div class="tree-row-label">Parents</div>
+      <div class="tree-gen">
+        <div class="tree-person">
+          <span class="tp-avatar">👨</span>
+          <div class="tp-name">James D. Crews</div>
+          <div class="tp-years">b. 1955</div>
+        </div>
+        <div class="tree-person">
+          <span class="tp-avatar">👩</span>
+          <div class="tp-name">Patricia Crews</div>
+          <div class="tp-years">née Allen · b. 1958</div>
+        </div>
+      </div>
+
+      <div class="connector-row"></div>
+
+      <!-- Generation 5: Current -->
+      <div class="tree-row-label">Current Generation</div>
+      <div class="tree-gen">
+        <div class="tree-person">
+          <span class="tp-avatar">🧑</span>
+          <div class="tp-name">Michael Crews</div>
+          <div class="tp-years">b. 1978</div>
+        </div>
+        <div class="tree-person">
+          <span class="tp-avatar">👩</span>
+          <div class="tp-name">Susan Crews-Hart</div>
+          <div class="tp-years">b. 1980</div>
+        </div>
+        <div class="tree-person">
+          <span class="tp-avatar">🧑</span>
+          <div class="tp-name">David Crews</div>
+          <div class="tp-years">b. 1983</div>
+        </div>
+        <div class="tree-person">
+          <span class="tp-avatar">👩</span>
+          <div class="tp-name">Jennifer Crews-Moore</div>
+          <div class="tp-years">b. 1987</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── Notable Ancestors ── -->
+    <h2 class="section-title">⭐ Notable Ancestors</h2>
+    <div class="gen-cols mb-3">
+
+      <div class="ancestor-card">
+        <div class="ancestor-avatar">👴</div>
+        <div>
+          <div class="ancestor-name">Harold Elias Crews (1899–1978)</div>
+          <div class="ancestor-years">Born: Carroll County, Georgia</div>
+          <div class="ancestor-notes">
+            Harold was a farmer and carpenter who built the original Crews family homestead in 1924. He served in the U.S. Army during WWI and was known throughout the county for his woodworking skill. The old homestead still stands today.
+          </div>
+          <div class="mt-1"><span class="badge badge-amber">WWI Veteran</span> <span class="badge badge-green">Homesteader</span></div>
+        </div>
+      </div>
+
+      <div class="ancestor-card">
+        <div class="ancestor-avatar">👵</div>
+        <div>
+          <div class="ancestor-name">Edna Crews née Stafford (1903–1985)</div>
+          <div class="ancestor-years">Born: Coweta County, Georgia</div>
+          <div class="ancestor-notes">
+            Edna was a schoolteacher for over 30 years and the unofficial family historian. She kept meticulous journals from 1920 onward, which form the backbone of our family records today. Her journals are preserved in the family archive.
+          </div>
+          <div class="mt-1"><span class="badge badge-blue">Educator</span> <span class="badge badge-green">Family Historian</span></div>
+        </div>
+      </div>
+
+      <div class="ancestor-card">
+        <div class="ancestor-avatar">👴</div>
+        <div>
+          <div class="ancestor-name">Robert E. Crews (1928–2010)</div>
+          <div class="ancestor-years">Born: Newnan, Georgia</div>
+          <div class="ancestor-notes">
+            Robert served in the Korean War and later built a successful hardware business in town. He was the first in the family to attend college and instilled a deep love of education in his children. Grandfather Bob, as he was called, was the anchor of every family reunion.
+          </div>
+          <div class="mt-1"><span class="badge badge-amber">Korean War Veteran</span> <span class="badge badge-blue">Entrepreneur</span></div>
+        </div>
+      </div>
+
+      <div class="ancestor-card">
+        <div class="ancestor-avatar">👵</div>
+        <div>
+          <div class="ancestor-name">Margaret Crews née Bishop (1932–2018)</div>
+          <div class="ancestor-years">Born: LaGrange, Georgia</div>
+          <div class="ancestor-notes">
+            "Grandma Maggie" was the heart of the Crews family for decades. An accomplished baker and quilter, her recipes are catalogued in the family cookbook project. She hand-stitched a quilt for each grandchild and great-grandchild — 23 quilts in total.
+          </div>
+          <div class="mt-1"><span class="badge badge-green">Quilter & Baker</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── Family History Timeline ── -->
+    <h2 class="section-title">📜 Family History Timeline</h2>
+    <ul class="info-list">
+      <li><span class="li-icon">📍</span><div><strong>1871</strong> — Elias Crews born in Carroll County, Georgia. Family traces roots to English settlers in colonial South Carolina.</div></li>
+      <li><span class="li-icon">⚔️</span><div><strong>1918</strong> — Harold Crews enlists in U.S. Army. Serves in France during the final year of WWI.</div></li>
+      <li><span class="li-icon">💍</span><div><strong>1921</strong> — Harold Crews marries Edna Stafford in a ceremony at First Baptist Church, Newnan, GA.</div></li>
+      <li><span class="li-icon">🏠</span><div><strong>1924</strong> — Harold builds the family homestead on Heard County farmland. The property remains in the family.</div></li>
+      <li><span class="li-icon">👶</span><div><strong>1928</strong> — Robert E. Crews born, the eldest of four children.</div></li>
+      <li><span class="li-icon">⚔️</span><div><strong>1952</strong> — Robert Crews serves in the Korean War, 7th Infantry Division.</div></li>
+      <li><span class="li-icon">💍</span><div><strong>1955</strong> — Robert marries Margaret Bishop. James D. Crews born the same year.</div></li>
+      <li><span class="li-icon">🏪</span><div><strong>1962</strong> — Robert opens "Crews Hardware & Supply" on Main Street — a community fixture for 40 years.</div></li>
+      <li><span class="li-icon">🎓</span><div><strong>1977</strong> — James Crews graduates from University of Georgia with a degree in Business Administration.</div></li>
+      <li><span class="li-icon">💍</span><div><strong>1979</strong> — James Crews marries Patricia Allen. Michael Crews born the following year.</div></li>
+      <li><span class="li-icon">📖</span><div><strong>1985</strong> — Edna Crews passes away. Her 65-year journal collection is donated to the family archive.</div></li>
+      <li><span class="li-icon">🏅</span><div><strong>2002</strong> — "Crews Hardware & Supply" closes after 40 years; Robert retires with a community celebration in his honor.</div></li>
+      <li><span class="li-icon">🏡</span><div><strong>2015</strong> — The family begins the first Annual Crews Family Reunion, held every August at the homestead.</div></li>
+      <li><span class="li-icon">📚</span><div><strong>2024</strong> — Family Genealogy Database project launched to digitize all historical records and photos.</div></li>
+    </ul>
+
+    <!-- ── Geographic Origins ── -->
+    <h2 class="section-title">📍 Geographic Origins</h2>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-img" style="background: linear-gradient(135deg,#4A7C59 0%,#8BC99A 100%);">🌿</div>
+        <div class="card-body">
+          <div class="card-title">Carroll County, Georgia</div>
+          <div class="card-meta">Paternal Line · Est. 1820s</div>
+          <div class="card-text">The Crews name appears in Carroll County land records as early as 1826. Elias Crews was born here in 1871.</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img" style="background: linear-gradient(135deg,#6B4C3B 0%,#A07050 100%);">🌾</div>
+        <div class="card-body">
+          <div class="card-title">Coweta County, Georgia</div>
+          <div class="card-meta">Maternal Line · Est. 1840s</div>
+          <div class="card-text">The Stafford and Bishop families (maternal lines) were established in Coweta County, Georgia by the mid-1800s.</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img" style="background: linear-gradient(135deg,#2F6690 0%,#6BA0C0 100%);">🏛️</div>
+        <div class="card-body">
+          <div class="card-title">South Carolina Roots</div>
+          <div class="card-meta">Colonial Origins · 1700s</div>
+          <div class="card-text">Earliest traceable ancestors arrived in colonial South Carolina from England in the early 1700s before migrating west to Georgia.</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <script src="../js/main.js"></script>
+</body>
+</html>
