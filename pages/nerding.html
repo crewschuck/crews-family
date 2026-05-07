@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nerding Out – Crews Family Gathering Place</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    :root {
+      --nerd-purple: #4A1A7A;
+      --nerd-blue:   #1A2A5A;
+      --nerd-gold:   #C0A020;
+    }
+
+    /* ── Nerd Hero override ── */
+    .nerd-hero {
+      background: linear-gradient(160deg, #0D0D1A 0%, #1A1A3A 50%, #2A1A4A 100%);
+      color: #fff;
+      padding: 3rem 1.5rem 2.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .nerd-hero::before {
+      content: '⚔️ 🎲 🚀 🖖 ⭐ 🐉 🎮 🌌';
+      position: absolute; top: 1rem; left: 0; right: 0;
+      font-size: 1.5rem; letter-spacing: 1rem;
+      opacity: 0.12; white-space: nowrap;
+      overflow: hidden;
+    }
+    .nerd-hero h1 { font-family: var(--font-serif); font-size: 2.4rem; margin-bottom: 0.4rem; position: relative; }
+    .nerd-hero p  { opacity: 0.8; position: relative; }
+
+    /* ── Section accent colors ── */
+    .section-title.board   { border-color: #8B5C15; color: #5C3A0A; }
+    .section-title.rpg     { border-color: #5A1A8A; color: #3A0A6A; }
+    .section-title.wars    { border-color: #8B7A00; color: #5C5000; }
+    .section-title.trek    { border-color: #1A4A8A; color: #0A2A5A; }
+    .section-title.general { border-color: #1A5A3A; color: #0A3A2A; }
+
+    /* ── Game / media card ── */
+    .nerd-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex; flex-direction: column;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .nerd-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .nerd-card-art {
+      height: 130px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem;
+      position: relative;
+    }
+    .nerd-card-corner {
+      position: absolute; top: 0.5rem; right: 0.5rem;
+      font-size: 0.72rem; font-weight: 700;
+      background: rgba(0,0,0,0.55); color: #fff;
+      padding: 0.2rem 0.5rem; border-radius: 4px;
+    }
+    .nerd-card-body { padding: 1rem; flex: 1; }
+    .nerd-card-title { font-weight: 700; color: var(--primary); font-size: 1rem; margin-bottom: 0.1rem; }
+    .nerd-card-sub   { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.4rem; }
+    .nerd-card-desc  { font-size: 0.86rem; line-height: 1.55; margin-bottom: 0.5rem; }
+    .nerd-card-quote { font-size: 0.8rem; color: var(--accent); font-style: italic; }
+    .nerd-card-foot  {
+      padding: 0.55rem 1rem;
+      background: var(--bg); border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.82rem;
+    }
+
+    /* ── Horizontal list-style rows for rankings ── */
+    .rank-list { list-style: none; margin-bottom: 2rem; }
+    .rank-list li {
+      display: flex; align-items: flex-start; gap: 0.9rem;
+      padding: 0.8rem 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 0.6rem;
+      box-shadow: var(--shadow);
+    }
+    .rank-num {
+      min-width: 32px; height: 32px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .rank-gold   { background: #F0D060; color: #5C4500; }
+    .rank-silver { background: #D0D0D0; color: #3A3A3A; }
+    .rank-bronze { background: #D0904A; color: #5C3000; }
+    .rank-plain  { background: var(--bg); color: var(--text-muted); border: 1px solid var(--border); }
+    .rank-info { flex: 1; }
+    .rank-title { font-weight: 700; color: var(--primary); font-size: 0.95rem; }
+    .rank-meta  { font-size: 0.8rem; color: var(--text-muted); }
+    .rank-note  { font-size: 0.85rem; margin-top: 0.2rem; }
+
+    /* ── Campaign tracker ── */
+    .campaign-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--nerd-purple);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 1rem;
+    }
+    .campaign-card h3 { font-family: var(--font-serif); color: var(--primary); font-size: 1.15rem; margin-bottom: 0.25rem; }
+    .campaign-card .cm-meta { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.6rem; }
+    .campaign-card p { font-size: 0.92rem; margin-bottom: 0.5rem; }
+    .party-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+    .party-member {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.4rem 0.75rem;
+      font-size: 0.82rem;
+      display: flex; flex-direction: column; align-items: center;
+      min-width: 80px;
+    }
+    .party-member .pm-icon { font-size: 1.4rem; }
+    .party-member .pm-name { font-weight: 700; font-size: 0.78rem; color: var(--primary); }
+    .party-member .pm-class { font-size: 0.72rem; color: var(--text-muted); }
+
+    /* ── Debate box ── */
+    .debate-box {
+      background: linear-gradient(135deg, #0D0D1A 0%, #1A1A3A 100%);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      color: #fff;
+      margin-bottom: 2rem;
+    }
+    .debate-box h3 { font-family: var(--font-serif); font-size: 1.3rem; margin-bottom: 1rem; color: var(--accent-light); }
+    .debate-sides { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center; }
+    .debate-side { background: rgba(255,255,255,0.06); border-radius: var(--radius); padding: 1rem; }
+    .debate-side h4 { font-size: 1rem; margin-bottom: 0.4rem; }
+    .debate-side ul { padding-left: 1.1rem; font-size: 0.85rem; opacity: 0.85; }
+    .debate-side ul li { margin-bottom: 0.25rem; }
+    .vs-badge { font-size: 1.5rem; font-weight: 900; color: var(--accent-light); text-align: center; }
+
+    @media (max-width: 600px) {
+      .debate-sides { grid-template-columns: 1fr; }
+      .vs-badge { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <section class="nerd-hero page-hero" style="background: linear-gradient(160deg,#0D0D1A 0%,#1A1A3A 50%,#2A1A4A 100%);">
+    <span class="hero-icon">🎲</span>
+    <h1>Nerding Out</h1>
+    <p>Board games, RPGs, a galaxy far far away, the Final Frontier, and everything in between</p>
+  </section>
+
+  <main class="page-content">
+
+    <!-- ══════════════════════════════════════
+         BOARD GAMES
+    ══════════════════════════════════════ -->
+    <h2 class="section-title board">🎲 Board Games</h2>
+
+    <h3 style="font-family:var(--font-serif); color:var(--primary); margin-bottom:1rem;">🏆 Family Favorites — Ranked</h3>
+    <ul class="rank-list mb-3">
+      <li>
+        <div class="rank-num rank-gold">1</div>
+        <div class="rank-info">
+          <div class="rank-title">Gloomhaven</div>
+          <div class="rank-meta">Cephalofair Games · 1–4 Players · Epic Campaign</div>
+          <div class="rank-note">The crown jewel of the game shelf. The family has logged 80+ hours across two campaigns. Heavy, complex, and absolutely worth every minute.</div>
+        </div>
+        <div><span class="badge badge-amber">Epic</span></div>
+      </li>
+      <li>
+        <div class="rank-num rank-silver">2</div>
+        <div class="rank-info">
+          <div class="rank-title">Wingspan</div>
+          <div class="rank-meta">Stonemaier Games · 1–5 Players · Engine Builder</div>
+          <div class="rank-note">Gorgeous bird-themed engine builder. Patricia's favorite — she's won every tournament. Peaceful yet surprisingly strategic.</div>
+        </div>
+        <div><span class="badge badge-green">Accessible</span></div>
+      </li>
+      <li>
+        <div class="rank-num rank-bronze">3</div>
+        <div class="rank-info">
+          <div class="rank-title">Terraforming Mars</div>
+          <div class="rank-meta">FryxGames · 1–5 Players · Strategy</div>
+          <div class="rank-note">Compete to make Mars habitable. David consistently wins and nobody will let him forget it. Plays great at 3–4 players.</div>
+        </div>
+        <div><span class="badge badge-blue">Strategy</span></div>
+      </li>
+      <li>
+        <div class="rank-num rank-plain">4</div>
+        <div class="rank-info">
+          <div class="rank-title">Ticket to Ride</div>
+          <div class="rank-meta">Days of Wonder · 2–5 Players · Gateway Game</div>
+          <div class="rank-note">The perfect intro game. Every holiday season someone new gets hooked on this one. The Europe map is the family's preferred version.</div>
+        </div>
+        <div><span class="badge badge-green">Beginner Friendly</span></div>
+      </li>
+      <li>
+        <div class="rank-num rank-plain">5</div>
+        <div class="rank-info">
+          <div class="rank-title">Pandemic Legacy: Season 1</div>
+          <div class="rank-meta">Z-Man Games · 2–4 Players · Cooperative Legacy</div>
+          <div class="rank-note">Played through the full campaign over one intense cabin weekend. The final session had everyone on the edge of their seats. Legendary experience.</div>
+        </div>
+        <div><span class="badge badge-red">Cooperative</span></div>
+      </li>
+    </ul>
+
+    <h3 style="font-family:var(--font-serif); color:var(--primary); margin-bottom:1rem;">🃏 Also in the Collection</h3>
+    <div class="card-grid card-grid-3 mb-3">
+
+      <div class="nerd-card">
+        <div class="nerd-card-art" style="background: linear-gradient(135deg,#1A3A1A,#3A7A3A);">🌾<span class="nerd-card-corner">3–4 Players</span></div>
+        <div class="nerd-card-body">
+          <div class="nerd-card-title">Catan</div>
+          <div class="nerd-card-sub">Strategy · Gateway Classic</div>
+          <div class="nerd-card-desc">The gateway drug. Still gets pulled out when cousins visit who've never played a "real" board game. "I got wood for sheep" never gets old.</div>
+        </div>
+        <div class="nerd-card-foot"><span class="stars">★★★★</span><span class="badge badge-green">Gateway</span></div>
+      </div>
+
+      <div class="nerd-card">
+        <div class="nerd-card-art" style="background: linear-gradient(135deg,#1A1A3A,#3A3A6A);">🌑<span class="nerd-card-corner">2–4 Players</span></div>
+        <div class="nerd-card-body">
+          <div class="nerd-card-title">Twilight Imperium 4th Ed.</div>
+          <div class="nerd-card-sub">Space Epic · 6–8 Hours</div>
+          <div class="nerd-card-desc">The most ambitious board game ever made. Played once. It took 9 hours. Three alliances were formed and broken. One person cried. 10/10.</div>
+          <div class="nerd-card-quote">💬 "We need a whole weekend dedicated to this." — Michael</div>
+        </div>
+        <div class="nerd-card-foot"><span class="stars">★★★★★</span><span class="badge badge-amber">Epic</span></div>
+      </div>
+
+      <div class="nerd-card">
+        <div class="nerd-card-art" style="background: linear-gradient(135deg,#3A1A3A,#7A3A7A);">🧙<span class="nerd-card-corner">2–5 Players</span></div>
+        <div class="nerd-card-body">
+          <div class="nerd-card-title">Arkham Horror: The Card Game</div>
+          <div class="nerd-card-sub">LCG · Cooperative Campaign</div>
+          <div class="nerd-card-desc">H.P. Lovecraft-inspired investigative horror. David and Michael are deep into the Dunwich Legacy campaign. Do not look directly at the Elder Sign.</div>
+        </div>
+        <div class="nerd-card-foot"><span class="stars">★★★★½</span><span class="badge badge-red">Horror</span></div>
+      </div>
+
+      <div class="nerd-card">
+        <div class="nerd-card-art" style="background: linear-gradient(135deg,#3A2A1A,#7A5A2A);">🏰<span class="nerd-card-corner">2–4 Players</span></div>
+        <div class="nerd-card-body">
+          <div class="nerd-card-title">Castles of Burgundy</div>
+          <div class="nerd-card-sub">Strategy · Dice Placement</div>
+          <div class="nerd-card-desc">Deceptively deep dice-placement game. Quiet to learn, impossible to master. Perfect for rainy cabin days. Jennifer has perfected the pasture strategy.</div>
+        </div>
+        <div class="nerd-card-foot"><span class="stars">★★★★</span><span class="badge badge-blue">Strategy</span></div>
+      </div>
+
+      <div class="nerd-card">
+        <div class="nerd-card-art" style="background: linear-gradient(135deg,#1A3A2A,#3A7A5A);">🌿<span class="nerd-card-corner">1–5 Players</span></div>
+        <div class="nerd-card-body">
+          <div class="nerd-card-title">Everdell</div>
+          <div class="nerd-card-sub">Worker Placement · Gorgeous</div>
+          <div class="nerd-card-desc">Build a forest city of woodland critters. Possibly the most beautiful game the family owns. Margaret Grace (age 4) demands it be displayed at all times.</div>
+        </div>
+        <div class="nerd-card-foot"><span class="stars">★★★★½</span><span class="badge badge-green">All Ages</span></div>
+      </div>
+
+      <div class="nerd-card">
+        <div class="nerd-card-art" style="background: linear-gradient(135deg,#3A3A1A,#7A7A2A);">💣<span class="nerd-card-corner">2–10 Players</span></div>
+        <div class="nerd-card-body">
+          <div class="nerd-card-title">Codenames</div>
+          <div class="nerd-card-sub">Party / Word Game</div>
+          <div class="nerd-card-desc">The party game the whole family plays at reunions. Inevitably causes arguments. Grandpa James is inexplicably the best clue giver. No one knows how.</div>
+        </div>
+        <div class="nerd-card-foot"><span class="stars">★★★★★</span><span class="badge badge-green">Party</span></div>
+      </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════
+         RPGs
+    ══════════════════════════════════════ -->
+    <h2 class="section-title rpg">⚔️ Role-Playing Games</h2>
+
+    <h3 style="font-family:var(--font-serif); color:var(--primary); margin-bottom:0.75rem;">🐉 Active Campaign: The Sunken Vale</h3>
+    <div class="campaign-card">
+      <h3>The Sunken Vale — D&D 5th Edition</h3>
+      <div class="cm-meta">System: Dungeons & Dragons 5e · DM: David Crews · Session #18 · Started: January 2025</div>
+      <p>
+        A homebrew campaign set in a flooded coastal kingdom slowly being reclaimed by the sea. The party has just discovered that the Harbormaster of Tidewatch is secretly a Kraken cultist and has been siphoning taxes to summon something terrible from the deep.
+      </p>
+      <p><strong>Last session (May 3, 2026):</strong> The party infiltrated the Harbormaster's mansion, discovered the ritual chamber, and narrowly escaped a fight with a Water Weird. Michael's character nearly drowned. Again.</p>
+      <div class="party-grid">
+        <div class="party-member"><span class="pm-icon">🧙</span><span class="pm-name">Michael</span><span class="pm-class">Zephyr (Wizard 8)</span></div>
+        <div class="party-member"><span class="pm-icon">⚔️</span><span class="pm-name">Jennifer</span><span class="pm-class">Kira (Fighter 8)</span></div>
+        <div class="party-member"><span class="pm-icon">🌿</span><span class="pm-name">Susan</span><span class="pm-class">Aelindra (Druid 8)</span></div>
+        <div class="party-member"><span class="pm-icon">🗡️</span><span class="pm-name">Tyler</span><span class="pm-class">Rook (Rogue 8)</span></div>
+        <div class="party-member"><span class="pm-icon">🛡️</span><span class="pm-name">Guest</span><span class="pm-class">Paladin (rotating)</span></div>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--font-serif); color:var(--primary); margin: 1.5rem 0 0.75rem;">📜 Other RPG Systems We Play</h3>
+    <div class="card-grid card-grid-2 mb-3">
+
+      <div class="nerd-card">
+        <div class="nerd-card-art" style="background: linear-gradient(135deg,#3A1A5A,#6A3A8A);">🐲<span class="nerd-card-corner">Tabletop RPG</span></div>
+        <div class="nerd-card-body">
+          <div class="nerd-card-title">Pathfinder 2e</div>
+          <div class="nerd-card-sub">Paizo Publishing · Tactical Fantasy RPG</div>
+          <div class="nerd-card-desc">Played the Abomination Vaults adventure path in 2024. More crunchy rules than D&D — David prefers it for tactical depth, Michael likes D&D's "theater of the mind" feel. They will argue about this forever.</div>
+        </div>
+        <div class="nerd-card-foot"><span class="stars">★★★★½</span><span class="badge badge-blue">Tactical</span></div>
+      </div>
+
+      <div class="nerd-card">
+        <div class="nerd-card-art" style="background: linear-gradient(135deg,#1A2A3A,#3A5A6A);">🔦<span class="nerd-card-corner">Horror RPG</span></div>
+        <div class="nerd-card-body">
+          <div class="nerd-card-title">Call of Cthulhu</div>
+          <div class="nerd-card-sub">Chaosium · Investigative Horror</div>
+          <div class="nerd-card-desc">One-shot horror sessions at Halloween. Everyone's characters always go insane or die horribly. Nobody has ever survived a session. This is considered a success.</div>
+          <div class="nerd-card-quote">💬 "I don't want to talk about what happened to Professor Ashworth." — Jennifer</div>
+        </div>
+        <div class="nerd-card-foot"><span class="stars">★★★★★</span><span class="badge badge-red">🎃 Halloween Tradition</span></div>
+      </div>
+
+      <div class="nerd-card">
+        <div class="nerd-card-art" style="background: linear-gradient(135deg,#1A1A1A,#3A3A3A);">🌑<span class="nerd-card-corner">Sci-Fi RPG</span></div>
+        <div class="nerd-card-body">
+          <div class="nerd-card-title">Stars Without Number</div>
+          <div class="nerd-card-sub">Sine Nomine Publishing · Sci-Fi Sandbox</div>
+          <div class="nerd-card-desc">Old-school science fiction RPG with a sector-building sandbox approach. Michael ran a 6-session campaign set in a dying star cluster. Still the family's favorite sci-fi RPG experience.</div>
+        </div>
+        <div class="nerd-card-foot"><span class="stars">★★★★</span><span class="badge badge-gray">Sci-Fi</span></div>
+      </div>
+
+      <div class="nerd-card">
+        <div class="nerd-card-art" style="background: linear-gradient(135deg,#3A2A1A,#6A5A2A);">🗺️<span class="nerd-card-corner">On Wishlist</span></div>
+        <div class="nerd-card-body">
+          <div class="nerd-card-title">Forbidden Lands</div>
+          <div class="nerd-card-sub">Free League Publishing · Survival Fantasy</div>
+          <div class="nerd-card-desc">A grim, survival-focused fantasy RPG with hex-crawl exploration. On the group's wishlist for the next campaign after The Sunken Vale wraps up.</div>
+        </div>
+        <div class="nerd-card-foot"><span class="stars">—</span><span class="badge badge-amber">Upcoming</span></div>
+      </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════
+         STAR WARS
+    ══════════════════════════════════════ -->
+    <h2 class="section-title wars">⭐ Star Wars</h2>
+
+    <h3 style="font-family:var(--font-serif); color:var(--primary); margin-bottom:1rem;">🏆 Family Film Rankings — The Definitive List (Debated Annually)</h3>
+    <ul class="rank-list mb-3">
+      <li>
+        <div class="rank-num rank-gold">1</div>
+        <div class="rank-info">
+          <div class="rank-title">The Empire Strikes Back (1980)</div>
+          <div class="rank-meta">Episode V · Director: Irvin Kershner</div>
+          <div class="rank-note">Universally agreed upon. The greatest sequel ever made. "I am your father" still gives everyone chills even knowing it's coming.</div>
+        </div>
+        <div><span class="stars">★★★★★</span></div>
+      </li>
+      <li>
+        <div class="rank-num rank-silver">2</div>
+        <div class="rank-info">
+          <div class="rank-title">A New Hope (1977)</div>
+          <div class="rank-meta">Episode IV · Director: George Lucas</div>
+          <div class="rank-note">Where it all started. James saw this in theaters in 1977 and brought Michael to see the re-release in 1997. The original is sacred.</div>
+        </div>
+        <div><span class="stars">★★★★★</span></div>
+      </li>
+      <li>
+        <div class="rank-num rank-bronze">3</div>
+        <div class="rank-info">
+          <div class="rank-title">Rogue One (2016)</div>
+          <div class="rank-meta">Anthology · Director: Gareth Edwards</div>
+          <div class="rank-note">The dark horse that exceeded everyone's expectations. The Vader hallway scene is the greatest minute in Star Wars history. No notes.</div>
+        </div>
+        <div><span class="stars">★★★★★</span></div>
+      </li>
+      <li>
+        <div class="rank-num rank-plain">4</div>
+        <div class="rank-info">
+          <div class="rank-title">Return of the Jedi (1983)</div>
+          <div class="rank-meta">Episode VI · Director: Richard Marquand</div>
+          <div class="rank-note">Controversial placement — some say top 3. The Ewoks remain a point of contention at every reunion. James defends the Ewoks and will not be moved.</div>
+        </div>
+        <div><span class="stars">★★★★½</span></div>
+      </li>
+      <li>
+        <div class="rank-num rank-plain">5</div>
+        <div class="rank-info">
+          <div class="rank-title">Revenge of the Sith (2005)</div>
+          <div class="rank-meta">Episode III · Director: George Lucas</div>
+          <div class="rank-note">"Hello there." The only prequel that earns its spot. The opera scene is genuinely great cinema, and the tragedy of Anakin lands when you've watched everything first.</div>
+        </div>
+        <div><span class="stars">★★★★</span></div>
+      </li>
+    </ul>
+
+    <h3 style="font-family:var(--font-serif); color:var(--primary); margin-bottom:0.75rem;">📺 Star Wars TV — Ranked</h3>
+    <table class="data-table mb-3">
+      <thead><tr><th>Show</th><th>Seasons</th><th>Family Score</th><th>Verdict</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Andor</strong></td><td>2</td><td><span class="stars">★★★★★</span></td><td>Best Star Wars content in 30 years. Grounded, political, brilliant. Watch it twice.</td></tr>
+        <tr><td><strong>The Mandalorian S1–S2</strong></td><td>2 (of 3)</td><td><span class="stars">★★★★★</span></td><td>Baby Yoda. Need we say more? Season 3 is… present.</td></tr>
+        <tr><td><strong>The Clone Wars</strong></td><td>7</td><td><span class="stars">★★★★½</span></td><td>The Ahsoka arc in Season 7 is some of the best Star Wars ever created.</td></tr>
+        <tr><td><strong>Ahsoka</strong></td><td>1</td><td><span class="stars">★★★½</span></td><td>Beautiful fan service for Clone Wars fans. Others may be lost.</td></tr>
+        <tr><td><strong>Obi-Wan Kenobi</strong></td><td>1</td><td><span class="stars">★★★</span></td><td>Ewan McGregor is wonderful; the rest is mixed. Worth it for the performances.</td></tr>
+        <tr><td><strong>The Book of Boba Fett</strong></td><td>1</td><td><span class="stars">★★½</span></td><td>Mandalorian episodes were incredible. Boba Fett episodes... existed.</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ══════════════════════════════════════
+         STAR TREK
+    ══════════════════════════════════════ -->
+    <h2 class="section-title trek">🖖 Star Trek</h2>
+
+    <div class="debate-box">
+      <h3>The Great Debate: Best Star Trek Series</h3>
+      <div class="debate-sides">
+        <div class="debate-side">
+          <h4>🖖 Team TNG</h4>
+          <ul>
+            <li>Picard is the greatest captain</li>
+            <li>The moral complexity is unmatched</li>
+            <li>Best ensemble cast in Trek history</li>
+            <li>"The Inner Light" is the best hour of TV ever made</li>
+            <li><em>— Michael, Patricia, Susan</em></li>
+          </ul>
+        </div>
+        <div class="vs-badge">VS</div>
+        <div class="debate-side">
+          <h4>🚀 Team DS9</h4>
+          <ul>
+            <li>The serialized storytelling was revolutionary</li>
+            <li>The Dominion War is peak sci-fi television</li>
+            <li>Sisko is the most complex captain</li>
+            <li>Every character has a complete arc</li>
+            <li><em>— David, Jennifer</em></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-grid card-grid-3 mb-3">
+
+      <div class="nerd-card">
+        <div class="nerd-card-art" style="background: linear-gradient(135deg,#1A1A4A,#3A3A8A);">🖖<span class="nerd-card-corner">TNG Era</span></div>
+        <div class="nerd-card-body">
+          <div class="nerd-card-title">The Next Generation</div>
+          <div class="nerd-card-sub">1987–1994 · 7 Seasons · 178 Episodes</div>
+          <div class="nerd-card-desc">The Gold Standard. Picard, Data, Riker, Troi, Worf, Geordi, and Crusher. Season 3 onward is some of the best sci-fi television ever produced.</div>
+          <div class="nerd-card-quote">💬 "Make it so." — Picard (and James at every family meeting)</div>
+        </div>
+        <div class="nerd-card-foot"><span class="stars">★★★★★</span><span class="badge badge-blue">Essential</span></div>
+      </div>
+
+      <div class="nerd-card">
+        <div class="nerd-card-art" style="background: linear-gradient(135deg,#2A1A1A,#5A3A3A);">🌌<span class="nerd-card-corner">DS9 Era</span></div>
+        <div class="nerd-card-body">
+          <div class="nerd-card-title">Deep Space Nine</div>
+          <div class="nerd-card-sub">1993–1999 · 7 Seasons · 176 Episodes</div>
+          <div class="nerd-card-desc">The boldest Trek ever made. A stationary setting, morally grey characters, serialized war arc, and the most underrated cast in franchise history. Gets better every rewatch.</div>
+        </div>
+        <div class="nerd-card-foot"><span class="stars">★★★★★</span><span class="badge badge-red">Bold</span></div>
+      </div>
+
+      <div class="nerd-card">
+        <div class="nerd-card-art" style="background: linear-gradient(135deg,#1A2A1A,#3A5A3A);">🚀<span class="nerd-card-corner">TOS Era</span></div>
+        <div class="nerd-card-body">
+          <div class="nerd-card-title">The Original Series</div>
+          <div class="nerd-card-sub">1966–1969 · 3 Seasons · 79 Episodes</div>
+          <div class="nerd-card-desc">Where it all started. James watched this in first-run as a kid and passed it down. Kirk, Spock, and McCoy remain the defining Trek trio. Dated but endlessly charming.</div>
+          <div class="nerd-card-quote">💬 "My first fandom." — James Crews</div>
+        </div>
+        <div class="nerd-card-foot"><span class="stars">★★★★½</span><span class="badge badge-amber">Classic</span></div>
+      </div>
+
+      <div class="nerd-card">
+        <div class="nerd-card-art" style="background: linear-gradient(135deg,#2A2A3A,#5A5A6A);">🌀<span class="nerd-card-corner">VOY Era</span></div>
+        <div class="nerd-card-body">
+          <div class="nerd-card-title">Voyager</div>
+          <div class="nerd-card-sub">1995–2001 · 7 Seasons · 172 Episodes</div>
+          <div class="nerd-card-desc">The premise never fully delivered but Seven of Nine and the Doctor are all-time great characters. Patricia has a soft spot for this one. Inconsistent but has genuine classics.</div>
+        </div>
+        <div class="nerd-card-foot"><span class="stars">★★★½</span><span class="badge badge-gray">Divisive</span></div>
+      </div>
+
+      <div class="nerd-card">
+        <div class="nerd-card-art" style="background: linear-gradient(135deg,#1A1A2A,#3A3A5A);">⭐<span class="nerd-card-corner">New Era</span></div>
+        <div class="nerd-card-body">
+          <div class="nerd-card-title">Strange New Worlds</div>
+          <div class="nerd-card-sub">2022–Present · Paramount+</div>
+          <div class="nerd-card-desc">The best new Trek in decades. Returns to standalone episodic storytelling with a phenomenal cast. Anson Mount as Pike is a revelation. Unanimous family approval.</div>
+        </div>
+        <div class="nerd-card-foot"><span class="stars">★★★★★</span><span class="badge badge-green">New Favorite</span></div>
+      </div>
+
+      <div class="nerd-card">
+        <div class="nerd-card-art" style="background: linear-gradient(135deg,#2A1A2A,#5A3A5A);">🎬<span class="nerd-card-corner">Films</span></div>
+        <div class="nerd-card-body">
+          <div class="nerd-card-title">Trek Films — Top Picks</div>
+          <div class="nerd-card-sub">Family Consensus Rankings</div>
+          <div class="nerd-card-desc">
+            🥇 The Wrath of Khan<br>
+            🥈 First Contact<br>
+            🥉 The Voyage Home<br>
+            4th: The Undiscovered Country
+          </div>
+          <div class="nerd-card-quote">💬 "The even-numbered ones are better" rule: confirmed.</div>
+        </div>
+        <div class="nerd-card-foot"><span class="stars">★★★★★</span><span class="badge badge-blue">Canon</span></div>
+      </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════
+         OTHER NERD STUFF
+    ══════════════════════════════════════ -->
+    <h2 class="section-title general">🌌 Other Nerd Interests</h2>
+    <div class="card-grid card-grid-3 mb-3">
+
+      <div class="nerd-card">
+        <div class="nerd-card-art" style="background: linear-gradient(135deg,#1A0A0A,#4A1A1A);">💍<span class="nerd-card-corner">Fantasy</span></div>
+        <div class="nerd-card-body">
+          <div class="nerd-card-title">Lord of the Rings</div>
+          <div class="nerd-card-sub">Books + Films · Extended Edition Only</div>
+          <div class="nerd-card-desc">The trilogy is watched every Thanksgiving weekend — extended editions only, all three in a row. Anyone who falls asleep during The Two Towers is gently mocked the following year.</div>
+          <div class="nerd-card-quote">💬 "One does not simply skip the extended editions." — David</div>
+        </div>
+        <div class="nerd-card-foot"><span class="stars">★★★★★</span><span class="badge badge-amber">Annual Tradition</span></div>
+      </div>
+
+      <div class="nerd-card">
+        <div class="nerd-card-art" style="background: linear-gradient(135deg,#1A3A1A,#2A6A2A);">🐉<span class="nerd-card-corner">Epic Fantasy</span></div>
+        <div class="nerd-card-body">
+          <div class="nerd-card-title">Game of Thrones / ASOIAF</div>
+          <div class="nerd-card-sub">Books & Show · Through Season 6</div>
+          <div class="nerd-card-desc">The show through Season 6 is celebrated; Seasons 7–8 are not discussed. The books are still awaited. George R.R. Martin owes the Crews family an apology and two novels.</div>
+        </div>
+        <div class="nerd-card-foot"><span class="stars">★★★★★</span><span class="badge badge-red">Complicated</span></div>
+      </div>
+
+      <div class="nerd-card">
+        <div class="nerd-card-art" style="background: linear-gradient(135deg,#0A0A1A,#1A1A3A);">🕷️<span class="nerd-card-corner">Comics / Films</span></div>
+        <div class="nerd-card-body">
+          <div class="nerd-card-title">Marvel Cinematic Universe</div>
+          <div class="nerd-card-sub">Films · Phase 1–3 Unanimous · Phase 4+ Divisive</div>
+          <div class="nerd-card-desc">Phases 1–3 (through Endgame) are considered a collective masterpiece. Phase 4 has had some hits. The Infinity Saga watch marathon is a rite of passage for every Crews teenager.</div>
+        </div>
+        <div class="nerd-card-foot"><span class="stars">★★★★½</span><span class="badge badge-blue">Superhero</span></div>
+      </div>
+
+      <div class="nerd-card">
+        <div class="nerd-card-art" style="background: linear-gradient(135deg,#1A1A0A,#3A3A1A);">⚡<span class="nerd-card-corner">Sci-Fi</span></div>
+        <div class="nerd-card-body">
+          <div class="nerd-card-title">Dune (Books & Films)</div>
+          <div class="nerd-card-sub">Frank Herbert + Villeneuve Films</div>
+          <div class="nerd-card-desc">Michael read all six original Dune novels and considers it the greatest science fiction ever written. The Villeneuve films finally did the books justice. Both films are in the top 10 family movie list.</div>
+        </div>
+        <div class="nerd-card-foot"><span class="stars">★★★★★</span><span class="badge badge-amber">Epic Sci-Fi</span></div>
+      </div>
+
+      <div class="nerd-card">
+        <div class="nerd-card-art" style="background: linear-gradient(135deg,#0A1A0A,#1A3A2A);">🎮<span class="nerd-card-corner">Video Games</span></div>
+        <div class="nerd-card-body">
+          <div class="nerd-card-title">Video Game Nights</div>
+          <div class="nerd-card-sub">Co-op & Multiplayer Favorites</div>
+          <div class="nerd-card-desc">
+            🕹️ <strong>Favorites:</strong> Hades, Baldur's Gate 3, Stardew Valley, Elden Ring (Michael only — everyone else watched in horror), Mario Kart at the cabin.
+          </div>
+        </div>
+        <div class="nerd-card-foot"><span class="stars">★★★★½</span><span class="badge badge-green">Co-op</span></div>
+      </div>
+
+      <div class="nerd-card">
+        <div class="nerd-card-art" style="background: linear-gradient(135deg,#1A0A1A,#3A1A3A);">📚<span class="nerd-card-corner">Sci-Fi Books</span></div>
+        <div class="nerd-card-body">
+          <div class="nerd-card-title">Sci-Fi & Fantasy Reading</div>
+          <div class="nerd-card-sub">Current Nerd Book List</div>
+          <div class="nerd-card-desc">
+            📖 <em>The Way of Kings</em> — Brandon Sanderson (David)<br>
+            📖 <em>A Memory Called Empire</em> — A. Martine (Jennifer)<br>
+            📖 <em>Project Hail Mary</em> — Andy Weir (Michael)
+          </div>
+        </div>
+        <div class="nerd-card-foot"><span class="stars">★★★★★</span><span class="badge badge-blue">Reading</span></div>
+      </div>
+
+    </div>
+
+    <!-- ── Upcoming Nerd Events ── -->
+    <h2 class="section-title general">📅 Upcoming Nerd Events</h2>
+    <ul class="info-list">
+      <li><span class="li-icon">🎲</span><div><strong>May 17 — Game Night at Michael's</strong> — Terraforming Mars + Wingspan. Bring snacks. David is banned from picking his starting corporation for the first 10 minutes while everyone else reads the rules again.</div></li>
+      <li><span class="li-icon">⚔️</span><div><strong>May 31 — D&D Session #19: The Sunken Vale</strong> — The party confronts the Harbormaster. David promises "someone will die." Jennifer has already pre-rolled new character stats. This is bad.</div></li>
+      <li><span class="li-icon">🎬</span><div><strong>Jun 7 — New Star Wars Film Release</strong> — "The Mandalorian & Grogu" theatrical film. Opening night tickets already purchased. Group popcorn budget: unlimited.</div></li>
+      <li><span class="li-icon">🎃</span><div><strong>Oct 31 — Annual Call of Cthulhu Halloween One-Shot</strong> — David is running "Doors to Darkness." All investigators will go insane. This is guaranteed. Costumes encouraged.</div></li>
+      <li><span class="li-icon">🎲</span><div><strong>TBD — Twilight Imperium Full Weekend</strong> — Being planned for a cabin weekend in Fall 2026. Minimum 8 hours. Maximum chaos. Bring provisions.</div></li>
+    </ul>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <script src="../js/main.js"></script>
+</body>
+</html>

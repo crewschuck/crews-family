@@ -82,7 +82,9 @@
       '        <li><a href="' + root + 'pages/tv.html">📺 TV</a></li>',
       '        <li><a href="' + root + 'pages/calendar.html">📅 Calendar</a></li>',
       '        <li><a href="' + root + 'pages/newsletter.html">📰 Newsletter</a></li>',
+      '        <li><a href="' + root + 'pages/nerding.html">🎲 Nerding Out</a></li>',
       '      </ul>',
+
       '    </nav>',
       '  </div>',
       '</header>'
@@ -106,7 +108,6 @@
   document.addEventListener('DOMContentLoaded', function () {
     buildHeader();
     buildFooter();
-    initWelcomeBanner();
     initNavToggle();
     markActiveNav();
   });
