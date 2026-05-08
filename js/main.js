@@ -84,6 +84,7 @@
       '        <li><a href="' + root + 'pages/newsletter.html">📰 Newsletter</a></li>',
       '        <li><a href="' + root + 'pages/nerding.html">🎲 Nerding Out</a></li>',
       '        <li><a href="' + root + 'pages/sydni.html">🎨 Sydni\'s Creations</a></li>',
+      '        <li><a href="' + root + 'pages/chuckles.html">📖 Hello I\'m Chuckles!</a></li>',
       '      </ul>',
 
       '    </nav>',

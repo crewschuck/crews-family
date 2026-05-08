@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hello I'm Chuckles! – Crews Family Gathering Place</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    /* Page-level palette — warm sky blue for a children's book feel */
+    :root {
+      --chuckles-blue: #1a7abf;
+      --chuckles-blue-light: #e8f4fd;
+      --chuckles-yellow: #f5c842;
+      --chuckles-yellow-light: #fffae8;
+      --chuckles-green: #3aab6b;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #0d4f80 0%, #1a7abf 50%, #38b2e8 100%);
+      border-radius: var(--radius);
+      padding: 3rem 2rem;
+      margin-bottom: 2.5rem;
+      display: flex;
+      gap: 2.5rem;
+      align-items: flex-start;
+      color: white;
+      box-shadow: 0 8px 32px rgba(26,122,191,0.3);
+    }
+    @media (max-width: 700px) { .hero { flex-direction: column; align-items: center; text-align: center; } }
+
+    .book-cover-wrap {
+      flex-shrink: 0;
+      position: relative;
+    }
+    .book-cover {
+      width: 200px;
+      border-radius: 8px;
+      box-shadow: 8px 8px 24px rgba(0,0,0,0.4), -2px -2px 8px rgba(255,255,255,0.15);
+      display: block;
+    }
+    .book-cover-badge {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: var(--chuckles-yellow);
+      color: #1a1a1a;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 0.3rem 0.6rem;
+      border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-text h1 {
+      font-size: 2.2rem;
+      margin: 0 0 0.25rem;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      line-height: 1.15;
+    }
+    .hero-subtitle {
+      font-size: 1rem;
+      opacity: 0.88;
+      margin: 0 0 0.75rem;
+      font-style: italic;
+    }
+    .hero-author {
+      font-size: 0.95rem;
+      font-weight: 700;
+      opacity: 0.9;
+      margin: 0 0 1.5rem;
+    }
+    .hero-badges {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .hero-badge {
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 20px;
+      padding: 0.25rem 0.8rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      backdrop-filter: blur(4px);
+    }
+    .buy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--chuckles-yellow);
+      color: #1a1a1a;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(245,200,66,0.5);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .buy-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245,200,66,0.6); color: #1a1a1a; }
+
+    /* About section */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    @media (max-width: 700px) { .about-grid { grid-template-columns: 1fr; } }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+    .card h2 { margin: 0 0 0.75rem; color: var(--primary); font-size: 1.1rem; }
+    .card p { font-size: 0.92rem; line-height: 1.75; color: var(--text-muted); margin: 0 0 0.75rem; }
+    .card p:last-child { margin: 0; }
+
+    /* Feature list */
+    .features-list { list-style: none; margin: 0; padding: 0; }
+    .features-list li {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: var(--text-muted);
+    }
+    .features-list li:last-child { border-bottom: none; }
+    .features-list .fi { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.05rem; }
+
+    /* Book details table */
+    .details-table { width: 100%; border-collapse: collapse; font-size: 0.87rem; }
+    .details-table tr { border-bottom: 1px solid var(--border); }
+    .details-table tr:last-child { border-bottom: none; }
+    .details-table td { padding: 0.45rem 0.25rem; }
+    .details-table td:first-child { font-weight: 700; color: var(--primary); width: 50%; }
+    .details-table td:last-child { color: var(--text-muted); }
+
+    /* Categories strip */
+    .categories {
+      background: var(--chuckles-blue-light);
+      border: 1px solid #c3dff5;
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .categories h3 { margin: 0 0 0.75rem; color: var(--chuckles-blue); font-size: 0.95rem; }
+    .cat-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .cat-tag {
+      background: white;
+      border: 1px solid #c3dff5;
+      color: var(--chuckles-blue);
+      border-radius: 20px;
+      padding: 0.25rem 0.8rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* Perfect for section */
+    .perfect-for {
+      background: var(--chuckles-yellow-light);
+      border: 1px solid #f0de9a;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .perfect-for h2 { margin: 0 0 1rem; color: #8a6500; font-size: 1.05rem; }
+    .pf-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem; }
+    .pf-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.87rem;
+      color: #5a4200;
+      font-weight: 600;
+    }
+
+    /* CTA banner */
+    .cta-banner {
+      background: linear-gradient(135deg, #0d4f80, #1a7abf);
+      border-radius: var(--radius);
+      padding: 2rem;
+      text-align: center;
+      color: white;
+      box-shadow: 0 4px 20px rgba(26,122,191,0.25);
+    }
+    .cta-banner h2 { margin: 0 0 0.5rem; font-size: 1.4rem; }
+    .cta-banner p { margin: 0 0 1.25rem; opacity: 0.9; font-size: 0.95rem; }
+    .price-tags { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+    .price-tag { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 10px; padding: 0.4rem 1rem; font-size: 0.9rem; font-weight: 700; }
+    .price-tag span { opacity: 0.75; font-weight: 400; font-size: 0.8rem; margin-right: 0.3rem; }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <main class="container" style="padding: 2rem 1rem;">
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="book-cover-wrap">
+        <img
+          class="book-cover"
+          src="https://m.media-amazon.com/images/I/61W9zUyzGAL._SY342_.jpg"
+          alt="Hello I'm Chuckles! book cover"
+        />
+        <div class="book-cover-badge">Available Now!</div>
+      </div>
+      <div class="hero-text">
+        <h1>Hello, I'm Chuckles!</h1>
+        <p class="hero-subtitle">Join Chuckles and His Friends on a journey of faith, family, and friends</p>
+        <p class="hero-author">by Chuck Crews &nbsp;·&nbsp; Published November 8, 2025</p>
+        <div class="hero-badges">
+          <span class="hero-badge">📖 32 Pages</span>
+          <span class="hero-badge">🎨 Illustrated</span>
+          <span class="hero-badge">Ages 3–8</span>
+          <span class="hero-badge">Faith-Based</span>
+          <span class="hero-badge">8.5" × 8.5"</span>
+        </div>
+        <a class="buy-btn" href="https://www.amazon.com/Hello-Im-Chuckles-Friends-Children/dp/B0G1YH9J1C/" target="_blank" rel="noopener noreferrer">
+          🛒 Buy on Amazon
+        </a>
+      </div>
+    </div>
+
+    <!-- Categories -->
+    <div class="categories">
+      <h3>📚 Book Categories</h3>
+      <div class="cat-tags">
+        <span class="cat-tag">Children's Christian Values Fiction</span>
+        <span class="cat-tag">Children's General Humor</span>
+        <span class="cat-tag">Children's New Experiences</span>
+        <span class="cat-tag">Faith &amp; Values</span>
+        <span class="cat-tag">Picture Books</span>
+      </div>
+    </div>
+
+    <!-- About grid -->
+    <div class="about-grid">
+      <div class="card">
+        <h2>📖 About the Book</h2>
+        <p>
+          See the world through Chuckles' eyes — and discover that miracles come in all shapes and sizes… even glasses!
+        </p>
+        <p>
+          Everything around Chuckles looked fuzzy and sometimes a bit scary — until one special trip to the eye doctor changed everything! With the help of his loving family and a cheerful doctor, Chuckles learns that sometimes the clearest vision comes from faith, love, and a brand-new pair of glasses.
+        </p>
+        <p>
+          This beautifully illustrated picture book invites children into a heartwarming adventure of discovery, friendship, and faith. Through gentle humor and tender moments, Chuckles reminds every child that they are wonderfully made, deeply loved, and perfectly unique — just the way God intended.
+        </p>
+        <p>
+          Whether your child is getting their first pair of glasses, needs a boost of self-confidence, or simply loves a joyful story about a character they can cheer for, Chuckles is the perfect companion.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>📋 Book Details</h2>
+        <table class="details-table">
+          <tr><td>Author</td><td>Chuck Crews</td></tr>
+          <tr><td>Published</td><td>November 8, 2025</td></tr>
+          <tr><td>Pages</td><td>32 pages</td></tr>
+          <tr><td>Format</td><td>Paperback &amp; Kindle</td></tr>
+          <tr><td>Dimensions</td><td>8.5 × 8.5 inches</td></tr>
+          <tr><td>Reading Age</td><td>Ages 3–8</td></tr>
+          <tr><td>Language</td><td>English</td></tr>
+          <tr><td>Publisher</td><td>Independently Published</td></tr>
+          <tr><td>ISBN-13</td><td>979-8272997456</td></tr>
+          <tr><td>ASIN</td><td>B0G1YH9J1C</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Why families love it -->
+    <div class="card" style="margin-bottom: 1.5rem;">
+      <h2>💛 Why Families Love Chuckles</h2>
+      <ul class="features-list">
+        <li>
+          <span class="fi">👓</span>
+          <span><strong>Encourages self-confidence &amp; acceptance</strong> — Helps kids see that wearing glasses (or being different in any way) is something to celebrate.</span>
+        </li>
+        <li>
+          <span class="fi">🏥</span>
+          <span><strong>Prepares children for their first eye exam</strong> — A comforting story that eases fears about the eye doctor and helps little ones feel brave.</span>
+        </li>
+        <li>
+          <span class="fi">✝️</span>
+          <span><strong>Faith-based message of love and purpose</strong> — Gently weaves in the truth that every child is created with care and intention.</span>
+        </li>
+        <li>
+          <span class="fi">🌙</span>
+          <span><strong>Perfect for family reading</strong> — A touching story to share at bedtime, Sunday school, or quiet time together.</span>
+        </li>
+        <li>
+          <span class="fi">🖼️</span>
+          <span><strong>Vibrant illustrations &amp; joyful characters</strong> — Bring Chuckles' world to life and captivate young readers.</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Perfect for -->
+    <div class="perfect-for">
+      <h2>⭐ Perfect For...</h2>
+      <div class="pf-grid">
+        <div class="pf-item">👶 Ages 3–8</div>
+        <div class="pf-item">👓 Kids getting first glasses</div>
+        <div class="pf-item">✝️ Families of faith</div>
+        <div class="pf-item">🎁 A wonderful gift</div>
+        <div class="pf-item">🏫 Sunday school teachers</div>
+        <div class="pf-item">📚 Christian educators</div>
+        <div class="pf-item">🌟 Confidence-building stories</div>
+        <div class="pf-item">🛏️ Bedtime reading</div>
+      </div>
+    </div>
+
+    <!-- CTA banner -->
+    <div class="cta-banner">
+      <h2>📚 Get Your Copy Today!</h2>
+      <p>Available in paperback and on Kindle — the perfect gift for the children in your life.</p>
+      <div class="price-tags">
+        <div class="price-tag"><span>Paperback</span>$10.99</div>
+        <div class="price-tag"><span>Kindle</span>$5.99</div>
+      </div>
+      <a class="buy-btn" href="https://www.amazon.com/Hello-Im-Chuckles-Friends-Children/dp/B0G1YH9J1C/" target="_blank" rel="noopener noreferrer">
+        🛒 Buy on Amazon →
+      </a>
+    </div>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <script src="../js/main.js"></script>
+</body>
+</html>
