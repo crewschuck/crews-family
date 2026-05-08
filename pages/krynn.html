@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Krynn Thal'zath – Chuck's D&D Campaign</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    /* ── Drow palette ── */
+    :root {
+      --drow-dark:   #0a0612;
+      --drow-deep:   #130a24;
+      --drow-purple: #4a1a8a;
+      --drow-violet: #7c3abf;
+      --drow-glow:   #c084fc;
+      --drow-teal:   #0e7490;
+      --drow-cream:  #e8e0f0;
+      --drow-gold:   #c0a030;
+    }
+
+    body { background: var(--bg); }
+
+    /* ── Hero ── */
+    .krynn-hero {
+      background: linear-gradient(160deg, var(--drow-dark) 0%, var(--drow-deep) 40%, #1a0a3a 100%);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+      min-height: 320px;
+      display: flex;
+      align-items: stretch;
+    }
+    .krynn-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(124,58,191,0.25) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .krynn-hero-inner {
+      display: flex;
+      gap: 0;
+      align-items: stretch;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .krynn-hero-text {
+      flex: 1;
+      padding: 2.5rem 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: white;
+      position: relative;
+      z-index: 2;
+    }
+    .krynn-breadcrumb {
+      font-size: 0.78rem;
+      opacity: 0.6;
+      margin-bottom: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .krynn-breadcrumb a { color: var(--drow-glow); text-decoration: none; }
+    .krynn-name {
+      font-family: var(--font-serif);
+      font-size: 3rem;
+      margin: 0 0 0.2rem;
+      line-height: 1.1;
+      color: var(--drow-cream);
+      text-shadow: 0 0 30px rgba(192,132,252,0.5), 0 2px 8px rgba(0,0,0,0.5);
+    }
+    .krynn-class-line {
+      font-size: 1rem;
+      color: var(--drow-glow);
+      margin-bottom: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+    }
+    .krynn-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .krynn-tag {
+      background: rgba(124,58,191,0.3);
+      border: 1px solid rgba(192,132,252,0.35);
+      border-radius: 20px;
+      padding: 0.2rem 0.75rem;
+      font-size: 0.78rem;
+      color: var(--drow-glow);
+      font-weight: 600;
+    }
+    .krynn-quote {
+      background: rgba(192,132,252,0.1);
+      border-left: 3px solid var(--drow-violet);
+      border-radius: 0 6px 6px 0;
+      padding: 0.75rem 1rem;
+      font-style: italic;
+      font-size: 0.92rem;
+      color: var(--drow-cream);
+      opacity: 0.88;
+      max-width: 480px;
+    }
+    .krynn-hero-image {
+      flex-shrink: 0;
+      width: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 1.5rem 0 1.5rem 2rem;
+      position: relative;
+      z-index: 2;
+    }
+    .krynn-hero-image img {
+      max-height: 300px;
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 8px 40px rgba(124,58,191,0.4), 0 0 0 1px rgba(192,132,252,0.2);
+    }
+    @media (max-width: 750px) {
+      .krynn-hero-inner { flex-direction: column; padding: 1.5rem; }
+      .krynn-hero-image { width: 100%; justify-content: center; padding: 0 0 1.5rem; }
+      .krynn-hero-image img { max-height: 220px; }
+      .krynn-name { font-size: 2.2rem; }
+    }
+
+    /* ── Stat block ── */
+    .stat-block {
+      background: linear-gradient(135deg, var(--drow-dark), #1a0a2a);
+      border: 1px solid rgba(192,132,252,0.2);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 20px rgba(124,58,191,0.2);
+    }
+    .stat-block-title {
+      color: var(--drow-glow);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid rgba(192,132,252,0.2);
+      padding-bottom: 0.5rem;
+    }
+    .ability-scores {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+    @media (max-width: 600px) { .ability-scores { grid-template-columns: repeat(3, 1fr); } }
+    .ability {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(192,132,252,0.15);
+      border-radius: 8px;
+      padding: 0.6rem 0.4rem;
+      text-align: center;
+    }
+    .ability-name { font-size: 0.65rem; color: var(--drow-glow); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    .ability-score { font-size: 1.5rem; font-weight: 800; color: white; line-height: 1; margin: 0.2rem 0; }
+    .ability-mod { font-size: 0.78rem; color: rgba(255,255,255,0.55); }
+    .ability.high .ability-score { color: var(--drow-glow); text-shadow: 0 0 10px rgba(192,132,252,0.5); }
+
+    .stat-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .stat-pill {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(192,132,252,0.15);
+      border-radius: 20px;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.8);
+    }
+    .stat-pill strong { color: var(--drow-glow); }
+
+    .saves-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.4rem;
+    }
+    @media (max-width: 500px) { .saves-grid { grid-template-columns: repeat(2, 1fr); } }
+    .save-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.7);
+    }
+    .save-val {
+      font-weight: 700;
+      min-width: 32px;
+      color: white;
+    }
+    .save-val.proficient { color: var(--drow-glow); }
+
+    /* ── Section styling ── */
+    .lore-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 1.75rem;
+      box-shadow: var(--shadow);
+    }
+    .lore-header {
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .lore-header-icon { font-size: 1.5rem; }
+    .lore-header h2 { margin: 0; font-size: 1.15rem; }
+    .lore-body {
+      padding: 0 1.5rem 1.5rem;
+    }
+    .lore-body p {
+      font-size: 0.93rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      margin: 0 0 0.85rem;
+    }
+    .lore-body p:last-child { margin: 0; }
+
+    /* Section accent colors */
+    .lore-home .lore-header { background: linear-gradient(135deg,#0a1a24,#1a3a4a); }
+    .lore-home .lore-header h2 { color: #7dd3e8; }
+    .lore-ruins .lore-header { background: linear-gradient(135deg,#1a0a24,#2a1a3a); }
+    .lore-ruins .lore-header h2 { color: var(--drow-glow); }
+    .lore-pact .lore-header { background: linear-gradient(135deg,#0a1a0a,#1a2a1a); }
+    .lore-pact .lore-header h2 { color: #6ee7b7; }
+    .lore-tension .lore-header { background: linear-gradient(135deg,#1a0a0a,#2a1a1a); }
+    .lore-tension .lore-header h2 { color: #fca5a5; }
+    .lore-uni .lore-header { background: linear-gradient(135deg,#1a1a0a,#2a2a1a); }
+    .lore-uni .lore-header h2 { color: #fcd34d; }
+    .lore-now .lore-header { background: linear-gradient(135deg,#0a0a1a,#1a1a2a); }
+    .lore-now .lore-header h2 { color: #a5b4fc; }
+
+    /* ── Pact entity card ── */
+    .entity-card {
+      background: linear-gradient(135deg,#060610,#0e0a1a);
+      border: 1px solid rgba(110,231,183,0.25);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin: 1rem 0;
+      box-shadow: 0 0 20px rgba(110,231,183,0.08);
+    }
+    .entity-name {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      color: #6ee7b7;
+      margin-bottom: 0.2rem;
+      text-shadow: 0 0 15px rgba(110,231,183,0.4);
+    }
+    .entity-epithet { font-size: 0.82rem; color: rgba(110,231,183,0.6); font-style: italic; margin-bottom: 0.75rem; }
+    .entity-card p { font-size: 0.88rem; line-height: 1.7; color: rgba(255,255,255,0.7); margin: 0; }
+
+    /* ── Visions block ── */
+    .visions-list {
+      list-style: none;
+      margin: 0.75rem 0;
+      padding: 0;
+    }
+    .visions-list li {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+    .visions-list li:last-child { border-bottom: none; }
+    .visions-list .vi { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.05rem; }
+
+    /* ── Elder quote block ── */
+    .elder-quote {
+      background: rgba(0,0,0,0.15);
+      border-left: 3px solid var(--drow-gold);
+      border-radius: 0 6px 6px 0;
+      padding: 0.85rem 1.1rem;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--drow-gold);
+      margin: 1rem 0;
+    }
+
+    /* ── XP bar ── */
+    .xp-bar-wrap { margin: 0.75rem 0; }
+    .xp-bar-label { font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-bottom: 0.3rem; display: flex; justify-content: space-between; }
+    .xp-bar-track { background: rgba(255,255,255,0.08); border-radius: 10px; height: 8px; overflow: hidden; }
+    .xp-bar-fill { height: 100%; border-radius: 10px; background: linear-gradient(90deg, var(--drow-violet), var(--drow-glow)); width: 36%; }
+
+    /* ── Back link ── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--drow-violet);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      margin-bottom: 1.5rem;
+    }
+    .back-link:hover { color: var(--drow-glow); }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <!-- Hero -->
+  <div class="krynn-hero">
+    <div class="krynn-hero-inner">
+      <div class="krynn-hero-text">
+        <div class="krynn-breadcrumb">
+          <a href="nerding.html">Nerding Out</a> &rsaquo; RPGs &rsaquo; Chuck's D&amp;D 5e 2024 Campaign
+        </div>
+        <h1 class="krynn-name">Krynn Thal'zath</h1>
+        <p class="krynn-class-line">DROW ELF &nbsp;·&nbsp; WARLOCK 2 &nbsp;·&nbsp; MULHORANDI TOMB RAIDER</p>
+        <div class="krynn-tags">
+          <span class="krynn-tag">D&amp;D 5e 2024</span>
+          <span class="krynn-tag">Chuck's Character</span>
+          <span class="krynn-tag">Great Old One Patron</span>
+          <span class="krynn-tag">Zhaun'ylith — The Web Beyond Worlds</span>
+          <span class="krynn-tag">Ilyth'Varan Exile</span>
+        </div>
+        <div class="krynn-quote">
+          "Continue what others abandoned."<br>
+          <span style="font-size:0.8rem; opacity:0.7;">— The imprint within the black stone chamber</span>
+        </div>
+      </div>
+      <div class="krynn-hero-image">
+        <img src="../images/krynn-character-sheet.png" alt="Krynn Thal'zath character sheet" />
+      </div>
+    </div>
+  </div>
+
+  <main class="container" style="padding: 2rem 1rem;">
+
+    <a class="back-link" href="nerding.html">← Back to Nerding Out</a>
+
+    <!-- ── Stat Block ── -->
+    <div class="stat-block">
+      <div class="stat-block-title">⚔️ Character Statistics — Level 2 Warlock</div>
+
+      <div class="ability-scores">
+        <div class="ability"><div class="ability-name">STR</div><div class="ability-score">9</div><div class="ability-mod">−1</div></div>
+        <div class="ability high"><div class="ability-name">DEX</div><div class="ability-score">16</div><div class="ability-mod">+3</div></div>
+        <div class="ability"><div class="ability-name">CON</div><div class="ability-score">10</div><div class="ability-mod">+0</div></div>
+        <div class="ability"><div class="ability-name">INT</div><div class="ability-score">9</div><div class="ability-mod">−1</div></div>
+        <div class="ability high"><div class="ability-name">WIS</div><div class="ability-score">17</div><div class="ability-mod">+3</div></div>
+        <div class="ability high"><div class="ability-name">CHA</div><div class="ability-score">17</div><div class="ability-mod">+3</div></div>
+      </div>
+
+      <div class="stat-row">
+        <span class="stat-pill"><strong>HP</strong> 13 / 13</span>
+        <span class="stat-pill"><strong>Hit Dice</strong> 2d8</span>
+        <span class="stat-pill"><strong>Initiative</strong> +2</span>
+        <span class="stat-pill"><strong>Proficiency</strong> +2</span>
+        <span class="stat-pill"><strong>Darkvision</strong> 120 ft.</span>
+        <span class="stat-pill"><strong>XP</strong> 326 / 900</span>
+      </div>
+
+      <div class="xp-bar-wrap">
+        <div class="xp-bar-label"><span>Experience Progress to Level 3</span><span>326 / 900</span></div>
+        <div class="xp-bar-track"><div class="xp-bar-fill"></div></div>
+      </div>
+
+      <div class="stat-block-title" style="margin-top:1rem;">🛡️ Saving Throws</div>
+      <div class="saves-grid">
+        <div class="save-item"><span class="save-val">−1</span> Strength</div>
+        <div class="save-item"><span class="save-val">+3</span> Dexterity</div>
+        <div class="save-item"><span class="save-val">+0</span> Constitution</div>
+        <div class="save-item"><span class="save-val">−1</span> Intelligence</div>
+        <div class="save-item"><span class="save-val proficient">+5</span> Wisdom ✦</div>
+        <div class="save-item"><span class="save-val proficient">+5</span> Charisma ✦</div>
+      </div>
+
+      <div style="margin-top:1rem;">
+        <div class="stat-block-title">📋 Background &amp; Features</div>
+        <div class="stat-row">
+          <span class="stat-pill"><strong>Race</strong> Elf, Drow (Medium)</span>
+          <span class="stat-pill"><strong>Background</strong> Mulhorandi Tomb Raider</span>
+          <span class="stat-pill"><strong>Patron</strong> Great Old One — Zhaun'ylith</span>
+          <span class="stat-pill"><strong>Concentration</strong> +0</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Backstory Sections ── -->
+
+    <div class="lore-section lore-home">
+      <div class="lore-header">
+        <span class="lore-header-icon">🌿</span>
+        <h2>The Hidden Haven — Ilyth'Varan</h2>
+      </div>
+      <div class="lore-body">
+        <p>
+          Krynn Thal'zath was born beneath a canopy so dense it turned daylight into twilight.
+          His home, <strong>Ilyth'Varan</strong>, was a hidden drow haven deep within a vast eastern rainforest —
+          far removed from the cruelty most surface dwellers associated with his kind. Here, the drow
+          had chosen a different path. They built their cities into colossal trees, wove bridges from living
+          vines, and carved their history into stone temples scattered across the jungle floor.
+        </p>
+        <p>
+          They did not reject darkness. <em>They balanced it.</em>
+        </p>
+        <p>
+          To outsiders, Ilyth'Varan was a myth. To its people, it was proof that the drow could be
+          more than what the world expected. Krynn believed that — mostly.
+        </p>
+      </div>
+    </div>
+
+    <div class="lore-section lore-ruins">
+      <div class="lore-header">
+        <span class="lore-header-icon">🏛️</span>
+        <h2>A Different Kind of Curiosity</h2>
+      </div>
+      <div class="lore-body">
+        <p>
+          While others trained in survival, diplomacy, or defense of the haven, Krynn became obsessed
+          with the ruins beyond it.
+        </p>
+        <p>
+          Because Ilyth'Varan wasn't the first civilization in that rainforest. Far older structures lay
+          hidden beneath roots and soil — cyclopean stone temples, sealed vaults, and buried corridors
+          no living drow had built. The elders taught caution: <em>Respect the past. Do not disturb what sleeps.</em>
+        </p>
+        <p>
+          Krynn heard something else entirely: <strong>Find out why it was buried in the first place.</strong>
+        </p>
+      </div>
+    </div>
+
+    <div class="lore-section lore-pact">
+      <div class="lore-header">
+        <span class="lore-header-icon">🕸️</span>
+        <h2>The Pact — A Chamber Beyond Time</h2>
+      </div>
+      <div class="lore-body">
+        <p>
+          His turning point came during a solo expedition — something he was explicitly forbidden from attempting.
+          Deep within an overgrown ruin, Krynn uncovered a chamber untouched by time. No decay. No plant life.
+          Just smooth black stone etched with patterns that seemed to shift at the edge of perception.
+        </p>
+        <p>
+          At its center was not an object — but an <strong>imprint of awareness</strong>. An intelligence bound
+          into the structure itself. It did not introduce itself. It did not threaten him. It showed him things:
+        </p>
+        <ul class="visions-list">
+          <li><span class="vi">🌆</span><span>Cities swallowed by jungle and time</span></li>
+          <li><span class="vi">🔄</span><span>Civilizations that rose, uncovered truths, and vanished</span></li>
+          <li><span class="vi">🌀</span><span>A pattern repeating across ages — over and over, endlessly</span></li>
+        </ul>
+        <p>
+          It offered him power — but framed it as <em>purpose</em>:
+        </p>
+        <div class="elder-quote" style="border-left-color: #6ee7b7; color: #6ee7b7;">
+          "Continue what others abandoned."
+        </div>
+        <p>
+          Krynn accepted. Not for power. <em>For answers.</em>
+        </p>
+
+        <div class="entity-card">
+          <div class="entity-name">Zhaun'ylith</div>
+          <div class="entity-epithet">The Web Beyond Worlds</div>
+          <p>
+            Consulting with the Elders after his return, Krynn came to believe he had encountered
+            <strong>Zhaun'ylith</strong> — known in ancient lore as <em>The Web Beyond Worlds</em>. A being
+            woven through the hidden places of the earth, long buried and largely forgotten. The Elders
+            knew only fragmentary tales: an intelligence that persisted in the spaces between civilizations,
+            observing patterns that spanned millennia. Its nature — benevolent, neutral, or something
+            far stranger — remains one of the central mysteries Krynn is driven to unravel.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="lore-section lore-tension">
+      <div class="lore-header">
+        <span class="lore-header-icon">⚡</span>
+        <h2>Tension with Home</h2>
+      </div>
+      <div class="lore-body">
+        <p>
+          When Krynn returned, something about him had changed. Not visibly — but in the way he spoke
+          about the ruins. He no longer saw them as dangerous relics to respect. He saw them as
+          <em>unfinished stories</em>. That unsettled people.
+        </p>
+        <p>
+          Ilyth'Varan valued harmony — between nature, history, and restraint. Krynn began to push
+          against that restraint:
+        </p>
+        <ul class="visions-list">
+          <li><span class="vi">🔓</span><span>He went deeper than others would</span></li>
+          <li><span class="vi">📦</span><span>Opened sealed chambers that had been sealed for good reason</span></li>
+          <li><span class="vi">🗿</span><span>Brought back artifacts some believed should remain buried</span></li>
+        </ul>
+        <p>
+          To him, this was progress. To others, it felt like risk… or even betrayal.
+          Eventually, the tension reached a quiet conclusion. Krynn was encouraged to leave —
+          not as punishment, but as necessity.
+        </p>
+        <div class="elder-quote">
+          "If you must chase these truths… do it somewhere their consequences won't fall on us."
+        </div>
+      </div>
+    </div>
+
+    <div class="lore-section lore-uni">
+      <div class="lore-header">
+        <span class="lore-header-icon">🎓</span>
+        <h2>The University — Where He Thrived</h2>
+      </div>
+      <div class="lore-body">
+        <p>
+          Krynn traveled west and eventually found his way into a prestigious university known for
+          archaeology and arcane study. Here, he thrived. His field instincts were exceptional. His
+          knowledge of ruins surpassed most others. His warlock abilities gave him an edge he never
+          fully explained.
+        </p>
+        <p>
+          Krynn recently graduated, his thesis on <strong><em>"Submerged Civilizations and the Persistence
+          of Living Architecture"</em></strong> drawing significant recognition from the faculty. During
+          the semester he prepared his thesis, Krynn left the University to find solitude and quiet
+          to write and refine it. While he was away, some of his friends had the opportunity to seek
+          out a relic for the professor.
+        </p>
+        <p>
+          Of course, they took the opportunity — and they would have loved to have Krynn with them.
+          But he could not be found in time.
+        </p>
+        <div class="elder-quote" style="border-left-color: var(--drow-gold); color: var(--drow-gold);">
+          Fate? Or chance?
+        </div>
+      </div>
+    </div>
+
+    <div class="lore-section lore-now">
+      <div class="lore-header">
+        <span class="lore-header-icon">🗺️</span>
+        <h2>Now — The Adventure Begins</h2>
+      </div>
+      <div class="lore-body">
+        <p>
+          Now that he has returned and is graduated, Krynn cannot wait to join the next expedition.
+          The ruins that consumed his youth, the pact that gave him purpose, the missing pieces his
+          friends found without him — all of it pulls him forward.
+        </p>
+        <p>
+          Somewhere out there, the pattern Zhaun'ylith showed him is still unfolding. Civilizations
+          rise, discover something they shouldn't, and vanish. Krynn intends to be the first one
+          to break that cycle.
+        </p>
+        <p>
+          Or at least to understand it before it swallows him too.
+        </p>
+      </div>
+    </div>
+
+    <!-- Back link -->
+    <a class="back-link" href="nerding.html">← Back to Nerding Out</a>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <script src="../js/main.js"></script>
+</body>
+</html>

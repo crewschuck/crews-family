@@ -113,6 +113,43 @@
     .campaign-card h3 { font-family: var(--font-serif); color: var(--primary); font-size: 1.15rem; margin-bottom: 0.25rem; }
     .campaign-card .cm-meta { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.6rem; }
     .campaign-card p { font-size: 0.92rem; margin-bottom: 0.5rem; }
+
+    /* ── Chuck's Featured Campaign / Krynn card ── */
+    .krynn-feature {
+      background: linear-gradient(135deg, #0a0612 0%, #130a24 50%, #1a0a3a 100%);
+      border: 1px solid rgba(124,58,191,0.35);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 6px 28px rgba(124,58,191,0.2);
+      margin-bottom: 1.5rem;
+      display: flex;
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .krynn-feature:hover { transform: translateY(-3px); box-shadow: 0 10px 36px rgba(124,58,191,0.32); }
+    .krynn-feature-art {
+      width: 220px;
+      flex-shrink: 0;
+      background: linear-gradient(180deg, #0d0620, #1a0a3a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .krynn-feature-art img { width: 100%; height: 100%; object-fit: cover; object-position: left center; }
+    .krynn-feature-body { flex: 1; padding: 1.5rem 1.75rem; }
+    .krynn-feature-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #c084fc; margin-bottom: 0.4rem; }
+    .krynn-feature-name { font-family: var(--font-serif); font-size: 1.6rem; color: #e8e0f0; margin: 0 0 0.2rem; text-shadow: 0 0 20px rgba(192,132,252,0.3); }
+    .krynn-feature-class { font-size: 0.88rem; color: #c084fc; margin-bottom: 0.85rem; }
+    .krynn-feature-desc { font-size: 0.88rem; line-height: 1.65; color: rgba(232,224,240,0.75); margin-bottom: 1rem; }
+    .krynn-feature-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .krynn-feature-tag { background: rgba(124,58,191,0.25); border: 1px solid rgba(192,132,252,0.2); border-radius: 20px; padding: 0.2rem 0.65rem; font-size: 0.74rem; color: #c084fc; }
+    .krynn-feature-cta { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(124,58,191,0.4); border: 1px solid rgba(192,132,252,0.4); border-radius: 20px; padding: 0.35rem 1rem; font-size: 0.82rem; font-weight: 700; color: #e8e0f0; }
+    @media (max-width: 650px) {
+      .krynn-feature { flex-direction: column; }
+      .krynn-feature-art { width: 100%; height: 180px; }
+    }
     .party-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
     .party-member {
       background: var(--bg);
@@ -285,22 +322,32 @@
     ══════════════════════════════════════ -->
     <h2 class="section-title rpg">⚔️ Role-Playing Games</h2>
 
-    <h3 style="font-family:var(--font-serif); color:var(--primary); margin-bottom:0.75rem;">🐉 Active Campaign: The Sunken Vale</h3>
-    <div class="campaign-card">
-      <h3>The Sunken Vale — D&D 5th Edition</h3>
-      <div class="cm-meta">System: Dungeons & Dragons 5e · DM: David Crews · Session #18 · Started: January 2025</div>
-      <p>
-        A homebrew campaign set in a flooded coastal kingdom slowly being reclaimed by the sea. The party has just discovered that the Harbormaster of Tidewatch is secretly a Kraken cultist and has been siphoning taxes to summon something terrible from the deep.
-      </p>
-      <p><strong>Last session (May 3, 2026):</strong> The party infiltrated the Harbormaster's mansion, discovered the ritual chamber, and narrowly escaped a fight with a Water Weird. Michael's character nearly drowned. Again.</p>
-      <div class="party-grid">
-        <div class="party-member"><span class="pm-icon">🧙</span><span class="pm-name">Michael</span><span class="pm-class">Zephyr (Wizard 8)</span></div>
-        <div class="party-member"><span class="pm-icon">⚔️</span><span class="pm-name">Jennifer</span><span class="pm-class">Kira (Fighter 8)</span></div>
-        <div class="party-member"><span class="pm-icon">🌿</span><span class="pm-name">Susan</span><span class="pm-class">Aelindra (Druid 8)</span></div>
-        <div class="party-member"><span class="pm-icon">🗡️</span><span class="pm-name">Tyler</span><span class="pm-class">Rook (Rogue 8)</span></div>
-        <div class="party-member"><span class="pm-icon">🛡️</span><span class="pm-name">Guest</span><span class="pm-class">Paladin (rotating)</span></div>
+    <h3 style="font-family:var(--font-serif); color:var(--primary); margin-bottom:0.75rem;">🐉 Chuck's Current Campaign — D&amp;D 5e 2024</h3>
+
+    <a class="krynn-feature" href="krynn.html">
+      <div class="krynn-feature-art">
+        <img src="../images/krynn-character-sheet.png" alt="Krynn Thal'zath character sheet" />
       </div>
-    </div>
+      <div class="krynn-feature-body">
+        <div class="krynn-feature-eyebrow">✦ Chuck's Character &nbsp;·&nbsp; D&amp;D 5e 2024</div>
+        <div class="krynn-feature-name">Krynn Thal'zath</div>
+        <div class="krynn-feature-class">Drow Elf &nbsp;·&nbsp; Warlock 2 &nbsp;·&nbsp; Mulhorandi Tomb Raider</div>
+        <p class="krynn-feature-desc">
+          Born in the hidden jungle haven of Ilyth'Varan, Krynn left behind a world of balanced darkness
+          to chase answers buried beneath ancient ruins. A pact with a nameless intelligence — Zhaun'ylith,
+          The Web Beyond Worlds — gave him power framed as purpose. Now a newly minted university graduate,
+          he's ready to join his first expedition.
+        </p>
+        <div class="krynn-feature-tags">
+          <span class="krynn-feature-tag">Great Old One Patron</span>
+          <span class="krynn-feature-tag">Ilyth'Varan Exile</span>
+          <span class="krynn-feature-tag">Archaeologist</span>
+          <span class="krynn-feature-tag">WIS 17 &nbsp;CHA 17</span>
+          <span class="krynn-feature-tag">Darkvision 120 ft.</span>
+        </div>
+        <span class="krynn-feature-cta">📜 Read Full Backstory &amp; Character Sheet →</span>
+      </div>
+    </a>
 
     <h3 style="font-family:var(--font-serif); color:var(--primary); margin: 1.5rem 0 0.75rem;">📜 Other RPG Systems We Play</h3>
     <div class="card-grid card-grid-2 mb-3">
