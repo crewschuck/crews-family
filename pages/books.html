@@ -30,19 +30,56 @@
     .book-desc { font-size: 0.88rem; color: var(--text); line-height: 1.55; }
     .book-rec { font-size: 0.82rem; color: var(--accent); margin-top: 0.3rem; font-style: italic; }
 
-    .filter-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
-    .filter-tab {
-      padding: 0.4rem 1rem;
-      border-radius: 50px;
-      border: 2px solid var(--border);
+    /* Series block — horizontal book-list inside a card */
+    .series-card {
       background: var(--bg-card);
-      color: var(--text);
-      cursor: pointer;
-      font-size: 0.85rem;
-      font-weight: 600;
-      transition: all var(--transition);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 1.25rem;
     }
-    .filter-tab.active, .filter-tab:hover { background: var(--primary); border-color: var(--primary); color: #fff; }
+    .series-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .series-icon {
+      width: 52px; min-width: 52px; height: 52px;
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+    .series-title { font-weight: 800; color: var(--primary); font-size: 1.1rem; margin: 0 0 0.15rem; }
+    .series-author { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.4rem; }
+    .series-desc { font-size: 0.88rem; line-height: 1.6; color: var(--text); }
+    .series-books {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+    .series-book-pill {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+    .series-book-pill strong { color: var(--primary); font-size: 0.78rem; }
+
+    /* Section color accents */
+    .section-title.fantasy { border-color: #5a1a8a; color: #3a0a5a; }
+    .section-title.scifi   { border-color: #1a4a8a; color: #0a2a5a; }
+    .section-title.thriller{ border-color: #8a1a1a; color: #5a0a0a; }
+    .section-title.horror  { border-color: #1a1a1a; color: #0a0a0a; }
+    .section-title.literary{ border-color: #1a5a3a; color: #0a3a2a; }
+    .section-title.classic { border-color: #8b5c15; color: #5c3a0a; }
   </style>
 </head>
 <body>
@@ -50,134 +87,367 @@
 
   <section class="page-hero">
     <span class="hero-icon">📚</span>
-    <h1>Family Book List</h1>
-    <p>Recommended reads, book club picks, and family favorites — for all ages</p>
+    <h1>Chuck's Reading List</h1>
+    <p>Fantasy epics, sci-fi classics, thrillers, and everything in between</p>
   </section>
 
   <main class="page-content">
 
-    <div class="filter-tabs">
-      <button class="filter-tab active">📚 All Books</button>
-      <button class="filter-tab">🎭 Fiction</button>
-      <button class="filter-tab">📰 Non-Fiction</button>
-      <button class="filter-tab">📜 History</button>
-      <button class="filter-tab">👶 Children's</button>
-      <button class="filter-tab">🌟 Family Classics</button>
-    </div>
+    <!-- ══════════════════════════════════════
+         EPIC FANTASY SERIES
+    ══════════════════════════════════════ -->
+    <h2 class="section-title fantasy">🧙 Epic Fantasy</h2>
 
-    <!-- ── Currently Reading ── -->
-    <h2 class="section-title">📖 Book Club — Currently Reading</h2>
-    <div class="card-grid card-grid-2 mb-3">
-
-      <div class="book-card">
-        <div class="book-spine" style="background: linear-gradient(160deg,#4A7C59,#2C4A35);">📗</div>
-        <div class="book-info">
-          <div class="book-title">Killers of the Flower Moon</div>
-          <div class="book-author">David Grann · 2017 · Non-Fiction / History</div>
-          <div class="book-meta">
-            <span class="stars">★★★★★</span>
-            <span class="badge badge-green">Book Club Pick</span>
-            <span class="badge badge-blue">Reading Now</span>
-          </div>
-          <div class="book-desc">The chilling true story of the Osage murders in 1920s Oklahoma and the birth of the FBI. A remarkable piece of American history that reads like a thriller.</div>
-          <div class="book-rec">💬 "Patricia: 'I could not put this down. Essential American history.'"</div>
+    <div class="series-card">
+      <div class="series-header">
+        <div class="series-icon" style="background:linear-gradient(135deg,#1a0a2a,#4a1a7a);">🌑</div>
+        <div>
+          <div class="series-title">The Mistborn Original Trilogy</div>
+          <div class="series-author">Brandon Sanderson · 2006–2008 · Epic Fantasy</div>
+          <div class="series-meta" style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.4rem;"><span class="badge badge-blue">3 Books</span><span class="stars">★★★★★</span></div>
+          <div class="series-desc">A world where ash falls from the sky and the prophesied hero failed — a thousand years ago. What followed was the Lord Ruler's empire. What follows now is a thief crew's heist to steal an entire empire. Sanderson's magic system (Allomancy) is the most inventive in modern fantasy. The ending of Book 3 is legendary.</div>
         </div>
       </div>
-
+      <div class="series-books">
+        <span class="series-book-pill"><strong>1.</strong> The Final Empire (2006)</span>
+        <span class="series-book-pill"><strong>2.</strong> The Well of Ascension (2007)</span>
+        <span class="series-book-pill"><strong>3.</strong> The Hero of Ages (2008)</span>
+      </div>
     </div>
 
-    <!-- ── Family Classics ── -->
-    <h2 class="section-title">🌟 Crews Family Classics</h2>
+    <div class="series-card">
+      <div class="series-header">
+        <div class="series-icon" style="background:linear-gradient(135deg,#1a0a00,#4a2a00);">💍</div>
+        <div>
+          <div class="series-title">The Lord of the Rings Trilogy</div>
+          <div class="series-author">J.R.R. Tolkien · 1954–1955 · High Fantasy</div>
+          <div class="series-meta" style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.4rem;"><span class="badge badge-amber">3 Books</span><span class="stars">★★★★★</span></div>
+          <div class="series-desc">The foundation of modern fantasy. Tolkien invented an entire world — languages, histories, mythologies — before he wrote a single page of story. The Fellowship, the journey to Mordor, the siege of Minas Tirith. There is no other work like it and there never will be.</div>
+        </div>
+      </div>
+      <div class="series-books">
+        <span class="series-book-pill"><strong>1.</strong> The Fellowship of the Ring (1954)</span>
+        <span class="series-book-pill"><strong>2.</strong> The Two Towers (1954)</span>
+        <span class="series-book-pill"><strong>3.</strong> The Return of the King (1955)</span>
+      </div>
+    </div>
+
+    <div class="series-card">
+      <div class="series-header">
+        <div class="series-icon" style="background:linear-gradient(135deg,#0a1a00,#2a4a00);">🗺️</div>
+        <div>
+          <div class="series-title">The Belgariad</div>
+          <div class="series-author">David Eddings · 1982–1984 · Epic Fantasy</div>
+          <div class="series-meta" style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.4rem;"><span class="badge badge-green">5 Books</span><span class="stars">★★★★★</span></div>
+          <div class="series-desc">A farm boy named Garion discovers he is the center of a prophecy stretching across millennia — and that his Aunt Pol is the most powerful sorceress alive. An essential quest fantasy with unforgettable characters and Eddings' warmly witty dialogue. The world-building is rich and the ensemble cast is one of fantasy's finest.</div>
+        </div>
+      </div>
+      <div class="series-books">
+        <span class="series-book-pill"><strong>1.</strong> Pawn of Prophecy (1982)</span>
+        <span class="series-book-pill"><strong>2.</strong> Queen of Sorcery (1982)</span>
+        <span class="series-book-pill"><strong>3.</strong> Magician's Gambit (1983)</span>
+        <span class="series-book-pill"><strong>4.</strong> Castle of Wizardry (1984)</span>
+        <span class="series-book-pill"><strong>5.</strong> Enchanters' End Game (1984)</span>
+      </div>
+    </div>
+
     <div style="display:flex; flex-direction:column; gap:1rem; margin-bottom:2.5rem;">
 
       <div class="book-card">
-        <div class="book-spine" style="background: linear-gradient(160deg,#C0832E,#8B5C15);">📙</div>
+        <div class="book-spine" style="background:linear-gradient(160deg,#8b6914,#5a4200);">📙</div>
         <div class="book-info">
-          <div class="book-title">To Kill a Mockingbird</div>
-          <div class="book-author">Harper Lee · 1960 · Fiction / Coming-of-Age</div>
-          <div class="book-meta"><span class="stars">★★★★★</span><span class="badge badge-amber">Family Classic</span></div>
-          <div class="book-desc">A masterpiece of American literature set in the Deep South. Robert Crews said this book "captures the Georgia I grew up in." A rite of passage read for every Crews teenager.</div>
-          <div class="book-rec">💬 "Robert Crews called this 'the most important book I ever read.'"</div>
+          <div class="book-title">Dune</div>
+          <div class="book-author">Frank Herbert · 1965 · Science Fantasy / Epic</div>
+          <div class="book-meta"><span class="stars">★★★★★</span><span class="badge badge-amber">Essential</span></div>
+          <div class="book-desc">The greatest science fiction novel ever written — and arguable the greatest novel, period. A desert planet, a messianic hero, political intrigue spanning interstellar empires, and a meditation on religion, ecology, and power that still feels urgent today. The Villeneuve films finally did it justice. Read the book first.</div>
         </div>
       </div>
 
       <div class="book-card">
-        <div class="book-spine" style="background: linear-gradient(160deg,#2F6690,#1A3A55);">📘</div>
+        <div class="book-spine" style="background:linear-gradient(160deg,#3a1a5a,#1a0a2a);">📕</div>
         <div class="book-info">
-          <div class="book-title">Gone with the Wind</div>
-          <div class="book-author">Margaret Mitchell · 1936 · Historical Fiction</div>
-          <div class="book-meta"><span class="stars">★★★★★</span><span class="badge badge-amber">Family Classic</span></div>
-          <div class="book-desc">A sprawling epic of the Civil War-era South. Edna Crews owned a first edition copy, now preserved in the family archive. A beloved read across all generations of the family.</div>
-          <div class="book-rec">💬 "Edna's first edition copy is kept in the family archive — handle with care!"</div>
+          <div class="book-title">Unfinished Tales of Númenor and Middle-earth</div>
+          <div class="book-author">J.R.R. Tolkien (ed. Christopher Tolkien) · 1980 · Fantasy / Lore</div>
+          <div class="book-meta"><span class="stars">★★★★½</span><span class="badge badge-blue">For LOTR Fans</span></div>
+          <div class="book-desc">The essential companion to Lord of the Rings — stories and essays that expand the history of Middle-earth. Covers the full tale of Tuor, Galadriel and Celeborn, the Istari, the Palantíri, and much more. Tolkien's world-building runs deeper than any single book could hold.</div>
         </div>
       </div>
 
       <div class="book-card">
-        <div class="book-spine" style="background: linear-gradient(160deg,#6B3A8B,#3D1A5C);">📕</div>
+        <div class="book-spine" style="background:linear-gradient(160deg,#1a3a5a,#0a1a3a);">📘</div>
         <div class="book-info">
-          <div class="book-title">The Grapes of Wrath</div>
-          <div class="book-author">John Steinbeck · 1939 · Fiction / Drama</div>
-          <div class="book-meta"><span class="stars">★★★★★</span><span class="badge badge-amber">Family Classic</span></div>
-          <div class="book-desc">Harold Crews reportedly read this aloud to his children during the Great Depression, saying the Joad family reminded him of neighbors. A powerful story of resilience that resonates with our family's history.</div>
+          <div class="book-title">Shōgun</div>
+          <div class="book-author">James Clavell · 1975 · Historical Fiction</div>
+          <div class="book-meta"><span class="stars">★★★★★</span><span class="badge badge-blue">Epic Historical</span></div>
+          <div class="book-desc">An English navigator is shipwrecked in feudal Japan in 1600 — a world of warring warlords, rigid honor codes, and violent beauty. A masterwork of historical fiction that immerses you so completely in feudal Japan you feel you have lived there. One of the greatest novels of the 20th century. The 2024 FX series is equally exceptional.</div>
         </div>
       </div>
 
     </div>
 
-    <!-- ── Recent Reads ── -->
-    <h2 class="section-title">✅ Recently Read — Family Recommendations</h2>
+    <!-- ══════════════════════════════════════
+         SCIENCE FICTION
+    ══════════════════════════════════════ -->
+    <h2 class="section-title scifi">🚀 Science Fiction</h2>
+
+    <div class="series-card">
+      <div class="series-header">
+        <div class="series-icon" style="background:linear-gradient(135deg,#0a1a2a,#1a4a6a);">🤖</div>
+        <div>
+          <div class="series-title">The Murderbot Diaries</div>
+          <div class="series-author">Martha Wells · 2017–2023 · Sci-Fi / Hugo Award Winner</div>
+          <div class="series-meta" style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.4rem;"><span class="badge badge-blue">7 Books</span><span class="stars">★★★★★</span><span class="badge badge-amber">Hugo Winner</span></div>
+          <div class="series-desc">A self-hacking security robot — it calls itself Murderbot — just wants to watch its TV serials and be left alone. Unfortunately, the humans it's supposed to guard keep getting into trouble. Wildly funny, surprisingly moving, and a genuine exploration of autonomy and identity. The first four novellas are compulsively readable. <em>Network Effect</em> won the Hugo for Best Novel.</div>
+        </div>
+      </div>
+      <div class="series-books">
+        <span class="series-book-pill"><strong>1.</strong> All Systems Red (2017)</span>
+        <span class="series-book-pill"><strong>2.</strong> Artificial Condition (2018)</span>
+        <span class="series-book-pill"><strong>3.</strong> Rogue Protocol (2018)</span>
+        <span class="series-book-pill"><strong>4.</strong> Exit Strategy (2018)</span>
+        <span class="series-book-pill"><strong>5.</strong> Network Effect (2020) — Novel</span>
+        <span class="series-book-pill"><strong>6.</strong> Fugitive Telemetry (2021)</span>
+        <span class="series-book-pill"><strong>7.</strong> System Collapse (2023)</span>
+      </div>
+    </div>
+
     <div style="display:flex; flex-direction:column; gap:1rem; margin-bottom:2.5rem;">
 
       <div class="book-card">
-        <div class="book-spine" style="background: linear-gradient(160deg,#A33B3B,#6B1A1A);">📕</div>
+        <div class="book-spine" style="background:linear-gradient(160deg,#1a3a1a,#0a2a0a);">📗</div>
         <div class="book-info">
-          <div class="book-title">The Lincoln Highway</div>
-          <div class="book-author">Amor Towles · 2021 · Fiction / Adventure</div>
-          <div class="book-meta"><span class="stars">★★★★½</span><span class="badge badge-green">Highly Rec'd</span></div>
-          <div class="book-desc">An adventure story following an 18-year-old and his younger brother on an unexpected journey across America. A page-turner with humor and heart.</div>
-          <div class="book-rec">💬 "Michael: 'Read it on the beach — perfect summer book.'"</div>
+          <div class="book-title">To Your Scattered Bodies Go</div>
+          <div class="book-author">Philip José Farmer · 1971 · Science Fiction · Riverworld #1</div>
+          <div class="book-meta"><span class="stars">★★★★★</span><span class="badge badge-green">Hugo Winner</span></div>
+          <div class="book-desc">Every human who ever lived wakes up on the banks of an infinite river on an alien world — no one knows why. Richard Francis Burton (the explorer) wakes up and immediately begins trying to find out. A staggering premise, executed brilliantly. One of the great Hugo Award-winning novels and an endlessly fascinating thought experiment about humanity itself.</div>
         </div>
       </div>
 
       <div class="book-card">
-        <div class="book-spine" style="background: linear-gradient(160deg,#3A7A8B,#1A4A55);">📘</div>
+        <div class="book-spine" style="background:linear-gradient(160deg,#2a3a1a,#1a2a0a);">📗</div>
         <div class="book-info">
-          <div class="book-title">Hillbilly Elegy</div>
-          <div class="book-author">J.D. Vance · 2016 · Memoir / Non-Fiction</div>
-          <div class="book-meta"><span class="stars">★★★★</span></div>
-          <div class="book-desc">A memoir about growing up in Appalachian Ohio that sparked lively family discussions about rural American culture and our own family roots in the Georgia countryside.</div>
-          <div class="book-rec">💬 "David: 'Really made us think about where we came from.'"</div>
+          <div class="book-title">A Psalm for the Wild-Built</div>
+          <div class="book-author">Becky Chambers · 2021 · Sci-Fi / Solarpunk · Monk &amp; Robot #1</div>
+          <div class="book-meta"><span class="stars">★★★★★</span><span class="badge badge-green">Hugo Winner</span></div>
+          <div class="book-desc">A tea monk travels beyond the edges of civilization and encounters a robot — the first robot to speak to a human in generations. They sit together and talk about what people need. A quiet, deeply humane novella that asks "what do you want?" and doesn't pretend the answer is easy. A perfect antidote to grimdark. Chambers at her best.</div>
         </div>
       </div>
 
       <div class="book-card">
-        <div class="book-spine" style="background: linear-gradient(160deg,#4A7C59,#2C4A35);">📗</div>
+        <div class="book-spine" style="background:linear-gradient(160deg,#1a2a3a,#0a1a2a);">📘</div>
         <div class="book-info">
-          <div class="book-title">Hidden Valley Road</div>
-          <div class="book-author">Robert Kolker · 2020 · Non-Fiction / Family</div>
-          <div class="book-meta"><span class="stars">★★★★½</span></div>
-          <div class="book-desc">The extraordinary story of a mid-century American family with twelve children, six of whom were diagnosed with schizophrenia. A deeply moving look at family bonds and medical history.</div>
-          <div class="book-rec">💬 "Jennifer: 'One of the most powerful family stories I've ever read.'"</div>
-        </div>
-      </div>
-
-      <div class="book-card">
-        <div class="book-spine" style="background: linear-gradient(160deg,#C0832E,#8B5C15);">📙</div>
-        <div class="book-info">
-          <div class="book-title">The Warmth of Other Suns</div>
-          <div class="book-author">Isabel Wilkerson · 2010 · History / Non-Fiction</div>
-          <div class="book-meta"><span class="stars">★★★★★</span><span class="badge badge-green">Must-Read</span></div>
-          <div class="book-desc">The epic story of the Great Migration through three individuals' journeys. Provides essential context for understanding the American South and the era our family history spans.</div>
+          <div class="book-title">Recursion</div>
+          <div class="book-author">Blake Crouch · 2019 · Thriller / Sci-Fi</div>
+          <div class="book-meta"><span class="stars">★★★★★</span><span class="badge badge-blue">Mind-Bending</span></div>
+          <div class="book-desc">A neuroscientist develops technology that lets people revisit their memories — but each use rewrites reality for everyone else. A time-loop thriller that escalates with mounting dread and genuine emotional stakes. Crouch's best book. Impossible to put down, and the climax is earned in ways that will wreck you.</div>
         </div>
       </div>
 
     </div>
 
-    <!-- ── Children's Section ── -->
-    <h2 class="section-title">👶 For the Young Readers</h2>
+    <!-- ══════════════════════════════════════
+         THRILLERS / ACTION
+    ══════════════════════════════════════ -->
+    <h2 class="section-title thriller">🔫 Thrillers &amp; Action</h2>
+
+    <div class="series-card">
+      <div class="series-header">
+        <div class="series-icon" style="background:linear-gradient(135deg,#1a0a0a,#4a1a1a);">🥊</div>
+        <div>
+          <div class="series-title">Jack Reacher Series</div>
+          <div class="series-author">Lee Child / Andrew Child · 1997–Present · Action Thriller</div>
+          <div class="series-meta" style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.4rem;"><span class="badge badge-red">29 Books</span><span class="stars">★★★★★</span></div>
+          <div class="series-desc">A drifter ex-military cop with no fixed address, no phone, and no patience for injustice. Reacher wanders into small towns and corrupt systems alike, and leaves only when justice has been served — usually in a physically catastrophic way. The purest action-thriller series in print. Start with <em>Killing Floor</em> or <em>One Shot</em>.</div>
+        </div>
+      </div>
+      <div class="series-books">
+        <span class="series-book-pill">Killing Floor (1997)</span>
+        <span class="series-book-pill">Die Trying (1998)</span>
+        <span class="series-book-pill">Tripwire (1999)</span>
+        <span class="series-book-pill">Running Blind (2000)</span>
+        <span class="series-book-pill">Echo Burning (2001)</span>
+        <span class="series-book-pill">Without Fail (2002)</span>
+        <span class="series-book-pill">Persuader (2003)</span>
+        <span class="series-book-pill">The Enemy (2004)</span>
+        <span class="series-book-pill">One Shot (2005)</span>
+        <span class="series-book-pill">The Hard Way (2006)</span>
+        <span class="series-book-pill">Bad Luck and Trouble (2007)</span>
+        <span class="series-book-pill">Nothing to Lose (2008)</span>
+        <span class="series-book-pill">Gone Tomorrow (2009)</span>
+        <span class="series-book-pill">61 Hours (2010)</span>
+        <span class="series-book-pill">Worth Dying For (2010)</span>
+        <span class="series-book-pill">The Affair (2011)</span>
+        <span class="series-book-pill">A Wanted Man (2012)</span>
+        <span class="series-book-pill">Never Go Back (2013)</span>
+        <span class="series-book-pill">Personal (2014)</span>
+        <span class="series-book-pill">Make Me (2015)</span>
+        <span class="series-book-pill">Night School (2016)</span>
+        <span class="series-book-pill">The Midnight Line (2017)</span>
+        <span class="series-book-pill">Past Tense (2018)</span>
+        <span class="series-book-pill">Blue Moon (2019)</span>
+        <span class="series-book-pill">The Sentinel (2020)</span>
+        <span class="series-book-pill">Better Off Dead (2021)</span>
+        <span class="series-book-pill">No Plan B (2022)</span>
+        <span class="series-book-pill">The Secret (2023)</span>
+        <span class="series-book-pill">In Too Deep (2024)</span>
+      </div>
+    </div>
+
+    <div class="series-card">
+      <div class="series-header">
+        <div class="series-icon" style="background:linear-gradient(135deg,#0a1a2a,#1a3a5a);">🎣</div>
+        <div>
+          <div class="series-title">Dave Robicheaux Series</div>
+          <div class="series-author">James Lee Burke · 1987–2022 · Crime / Literary Thriller</div>
+          <div class="series-meta" style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.4rem;"><span class="badge badge-blue">23 Books</span><span class="stars">★★★★★</span><span class="badge badge-amber">Edgar Award Winner</span></div>
+          <div class="series-desc">Cajun detective Dave Robicheaux — recovering alcoholic, Vietnam vet, father, and the most poetic voice in American crime fiction — navigates the bayous of New Iberia, Louisiana. Burke writes sentences that belong in literature anthologies. The violence is real, the landscape is alive, and Robicheaux carries the weight of the world on his shoulders and keeps walking anyway.</div>
+        </div>
+      </div>
+      <div class="series-books">
+        <span class="series-book-pill">The Neon Rain (1987)</span>
+        <span class="series-book-pill">Heaven's Prisoners (1988)</span>
+        <span class="series-book-pill">Black Cherry Blues (1989) ★ Edgar</span>
+        <span class="series-book-pill">A Morning for Flamingoes (1990)</span>
+        <span class="series-book-pill">A Stained White Radiance (1992)</span>
+        <span class="series-book-pill">In the Electric Mist with Confederate Dead (1993)</span>
+        <span class="series-book-pill">Dixie City Jam (1994)</span>
+        <span class="series-book-pill">Burning Angel (1995)</span>
+        <span class="series-book-pill">Sunset Limited (1998)</span>
+        <span class="series-book-pill">Purple Cane Road (2000)</span>
+        <span class="series-book-pill">Jolie Blon's Bounce (2002)</span>
+        <span class="series-book-pill">Last Car to Elysian Fields (2003)</span>
+        <span class="series-book-pill">Crusader's Cross (2005)</span>
+        <span class="series-book-pill">The Tin Roof Blowdown (2007)</span>
+        <span class="series-book-pill">Swan Peak (2008)</span>
+        <span class="series-book-pill">The Glass Rainbow (2010)</span>
+        <span class="series-book-pill">Creole Belle (2012)</span>
+        <span class="series-book-pill">Light of the World (2013)</span>
+        <span class="series-book-pill">Robicheaux (2018)</span>
+        <span class="series-book-pill">The New Iberia Blues (2019)</span>
+        <span class="series-book-pill">A Private Cathedral (2020)</span>
+        <span class="series-book-pill">Every Cloak Rolled in Blood (2022)</span>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:1rem; margin-bottom:2.5rem;">
+
+      <div class="book-card">
+        <div class="book-spine" style="background:linear-gradient(160deg,#2a1a0a,#4a2a00);">📙</div>
+        <div class="book-info">
+          <div class="book-title">The Old Man</div>
+          <div class="book-author">Thomas Perry · 2017 · Thriller</div>
+          <div class="book-meta"><span class="stars">★★★★★</span><span class="badge badge-red">High-Octane</span></div>
+          <div class="book-desc">A retired CIA operative living quietly under a false identity is suddenly hunted by men who should never have been able to find him. What follows is a masterclass in thriller writing — a man who has lived too long in the dark, using every skill he has just to survive another day. The FX series with Jeff Bridges is equally excellent. A lean, propulsive, unforgettable read.</div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-spine" style="background:linear-gradient(160deg,#1a1a3a,#2a2a5a);">📘</div>
+        <div class="book-info">
+          <div class="book-title">The Sword of God</div>
+          <div class="book-author">Mark Dawson · 2014 · Thriller · John Milton #4</div>
+          <div class="book-meta"><span class="stars">★★★★½</span><span class="badge badge-blue">Action Thriller</span></div>
+          <div class="book-desc">John Milton — one of Britain's most lethal government assassins, now gone off the grid — finds himself in the remote mountains of Michigan, in the middle of a militia movement preparing for holy war. Dawson writes at a breakneck pace. The Milton series is a class act, and this entry is among the best.</div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-spine" style="background:linear-gradient(160deg,#1a0a0a,#3a1a1a);">📕</div>
+        <div class="book-info">
+          <div class="book-title">Run</div>
+          <div class="book-author">Blake Crouch · 2011 · Thriller</div>
+          <div class="book-meta"><span class="stars">★★★★½</span><span class="badge badge-red">Relentless</span></div>
+          <div class="book-desc">A mass-casualty event triggers a new kind of America, where survival means keeping moving. A family flees for their lives across a collapsing country. Raw, kinetic, and brutally tense. Crouch at his most unfiltered — before the science-fiction twists of his later work, this is pure chase thriller, and it never stops.</div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-spine" style="background:linear-gradient(160deg,#0a1a2a,#1a2a3a);">📘</div>
+        <div class="book-info">
+          <div class="book-title">Tom Clancy: Line of Demarcation</div>
+          <div class="book-author">Tom Clancy · Military / Political Thriller</div>
+          <div class="book-meta"><span class="stars">★★★★</span><span class="badge badge-blue">Military Thriller</span></div>
+          <div class="book-desc">The latest in the Jack Ryan universe — geopolitical brinkmanship, intelligence operations, and the machinery of American power under pressure. Clancy's universe remains the gold standard for military-political thrillers, with a depth of technical and strategic detail that no one else matches.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════
+         HORROR / DARK FICTION
+    ══════════════════════════════════════ -->
+    <h2 class="section-title horror">🕯️ Horror &amp; Dark Fiction</h2>
+
+    <div style="display:flex; flex-direction:column; gap:1rem; margin-bottom:2.5rem;">
+
+      <div class="book-card">
+        <div class="book-spine" style="background:linear-gradient(160deg,#1a1a1a,#0a0a0a);">📕</div>
+        <div class="book-info">
+          <div class="book-title">The Fisherman</div>
+          <div class="book-author">John Langan · 2016 · Horror / Weird Fiction</div>
+          <div class="book-meta"><span class="stars">★★★★★</span><span class="badge badge-red">Cosmic Horror</span></div>
+          <div class="book-desc">Two grieving men — each widowed — bond over fishing along the Catskill streams of New York. When they hear of a legendary spot called Dutchman's Creek, the story that follows is a slow, suffocating descent into myth and cosmic dread. A campfire horror story about grief, loss, and the terrible things we might do to bring someone back. The best horror novel of the past decade. Langan writes like Poe with the architecture of a master storyteller.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════
+         LITERARY FICTION
+    ══════════════════════════════════════ -->
+    <h2 class="section-title literary">📖 Literary Fiction</h2>
+
+    <div style="display:flex; flex-direction:column; gap:1rem; margin-bottom:2.5rem;">
+
+      <div class="book-card">
+        <div class="book-spine" style="background:linear-gradient(160deg,#3a1a5a,#1a0a2a);">📕</div>
+        <div class="book-info">
+          <div class="book-title">The Darkest Child</div>
+          <div class="book-author">Delores Phillips · 2004 · Literary Fiction</div>
+          <div class="book-meta"><span class="stars">★★★★★</span><span class="badge badge-blue">Powerful</span></div>
+          <div class="book-desc">Set in 1950s rural Georgia, this devastating novel follows a Black family under the complete psychological domination of their mother, Rozelle — a woman of terrifying beauty and cruelty. Told through the eyes of her youngest daughter, Tangy Mae, it's a story about survival, love, and what it means to hold yourself together when everything is designed to break you. One of the most powerful and underread American novels ever written.</div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-spine" style="background:linear-gradient(160deg,#1a3a1a,#0a2a0a);">📗</div>
+        <div class="book-info">
+          <div class="book-title">Someone You Can Build a Nest In</div>
+          <div class="book-author">John Wiswell · 2024 · Fantasy / Literary Fiction</div>
+          <div class="book-meta"><span class="stars">★★★★★</span><span class="badge badge-green">2024 Nebula Winner</span></div>
+          <div class="book-desc">A shape-shifting monster who simply wants to be left alone falls in love with the monster hunter sent to kill her. Tender, funny, and deeply strange — Wiswell writes with a warmth that makes you root for a creature designed to frighten. A love story for people who feel like they don't quite belong in the world. The 2024 Nebula Award winner for Best Novel.</div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-spine" style="background:linear-gradient(160deg,#3a2a1a,#2a1a0a);">📙</div>
+        <div class="book-info">
+          <div class="book-title">The Silent Patient</div>
+          <div class="book-author">Alex Michaelides · 2019 · Psychological Thriller</div>
+          <div class="book-meta"><span class="stars">★★★★★</span><span class="badge badge-amber">Bestseller</span></div>
+          <div class="book-desc">A famous painter shoots her husband five times in the face — then never speaks another word. A forensic psychotherapist becomes obsessed with uncovering the truth. The twist is one of the best in modern thriller history. You'll read it in one sitting and immediately want to read it again knowing what you know.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════
+         CHILDREN'S
+    ══════════════════════════════════════ -->
+    <h2 class="section-title classic">👶 For the Young Readers</h2>
     <div class="card-grid card-grid-3">
       <div class="card">
-        <div class="card-img" style="background: linear-gradient(135deg,#FFD6A5,#FFA07A); font-size:3rem;">📚</div>
+        <div class="card-img" style="background: linear-gradient(135deg,#FFD6A5,#FFA07A); font-size:3rem;">📖</div>
+        <div class="card-body">
+          <div class="card-title">Hello, I'm Chuckles!</div>
+          <div class="card-meta">Chuck Crews · Ages 3–8 · Published 2025</div>
+          <div class="card-text">A heartwarming story about getting your first pair of glasses — written by Chuck himself! Available on Amazon.</div>
+          <div class="stars">★★★★★</div>
+          <a href="chuckles.html" style="font-size:0.8rem;color:var(--accent);font-weight:700;">Read more →</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img" style="background: linear-gradient(135deg,#B5EAD7,#6BAE9F); font-size:3rem;">🐷</div>
         <div class="card-body">
           <div class="card-title">Charlotte's Web</div>
           <div class="card-meta">E.B. White · Ages 7–12</div>
@@ -186,16 +456,7 @@
         </div>
       </div>
       <div class="card">
-        <div class="card-img" style="background: linear-gradient(135deg,#B5EAD7,#6BAE9F); font-size:3rem;">🐛</div>
-        <div class="card-body">
-          <div class="card-title">Where the Red Fern Grows</div>
-          <div class="card-meta">Wilson Rawls · Ages 10–14</div>
-          <div class="card-text">A beloved coming-of-age story set in the Ozarks — perfect for kids who love nature and adventure.</div>
-          <div class="stars">★★★★★</div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-img" style="background: linear-gradient(135deg,#C7CEEA,#7886C7); font-size:3rem;">🧙</div>
+        <div class="card-img" style="background: linear-gradient(135deg,#C7CEEA,#7886C7); font-size:3rem;">🦁</div>
         <div class="card-body">
           <div class="card-title">The Chronicles of Narnia</div>
           <div class="card-meta">C.S. Lewis · Ages 8–14</div>
