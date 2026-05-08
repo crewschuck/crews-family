@@ -106,25 +106,52 @@
     }
     .krynn-hero-image {
       flex-shrink: 0;
-      width: 380px;
+      width: 420px;
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: flex-end;
-      padding: 1.5rem 0 1.5rem 2rem;
+      padding: 0 0 0 2rem;
       position: relative;
       z-index: 2;
     }
     .krynn-hero-image img {
-      max-height: 300px;
+      max-height: 340px;
       max-width: 100%;
-      border-radius: 10px;
+      border-radius: 10px 10px 0 0;
       box-shadow: 0 8px 40px rgba(124,58,191,0.4), 0 0 0 1px rgba(192,132,252,0.2);
+      object-position: top center;
     }
+    /* Niss familiar card */
+    .niss-card {
+      background: linear-gradient(135deg,#060610,#0e0a1a);
+      border: 1px solid rgba(192,132,252,0.2);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin: 1rem 0;
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+    .niss-portrait {
+      flex-shrink: 0;
+      width: 260px;
+      border-radius: 10px;
+      box-shadow: 0 6px 24px rgba(124,58,191,0.35);
+    }
+    .niss-portrait-wrap { flex-shrink: 0; }
+    .niss-info {}
+    .niss-name { font-family: var(--font-serif); font-size: 1.3rem; color: var(--drow-glow); margin: 0 0 0.15rem; }
+    .niss-type { font-size: 0.8rem; color: rgba(192,132,252,0.65); margin-bottom: 0.75rem; letter-spacing: 0.05em; }
+    .niss-info p { font-size: 0.88rem; line-height: 1.7; color: rgba(232,224,240,0.75); margin: 0 0 0.6rem; }
+    .niss-stats { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+    .niss-stat { background: rgba(124,58,191,0.25); border: 1px solid rgba(192,132,252,0.2); border-radius: 20px; padding: 0.2rem 0.65rem; font-size: 0.76rem; color: #c084fc; }
     @media (max-width: 750px) {
       .krynn-hero-inner { flex-direction: column; padding: 1.5rem; }
       .krynn-hero-image { width: 100%; justify-content: center; padding: 0 0 1.5rem; }
-      .krynn-hero-image img { max-height: 220px; }
+      .krynn-hero-image img { max-height: 280px; border-radius: 10px; }
       .krynn-name { font-size: 2.2rem; }
+      .niss-card { flex-direction: column; }
+      .niss-portrait { width: 100%; max-width: 300px; }
     }
 
     /* ── Stat block ── */
@@ -338,7 +365,7 @@
         </div>
       </div>
       <div class="krynn-hero-image">
-        <img src="../images/krynn-character-sheet.png" alt="Krynn Thal'zath character sheet" />
+        <img src="../images/krynn-and-niss.png" alt="Krynn Thal'zath and Niss the Sprite" />
       </div>
     </div>
   </div>
@@ -482,6 +509,48 @@
             observing patterns that spanned millennia. Its nature — benevolent, neutral, or something
             far stranger — remains one of the central mysteries Krynn is driven to unravel.
           </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Niss the Sprite -->
+    <div class="lore-section" style="border:1px solid rgba(192,132,252,0.25);">
+      <div class="lore-header" style="background:linear-gradient(135deg,#0d0824,#1a0a3a);">
+        <span class="lore-header-icon">🧚</span>
+        <h2 style="color:#c084fc;">Niss — Sprite Familiar</h2>
+      </div>
+      <div class="lore-body">
+        <div class="niss-card">
+          <div class="niss-portrait-wrap">
+            <img class="niss-portrait" src="../images/krynn-and-niss.png" alt="Krynn and Niss the Sprite" />
+          </div>
+          <div class="niss-info">
+            <div class="niss-name">Niss</div>
+            <div class="niss-type">SPRITE &nbsp;·&nbsp; WARLOCK FAMILIAR &nbsp;·&nbsp; PACT GIFT</div>
+            <p>
+              Niss appeared shortly after Krynn's pact with Zhaun'ylith was sealed — a tiny winged sprite
+              drawn to the resonance of the connection, armed with a small bow and an outsized confidence.
+              She flies in Krynn's shadow like a guardian who refuses to admit she needs him as much as
+              he needs her.
+            </p>
+            <p>
+              Where Krynn is deliberate and focused, Niss is impulsive and fearless. She has an uncanny
+              instinct for danger — and an equally uncanny ability to be completely unbothered by it.
+              Her arrows carry a faint enchantment, and her tiny wings can carry her faster than most
+              would expect. She communicates mostly through pointed looks and pointed arrows.
+            </p>
+            <p>
+              The faculty at the University tolerated her presence. The students found her delightful.
+              Niss had opinions about everyone, communicated them freely, and was never once wrong.
+            </p>
+            <div class="niss-stats">
+              <span class="niss-stat">Tiny Fey Creature</span>
+              <span class="niss-stat">Shortbow</span>
+              <span class="niss-stat">Invisibility</span>
+              <span class="niss-stat">Heart Sight</span>
+              <span class="niss-stat">Telepathic Link</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
