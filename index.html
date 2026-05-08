@@ -91,6 +91,71 @@
     .welcome-blurb h2 { font-family: var(--font-serif); font-size: 1.75rem; color: var(--primary); margin-bottom: 0.75rem; }
     .welcome-blurb p { color: var(--text-muted); font-size: 1rem; line-height: 1.7; }
 
+    /* ── Featured Book Banner ── */
+    .featured-book {
+      max-width: 1000px;
+      margin: 2.5rem auto 0;
+      padding: 0 1.5rem;
+    }
+    .featured-book-inner {
+      background: linear-gradient(135deg, #0d4f80 0%, #1a7abf 55%, #38b2e8 100%);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 8px 32px rgba(26,122,191,0.28);
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      padding: 2rem 2.5rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+    }
+    .featured-book-inner::after {
+      content: '✨ NEW BOOK';
+      position: absolute;
+      top: 1rem; right: 1.25rem;
+      background: #f5c842;
+      color: #1a1a1a;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 0.25rem 0.7rem;
+      border-radius: 20px;
+      letter-spacing: 0.06em;
+    }
+    .featured-book-inner:hover { filter: brightness(1.06); }
+    .fb-cover {
+      width: 130px;
+      flex-shrink: 0;
+      border-radius: 6px;
+      box-shadow: 6px 6px 20px rgba(0,0,0,0.35), -2px -2px 8px rgba(255,255,255,0.1);
+      display: block;
+    }
+    .fb-text h3 {
+      font-size: 1.5rem;
+      margin: 0 0 0.25rem;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .fb-text .fb-byline { font-size: 0.9rem; opacity: 0.85; margin: 0 0 0.6rem; font-style: italic; }
+    .fb-text p { font-size: 0.9rem; line-height: 1.65; opacity: 0.92; margin: 0 0 1rem; }
+    .fb-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #f5c842;
+      color: #1a1a1a;
+      font-weight: 800;
+      font-size: 0.88rem;
+      padding: 0.55rem 1.25rem;
+      border-radius: 40px;
+      text-decoration: none;
+      box-shadow: 0 3px 12px rgba(245,200,66,0.45);
+    }
+    @media (max-width: 650px) {
+      .featured-book-inner { flex-direction: column; text-align: center; padding: 1.5rem; }
+      .featured-book-inner::after { top: 0.75rem; right: 0.75rem; }
+      .fb-cover { width: 110px; }
+    }
+
     @media (max-width: 600px) {
       .home-hero .hero-title { font-size: 2rem; }
       .sections-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
@@ -120,6 +185,23 @@
       for everything Crews. Explore our family tree, browse photo albums, keep up with the
       newsletter, and stay in the loop on upcoming gatherings.
     </p>
+  </div>
+
+  <!-- Featured Book Banner -->
+  <div class="featured-book">
+    <a class="featured-book-inner" href="pages/chuckles.html">
+      <img class="fb-cover" src="images/chuckles-cover.png" alt="Hello I'm Chuckles! book cover" />
+      <div class="fb-text">
+        <h3>Hello, I'm Chuckles!</h3>
+        <p class="fb-byline">A children's book by Chuck Crews</p>
+        <p>
+          Join Chuckles and his friends on a joyful journey of faith, family, and friendship.
+          A heartwarming story about getting your first glasses — and discovering you are
+          wonderfully made, just the way God intended.
+        </p>
+        <span class="fb-cta">📖 Read More &amp; Buy on Amazon →</span>
+      </div>
+    </a>
   </div>
 
   <!-- Section Cards Grid -->
